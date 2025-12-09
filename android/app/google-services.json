@@ -1,0 +1,67 @@
+{
+  "project_info": {
+    "project_number": "387118286779",
+    "project_id": "yalla-delivery-app-f5ce2",
+    "storage_bucket": "yalla-delivery-app-f5ce2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387118286779:android:dee51a397676513fede69e",
+        "android_client_info": {
+          "package_name": "com.yalla.delivery_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWB37XIwtnSN0-grMRllcYhBup-Wm-Nus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387118286779:android:4c0aa38e59ae7270ede69e",
+        "android_client_info": {
+          "package_name": "com.yalla_admin.yalla_admin"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWB37XIwtnSN0-grMRllcYhBup-Wm-Nus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:387118286779:android:22ce81685cdf2670ede69e",
+        "android_client_info": {
+          "package_name": "com.yalla_mandob.yalla_mandob"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWB37XIwtnSN0-grMRllcYhBup-Wm-Nus"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

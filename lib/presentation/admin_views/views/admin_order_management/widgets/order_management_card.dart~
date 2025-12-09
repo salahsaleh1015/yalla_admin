@@ -1,0 +1,115 @@
+import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yalla_admin/core/resources/colors_manager.dart';
+import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_order_management/widgets/order_status_badge.dart';
+import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
+import 'package:yalla_admin/presentation/global_widgets/global_decorated_container.dart';
+
+class OrderManagementCard extends StatelessWidget {
+  const OrderManagementCard({
+    super.key,
+    required this.orderStatus,
+    required this.statusColor,
+    required this.orderStatusColor,
+  });
+
+  final String orderStatus;
+  final Color statusColor;
+  final Color orderStatusColor;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.only(bottom: AppPadding.p10.h),
+      child: GlobalDecoratedContainer(
+        padding: EdgeInsets.symmetric(
+          vertical: AppPadding.p24.h,
+          horizontal: AppPadding.p16.w,
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "رقم الطلب: ",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: ColorManager.darkGrayColor,
+                  ),
+                ),
+                Text("50#", style: Theme.of(context).textTheme.headlineMedium),
+                const Spacer(),
+                OrderStatusBadge(
+                  statusColor: statusColor,
+                  orderStatus: orderStatus,
+                  orderStatusColor: orderStatusColor,
+                ),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "المستخدم: ",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: ColorManager.darkGrayColor,
+                  ),
+                ),
+                Text(
+                  "محمد علي",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
+            ),
+            SizedBox(height: AppSize.s10.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "مندوب التوصيل: ",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: ColorManager.darkGrayColor,
+                  ),
+                ),
+                Text("50#", style: Theme.of(context).textTheme.headlineMedium),
+              ],
+            ),
+            SizedBox(height: AppSize.s10.h),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  "الوقت: ",
+                  style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                    color: ColorManager.darkGrayColor,
+                  ),
+                ),
+                Text(
+                  "09:33 م",
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
+              ],
+            ),
+            SizedBox(height: AppSize.s10.h),
+            GlobalButtonWidget(
+              isButtonEnabled: true,
+              text: "عرض التفاصيل",
+              onTap: () {
+                orderDetailsForAdminDialog(
+                  context,
+
+                  statusColor: statusColor,
+                  orderStatusColor: orderStatusColor,
+
+                  orderStatus: orderStatus,
+                );
+              },
+              width: MediaQuery.of(context).size.width,
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+}
