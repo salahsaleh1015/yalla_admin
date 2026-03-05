@@ -59,8 +59,7 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
       case Routes.adminAuthenticationRoute:
         return MaterialPageRoute(
-            builder: (_) => const AdminAuthenticationView());
-
+            builder: (_) =>  AdminAuthenticationView());
 
       default:
         return _undefinedRoute();
