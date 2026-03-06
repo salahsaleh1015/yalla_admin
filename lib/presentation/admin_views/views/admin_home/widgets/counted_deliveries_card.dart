@@ -1,30 +1,27 @@
 
+
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_decorated_container.dart';
 
-class AdminStatisticsCard extends StatelessWidget {
-  const AdminStatisticsCard(
-      {super.key,
-        required this.iconPath,
-        required this.statisticsNumber,
-        required this.statisticsTitle});
-  final String iconPath;
-  final int statisticsNumber;
-  final String statisticsTitle;
+class CountedDeliveriesCard extends StatelessWidget {
+  const CountedDeliveriesCard({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return GlobalDecoratedContainer(
+    return   GlobalDecoratedContainer(
       width: AppSize.s120.w,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Image.asset(
-            iconPath,
+            AssetsManager.vehicleIcon,
             width: AppSize.s25.w,
             height: AppSize.s25.h,
             fit: BoxFit.fill,
@@ -32,7 +29,7 @@ class AdminStatisticsCard extends StatelessWidget {
           SizedBox(
             height: AppSize.s5.h,
           ),
-          Text(statisticsNumber.toString(),
+          Text(12.toString(),
               style: Theme.of(context)
                   .textTheme
                   .titleMedium!
@@ -40,7 +37,7 @@ class AdminStatisticsCard extends StatelessWidget {
           SizedBox(
             height: AppSize.s5.h,
           ),
-          Text(statisticsTitle,
+          Text("عدد الديلفرات المسجلين",
               textAlign: TextAlign.center,
               style: Theme.of(context).textTheme.labelSmall),
         ],

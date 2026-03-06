@@ -15,7 +15,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
   AdminMainLayoutCubit() : super(AdminMainLayoutInitial());
 
   static AdminMainLayoutCubit get(context) => BlocProvider.of(context);
-  int currentIndex = 2;
+  int currentIndex = 0;
 
 
   void changeIndex(int index) {
@@ -29,7 +29,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
     const TabItem(icon: Icons.delivery_dining, title: 'الديلفرات'),
     const TabItem(icon: Icons.add, title: 'اضف'),
     const TabItem(icon:  Icons.file_open_rounded, title: 'الطلبات'),
-    const TabItem(icon: Icons.person, title: 'الحساب'),
+
   ];
 
 
@@ -39,7 +39,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
     AdminDeliveryManagementView(),
     AdminAdditionView(),
     AdminOrderManagementView(),
-    AdminAccountView(),
+
   ];
 
 }
