@@ -11,7 +11,7 @@ class GetTheNumberOfDeliveriesUseCase extends UseCase<int, NoParam> {
 
   GetTheNumberOfDeliveriesUseCase(this.homeStatisticsCardsRepo);
   @override
-  Future<Either<Failure, int>> call([NoParam? param]) async {
+  Future<Either<Failure,int>> call([NoParam? param]) async {
     return await homeStatisticsCardsRepo.getTheNumberOfDeliveries();
   }
 }

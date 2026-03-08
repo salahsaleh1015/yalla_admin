@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/init/app_initializer.dart';
 import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/theme_manager.dart';
+import 'package:yalla_admin/core/services/dependency_injection_services/service_locator_setup.dart';
 import 'package:yalla_admin/translations/codegen_loader.g.dart';
 
 Future<void> main() async {
@@ -14,6 +15,12 @@ Future<void> main() async {
 
   // Step 1: Initialize core dependencies
   await AppInitializer.initCore();
+
+  // dependency injection
+  serviceLocatorSetup();
+
+  // hive initialization
+  AppInitializer.initHive();
 
   runApp(
     EasyLocalization(

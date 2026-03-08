@@ -1,12 +1,14 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_account/views/admin_account_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_account/views/admin_add_ads_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_account/views/admin_edit_account_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/views/admin_authentication.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_delivery_management_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_home_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_main_layout/views/admin_main_layout.dart';
@@ -22,6 +24,7 @@ class Routes {
   static const String adminAddAdsRoute = "/adminAddAds";
   static const String adminDeliveryManagementRoute = "/adminDeliveryManagement";
   static const String adminHomeRoute = "/adminHome";
+  static const String adminBannerDetailsRoute = "adminBannerDetails";
   static const String adminVendorDetailsRoute = "/adminVendorDetails";
   static const String adminAddVendorRoute = "/adminAddVendor";
   static const String adminAuthenticationRoute = "/adminAuthentication";
@@ -57,6 +60,11 @@ class RouteGenerator {
             builder: (_) => const AdminVendorDetailsView());
       case Routes.adminAddVendorRoute:
         return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
+      case Routes.adminBannerDetailsRoute:
+        final args = settings.arguments as HomeBannerEntity;
+        return MaterialPageRoute(builder: (_)=>BannerDetailsView(
+          banner: args,
+        ));
       case Routes.adminAuthenticationRoute:
         return MaterialPageRoute(
             builder: (_) =>  AdminAuthenticationView());

@@ -27,7 +27,7 @@ class GlobalAdvertisementItemWidget extends StatelessWidget {
             topLeft: Radius.circular(AppSize.s12.r),
             topRight: Radius.circular(AppSize.s12.r),
           ),
-          child: Image.asset(
+          child: Image.network(
               fit: BoxFit.fill,
               width: width ?? AppSize.s150.w,
               height: height ?? AppSize.s90.h,
