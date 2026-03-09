@@ -23,11 +23,11 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
 
 
       int completedOrders;
-      completedOrders =
-          homeStatisticsCardsLocalDataSource.getTheNumberOfCompletedOrders();
-      if (completedOrders.isNaN) {
-        return Right(completedOrders);
-      }
+      // completedOrders =
+      //     homeStatisticsCardsLocalDataSource.getTheNumberOfCompletedOrders();
+      // if (completedOrders.isNaN) {
+      //   return Right(completedOrders);
+      // }
       completedOrders =
           await homeStatisticsCardsRemoteDataSource
               .getTheNumberOfCompletedOrders();
@@ -47,14 +47,14 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
     try {
       int deliveries;
 
-      deliveries =
-          homeStatisticsCardsLocalDataSource.getTheNumberOfDeliveries();
-      debugPrint("/////////////////// this is data layer repo out if");
-      debugPrint(deliveries.toString());
-      if (deliveries.isEven) {
-        debugPrint("/////////////////// this is data layer repo in if");
-        return Right(deliveries);
-      }
+      // deliveries =
+      //     homeStatisticsCardsLocalDataSource.getTheNumberOfDeliveries();
+      // debugPrint("/////////////////// this is data layer repo out if");
+      // debugPrint(deliveries.toString());
+      // if (deliveries.isEven) {
+      //   debugPrint("/////////////////// this is data layer repo in if");
+      //   return Right(deliveries);
+      // }
       deliveries =
           await homeStatisticsCardsRemoteDataSource.getTheNumberOfDeliveries();
       return Right(deliveries);
@@ -72,10 +72,10 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   Future<Either<Failure, int>> getTheNumberOfUsers() async {
     try {
       int users;
-      users = homeStatisticsCardsLocalDataSource.getTheNumberOfUsers();
-      if (users.isNaN) {
-        return Right(users);
-      }
+      // users = homeStatisticsCardsLocalDataSource.getTheNumberOfUsers();
+      // if (users.isNaN) {
+      //   return Right(users);
+      // }
       users = await homeStatisticsCardsRemoteDataSource.getTheNumberOfUsers();
       return Right(users);
     } catch (e) {
