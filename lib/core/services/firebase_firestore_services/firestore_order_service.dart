@@ -15,4 +15,46 @@ class FirestoreOrdersServices {
             .get();
     return snapshot.count!;
   }
+
+
+  Future<List<QueryDocumentSnapshot>> getAllOrders() async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef.get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+  Future<List<QueryDocumentSnapshot>> getAcceptedOrders() async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("userOrderStatus", isEqualTo: "المقبولة")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+
+
+  Future<List<QueryDocumentSnapshot>> getCanceledOrders() async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("userOrderStatus", isEqualTo: "الملغية")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+  Future<List<QueryDocumentSnapshot>> getCompletedOrders() async {
+    QuerySnapshot querySnapshot = await _ordersCollectionRef
+        .where("userOrderStatus", isEqualTo: "مكتملة")
+        .get();
+
+    // Return the list of documents
+    return querySnapshot.docs;
+  }
+
+
+  Future<void> deleteOrder({required String orderId}) async {
+    await _ordersCollectionRef.doc(orderId).delete();
+  }
 }

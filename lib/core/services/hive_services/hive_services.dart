@@ -1,7 +1,7 @@
-
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
+import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 
 class HiveServices {
   static const kCompletedOrdersNumberBox = 'completed_orders_number_box';
@@ -9,6 +9,10 @@ class HiveServices {
   static const kUsersNumberBox = 'users_number_box';
   static const kBannersBox = 'banners_box';
   static const kShopsBox = 'shops_box';
+  static const kAllOrdersBox = 'all_orders_box';
+  static const kCompletedOrdersBox = 'completed_orders_box';
+  static const kCanceledOrdersBox = 'canceled_orders_box';
+  static const kAcceptedOrdersBox = 'accepted_orders_box';
   ////////////////////////////////////////////////////////////////
   static const kCompletedOrdersNumberBoxKey = 'completed_orders_number_box_key';
   static const kDeliveryNumbersBoxKey = 'delivery_numbers_box_key';
@@ -40,8 +44,7 @@ class HiveServices {
     // Register adapters
     Hive.registerAdapter(HomeBannerEntityAdapter());
     Hive.registerAdapter(HomeShopEntityAdapter());
-
-
+    Hive.registerAdapter(OrderEntityAdapter());
 
     // Open boxes
     await Hive.openBox<int>(kDeliveryNumbersBox);
@@ -49,6 +52,10 @@ class HiveServices {
     await Hive.openBox<int>(kUsersNumberBox);
     await Hive.openBox<HomeBannerEntity>(kBannersBox);
     await Hive.openBox<HomeShopEntity>(kShopsBox);
+    await Hive.openBox<OrderEntity>(kAllOrdersBox);
+    await Hive.openBox<OrderEntity>(kAcceptedOrdersBox);
+    await Hive.openBox<OrderEntity>(kCanceledOrdersBox);
+    await Hive.openBox<OrderEntity>(kCompletedOrdersBox);
 
 
     // Clear boxes
@@ -73,5 +80,13 @@ class HiveServices {
   }) {
     var box = Hive.box<HomeShopEntity>(boxName);
     box.addAll(shops);
+  }
+
+  static void saveOrdersData({
+    required List<OrderEntity> orders,
+    required String boxName,
+  }) {
+    var box = Hive.box<OrderEntity>(boxName);
+    box.addAll(orders);
   }
 }
