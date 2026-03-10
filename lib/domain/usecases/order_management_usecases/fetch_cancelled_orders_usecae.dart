@@ -18,7 +18,7 @@ class FetchCancelledOrdersUseCase
   @override
   Future<Either<Failure, List<OrderEntity>>> call([NoParam? param]) async {
     // check permission
-    return await fetchingOrdersRepo.fetchAcceptedOrders(
+    return await fetchingOrdersRepo.fetchCancelledOrders(
 
     );
   }

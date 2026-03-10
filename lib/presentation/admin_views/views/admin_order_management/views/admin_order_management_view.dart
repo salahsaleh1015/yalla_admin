@@ -29,15 +29,17 @@ class AdminOrderManagementView extends StatelessWidget {
                 height: AppSize.s25.h,
               ),
               const AdminOrderManagementTabBar(),
-              SizedBox(
-                height: AppSize.s25.h,
-              ),
-              const GlobalSearchCardItemWidget(hintText: "ابحث برقم الطلب"),
+              // SizedBox(
+              //   height: AppSize.s25.h,
+              // ),
+              // const GlobalSearchCardItemWidget(hintText: "ابحث برقم الطلب"),
               SizedBox(
                 height: AppSize.s30.h,
               ),
               Text("قائمة الطلبات", style: Theme.of(context).textTheme.bodyMedium),
-
+              SizedBox(
+                height: AppSize.s10.h,
+              ),
               const AdminOrderManagementTabBarView(),
 
             ],

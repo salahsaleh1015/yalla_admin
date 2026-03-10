@@ -33,11 +33,15 @@ class HiveServices {
     box.put(kUsersNumberBoxKey, value);
   }
 
-  static Future<void> clearHiveBox<T>({required String boxName}) async {
+  static Future<void> clearHiveBox<T>({required String boxName , }) async {
     final box = Hive.box<T>(boxName);
     await box.clear();
   }
 
+  // static Future<void> clearOrdersHiveBox({required String boxName}) async {
+  //   var box = Hive.box<OrderEntity>(boxName);
+  //   await box.clear();
+  // }
   static void initHive() async {
     await Hive.initFlutter();
 

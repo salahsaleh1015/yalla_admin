@@ -4,9 +4,12 @@ import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_order_service.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_users_service.dart';
 import 'package:yalla_admin/data/data_sources/local_data_sources/home_local_data_sources/home_statistics_cards_local_data_source.dart';
+import 'package:yalla_admin/data/data_sources/local_data_sources/order_management_local_data_source/fetching_orders_local_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_banners_and_shops_remote_data_source.dart';
-import 'package:yalla_admin/data/repos/home_repo/home_banners_and_shops_repo_impl.dart' show HomeBannersAndShopsRepoImpl;
+import 'package:yalla_admin/data/data_sources/remote_data_sources/order_management_remote_data_source/fetching_orders_remote_data_source.dart';
+import 'package:yalla_admin/data/repos/home_repo/home_banners_and_shops_repo_impl.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_statistics_cards_repo_impl.dart';
+import 'package:yalla_admin/data/repos/orders_management_repo/fetch_orders_repo.dart';
 
 import '../../../data/data_sources/local_data_sources/home_local_data_sources/home_banners_and_shops_local_data_source.dart';
 import '../../../data/data_sources/remote_data_sources/home_remote_data_sources/home_statistics_cards_remote_data_source.dart';
@@ -38,14 +41,24 @@ void serviceLocatorSetup() {
           ),
     ),
   );
+  ///////////////////////////////////////////////////////////////////////////////////////
+  getIt.registerSingleton<FetchOrdersRepoImpl>(
+    FetchOrdersRepoImpl(
+      FetchingOrdersRemoteDataSourceImpl(getIt.get<FirestoreOrdersServices>()),
 
+      FetchingOrdersLocalDataSourceImpl(),
+    ),
+  );
+
+  ///////////////////////////////////////////////////////////////////////////////////////
   getIt.registerSingleton<HomeBannersAndShopsRepoImpl>(
     HomeBannersAndShopsRepoImpl(
-      homeBannersAndShopsLocalDataSource: HomeBannersAndShopsLocalDataSourceImpl(
-
-      ),
-      homeBannersAndShopsRemoteDataSource: HomeBannersAndShopsRemoteDataSourceImpl(
-          getIt.get<FirestoreHomeServices>()),
+      homeBannersAndShopsLocalDataSource:
+          HomeBannersAndShopsLocalDataSourceImpl(),
+      homeBannersAndShopsRemoteDataSource:
+          HomeBannersAndShopsRemoteDataSourceImpl(
+            getIt.get<FirestoreHomeServices>(),
+          ),
     ),
   );
 }
