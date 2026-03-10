@@ -1,6 +1,3 @@
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:yalla_admin/core/errors/failure.dart';
@@ -9,24 +6,24 @@ import 'package:yalla_admin/data/data_sources/remote_data_sources/order_manageme
 import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 import 'package:yalla_admin/domain/repos/order_management_repos/fetching_orders_repo.dart';
 
-class FetchOrdersRepoImpl implements FetchingOrdersRepo{
-
+class FetchOrdersRepoImpl implements FetchingOrdersRepo {
   FetchingOrdersRemoteDataSource fetchingOrdersRemoteDataSource;
   FetchingOrdersLocalDataSource fetchingOrdersLocalDataSource;
 
-  FetchOrdersRepoImpl(this.fetchingOrdersRemoteDataSource, this.fetchingOrdersLocalDataSource);
+  FetchOrdersRepoImpl(
+    this.fetchingOrdersRemoteDataSource,
+    this.fetchingOrdersLocalDataSource,
+  );
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> fetchAcceptedOrders() async{
+  Future<Either<Failure, List<OrderEntity>>> fetchAcceptedOrders() async {
     try {
       List<OrderEntity> orders;
-      orders =
-          fetchingOrdersLocalDataSource.fetchAcceptedOrders();
+      orders = fetchingOrdersLocalDataSource.fetchAcceptedOrders();
       if (orders.isNotEmpty) {
         return Right(orders);
       }
-      orders = await fetchingOrdersRemoteDataSource
-          .fetchAcceptedOrders();
+      orders = await fetchingOrdersRemoteDataSource.fetchAcceptedOrders();
       print('/////////////////////////// ok ok ok ok ');
       return Right(orders);
     } catch (e) {
@@ -40,16 +37,14 @@ class FetchOrdersRepoImpl implements FetchingOrdersRepo{
   }
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> fetchAllOrders() async{
+  Future<Either<Failure, List<OrderEntity>>> fetchAllOrders() async {
     try {
       List<OrderEntity> orders;
-      orders =
-          fetchingOrdersLocalDataSource.fetchAllOrders();
+      orders = fetchingOrdersLocalDataSource.fetchAllOrders();
       if (orders.isNotEmpty) {
         return Right(orders);
       }
-      orders = await fetchingOrdersRemoteDataSource
-          .fetchAllOrders();
+      orders = await fetchingOrdersRemoteDataSource.fetchAllOrders();
       print('/////////////////////////// ok ok ok ok ');
       return Right(orders);
     } catch (e) {
@@ -63,16 +58,14 @@ class FetchOrdersRepoImpl implements FetchingOrdersRepo{
   }
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> fetchCancelledOrders() async{
+  Future<Either<Failure, List<OrderEntity>>> fetchCancelledOrders() async {
     try {
       List<OrderEntity> orders;
-      orders =
-          fetchingOrdersLocalDataSource.fetchCanceledOrders();
+      orders = fetchingOrdersLocalDataSource.fetchCanceledOrders();
       if (orders.isNotEmpty) {
         return Right(orders);
       }
-      orders = await fetchingOrdersRemoteDataSource
-          .fetchCanceledOrders();
+      orders = await fetchingOrdersRemoteDataSource.fetchCanceledOrders();
       print('/////////////////////////// ok ok ok ok ');
       return Right(orders);
     } catch (e) {
@@ -86,16 +79,14 @@ class FetchOrdersRepoImpl implements FetchingOrdersRepo{
   }
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> fetchCompletedOrders() async{
+  Future<Either<Failure, List<OrderEntity>>> fetchCompletedOrders() async {
     try {
       List<OrderEntity> orders;
-      orders =
-          fetchingOrdersLocalDataSource.fetchCompletedOrders();
+      orders = fetchingOrdersLocalDataSource.fetchCompletedOrders();
       if (orders.isNotEmpty) {
         return Right(orders);
       }
-      orders = await fetchingOrdersRemoteDataSource
-          .fetchCompletedOrders();
+      orders = await fetchingOrdersRemoteDataSource.fetchCompletedOrders();
       print('/////////////////////////// ok ok ok ok ');
       return Right(orders);
     } catch (e) {
@@ -108,4 +99,20 @@ class FetchOrdersRepoImpl implements FetchingOrdersRepo{
     }
   }
 
+  @override
+  Future<Either<Failure, void>> deleteOrderById({
+    required String orderId,
+  }) async {
+    try {
+      await fetchingOrdersRemoteDataSource.deleteOrder(orderId: orderId);
+      return const Right(null);
+    } catch (e) {
+      print('///////////////////////////');
+      print(e.toString());
+      if (e is FirebaseException) {
+        return Left(FirebaseFailure.fromFirebaseException(e));
+      }
+      return Left(FirebaseFailure.fromException(e.toString()));
+    }
+  }
 }

@@ -46,10 +46,8 @@ class AllOrdersListView extends StatelessWidget {
                   SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       return OrderManagementCard(
-                        orderStatus: "قيد التنفيذ",
-                        statusColor: ColorManager.lightPrimary,
-                        orderStatusColor: ColorManager.primary,
-
+                     order: state.allOrders[index],
+                        orderIndex: index,
                       );
                     }, childCount: state.allOrders.length),
                   ),

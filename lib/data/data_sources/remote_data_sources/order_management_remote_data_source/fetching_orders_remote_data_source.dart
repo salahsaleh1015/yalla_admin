@@ -10,6 +10,7 @@ abstract class FetchingOrdersRemoteDataSource {
   Future<List<OrderEntity>> fetchCanceledOrders();
   Future<List<OrderEntity>> fetchCompletedOrders();
   Future<List<OrderEntity>> fetchAcceptedOrders();
+  Future<void> deleteOrder({required String orderId});
 }
 
 class FetchingOrdersRemoteDataSourceImpl
@@ -30,7 +31,7 @@ class FetchingOrdersRemoteDataSourceImpl
   }
 
   @override
-  Future<List<OrderEntity>> fetchAllOrders() async{
+  Future<List<OrderEntity>> fetchAllOrders() async {
     var data = await firestoreOrdersServices.getAllOrders();
     List<OrderEntity> allOrders = getOrdersList(data);
     HiveServices.saveOrdersData(
@@ -41,7 +42,7 @@ class FetchingOrdersRemoteDataSourceImpl
   }
 
   @override
-  Future<List<OrderEntity>> fetchCanceledOrders() async{
+  Future<List<OrderEntity>> fetchCanceledOrders() async {
     var data = await firestoreOrdersServices.getCanceledOrders();
     List<OrderEntity> canceledOrders = getOrdersList(data);
     HiveServices.saveOrdersData(
@@ -52,7 +53,7 @@ class FetchingOrdersRemoteDataSourceImpl
   }
 
   @override
-  Future<List<OrderEntity>> fetchCompletedOrders() async{
+  Future<List<OrderEntity>> fetchCompletedOrders() async {
     var data = await firestoreOrdersServices.getCompletedOrders();
     List<OrderEntity> completedOrders = getOrdersList(data);
     HiveServices.saveOrdersData(
@@ -60,6 +61,11 @@ class FetchingOrdersRemoteDataSourceImpl
       boxName: HiveServices.kCompletedOrdersBox,
     );
     return completedOrders;
+  }
+
+  @override
+  Future<void> deleteOrder({required String orderId}) async {
+    await firestoreOrdersServices.deleteOrder(orderId: orderId);
   }
 
   List<OrderEntity> getOrdersList(List<QueryDocumentSnapshot> docs) {
@@ -71,4 +77,6 @@ class FetchingOrdersRemoteDataSourceImpl
 
     return orders;
   }
+
+
 }

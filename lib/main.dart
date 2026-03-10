@@ -57,7 +57,8 @@ class YallaAdminApp extends StatelessWidget {
             title: 'Yalla Admin app',
 
             onGenerateRoute: routeGenerator.getRoute,
-            initialRoute: startRoute,
+            //initialRoute: startRoute,
+            initialRoute: Routes.adminMainLayoutRoute,
           ),
     );
   }

@@ -43,10 +43,8 @@ class AcceptedOrdersListView extends StatelessWidget {
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return OrderManagementCard(
-                            orderStatus: "مقبولة",
-                            statusColor: ColorManager.lightPrimary,
-                            orderStatusColor: ColorManager.primary,
-
+                            orderIndex: index,
+                            order: state.acceptedOrders[index],
                           );
                         }, childCount: state.acceptedOrders.length),
                       ),

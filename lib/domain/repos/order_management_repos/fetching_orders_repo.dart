@@ -7,4 +7,6 @@ abstract class FetchingOrdersRepo {
   Future<Either<Failure, List<OrderEntity>>> fetchCompletedOrders();
   Future<Either<Failure, List<OrderEntity>>> fetchCancelledOrders();
   Future<Either<Failure, List<OrderEntity>>> fetchAcceptedOrders();
+  Future<Either<Failure, void>> deleteOrderById({required String orderId});
+
 }

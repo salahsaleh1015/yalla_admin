@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/core/utils/get_status_badge_color.dart';
+import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_order_management/widgets/order_status_badge.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/delete_order_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_divider_widget.dart';
@@ -12,9 +14,7 @@ import '../../../../core/resources/font_manager.dart';
 
 
 Future<void> orderDetailsForAdminDialog(BuildContext context,
-    {required String orderStatus,
-    required Color statusColor,
-    required Color orderStatusColor}) {
+    {required OrderEntity order,}) {
   return showDialog<void>(
       context: context,
       barrierDismissible: true,
@@ -22,61 +22,66 @@ Future<void> orderDetailsForAdminDialog(BuildContext context,
         return AlertDialog(
           backgroundColor: ColorManager.white,
           contentPadding: EdgeInsets.all(AppPadding.p8.r),
-          content: Column(
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "تفاصيل طلب رقم #50",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodySmall!
-                        .copyWith(fontSize: FontSize.s22),
-                  ),
-                  SizedBox(
-                    width: AppSize.s70.w,
-                  ),
-                  IconButton(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    icon: Icon(
-                      Icons.close,
-                      color: ColorManager.secondaryTextColor,
+          content: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(
+                      "تفاصيل طلب",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodySmall!
+                          .copyWith(fontSize: FontSize.s22),
                     ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: AppSize.s10.h,
-              ),
-              OrderStatusBadge(
-                  statusColor: statusColor,
-                  orderStatus: orderStatus,
-                  orderStatusColor: orderStatusColor),
-              SizedBox(
-                height: AppSize.s10.h,
-              ),
-              const GlobalDividerWidget(),
-              SizedBox(
-                height: AppSize.s10.h,
-              ),
-              const OrderDetailsContentForAdminDialog(),
-              TextButton(
-                  onPressed: () {
-                    deleteOrderDialog(context);
-                  },
-                  child: Text(
-                    "هل تريد حذف هذا الطلب؟",
-                    style: Theme.of(context)
-                        .textTheme
-                        .bodyMedium!
-                        .copyWith(color: ColorManager.error),
-                  )),
-            ],
+                    SizedBox(
+                      width: AppSize.s70.w,
+                    ),
+                    IconButton(
+                      onPressed: () {
+                        Navigator.pop(context);
+                      },
+                      icon: Icon(
+                        Icons.close,
+                        color: ColorManager.secondaryTextColor,
+                      ),
+                    ),
+                  ],
+                ),
+                SizedBox(
+                  height: AppSize.s10.h,
+                ),
+                OrderStatusBadge(
+                  statusColor: getStatusBadgeColor(order.orderStatus),
+                  orderStatus: order.orderStatus,
+                  orderStatusColor: getStatusTextColor(order.orderStatus),
+                ),
+                SizedBox(
+                  height: AppSize.s10.h,
+                ),
+                const GlobalDividerWidget(),
+                SizedBox(
+                  height: AppSize.s10.h,
+                ),
+                 OrderDetailsContentForAdminDialog(
+                  order: order,
+                ),
+                TextButton(
+                    onPressed: () {
+                      deleteOrderDialog(context ,orderId: order.orderId);
+                    },
+                    child: Text(
+                      "هل تريد حذف هذا الطلب؟",
+                      style: Theme.of(context)
+                          .textTheme
+                          .bodyMedium!
+                          .copyWith(color: ColorManager.error),
+                    )),
+              ],
+            ),
           ),
           actions: [
             GlobalSecondaryButton(
@@ -91,8 +96,8 @@ Future<void> orderDetailsForAdminDialog(BuildContext context,
 }
 
 class OrderDetailsContentForAdminDialog extends StatelessWidget {
-  const OrderDetailsContentForAdminDialog({super.key});
-
+  const OrderDetailsContentForAdminDialog({super.key, required this.order});
+ final OrderEntity order;
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -121,7 +126,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "محمد علي",
+                order.userName,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
@@ -138,7 +143,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "محمد سعيد",
+                order.deliveryName,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
@@ -155,7 +160,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "ابن البلد",
+                "------",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
@@ -172,7 +177,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
             height: AppSize.s5.h,
           ),
           Text(
-            "مدينة 6 اكتوبر , جامع الحصري الكافية الي جنب روستو",
+           order.userLocation,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
           buildSpacer(),
@@ -187,13 +192,10 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
             height: AppSize.s5.h,
           ),
           Text(
-            "2 X دجاج هارت اتاك سنجل",
+            order.orderDetails,
             style: Theme.of(context).textTheme.headlineMedium,
           ),
-          Text(
-            "1 X ساعة ذكية رياضية",
-            style: Theme.of(context).textTheme.headlineMedium,
-          ),
+
           buildSpacer(),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
@@ -206,7 +208,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "200 ج.م",
+                " الدفع عند الاستلام ",
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],
@@ -223,7 +225,7 @@ class OrderDetailsContentForAdminDialog extends StatelessWidget {
                     .copyWith(color: ColorManager.darkGrayColor),
               ),
               Text(
-                "09:33 م",
+               order.orderRequestTime,
                 style: Theme.of(context).textTheme.headlineMedium,
               ),
             ],

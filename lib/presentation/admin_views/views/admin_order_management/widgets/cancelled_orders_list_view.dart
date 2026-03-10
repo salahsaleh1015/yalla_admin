@@ -44,9 +44,8 @@ class CancelledOrdersListView extends StatelessWidget {
                       SliverList(
                         delegate: SliverChildBuilderDelegate((context, index) {
                           return OrderManagementCard(
-                            orderStatus: "ملغية",
-                            statusColor: ColorManager.lightRedColor,
-                            orderStatusColor: ColorManager.error,
+                         orderIndex: index,
+                            order: state.cancelledOrders[index],
                           );
                         }, childCount: state.cancelledOrders.length),
                       ),

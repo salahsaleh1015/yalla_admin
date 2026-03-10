@@ -46,9 +46,8 @@ class CompletedOrdersListView extends StatelessWidget {
                   SliverList(
                     delegate: SliverChildBuilderDelegate((context, index) {
                       return OrderManagementCard(
-                        orderStatus: "مكتملة",
-                        statusColor: ColorManager.lightGreenColor,
-                        orderStatusColor: ColorManager.greenColor,
+                      order: state.completedOrders[index],
+                        orderIndex: index,
 
                       );
                     }, childCount: state.completedOrders.length),

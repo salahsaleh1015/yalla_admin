@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/core/utils/get_status_badge_color.dart';
+import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_order_management/widgets/order_status_badge.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/order_details_for_admin_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
@@ -10,14 +12,11 @@ import 'package:yalla_admin/presentation/global_widgets/global_decorated_contain
 class OrderManagementCard extends StatelessWidget {
   const OrderManagementCard({
     super.key,
-    required this.orderStatus,
-    required this.statusColor,
-    required this.orderStatusColor,
+    required this.order,
+    required this.orderIndex,
   });
-
-  final String orderStatus;
-  final Color statusColor;
-  final Color orderStatusColor;
+  final OrderEntity order;
+  final int orderIndex;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -39,12 +38,15 @@ class OrderManagementCard extends StatelessWidget {
                     color: ColorManager.darkGrayColor,
                   ),
                 ),
-                Text("50#", style: Theme.of(context).textTheme.headlineMedium),
+                Text(
+                  orderIndex.toString(),
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
                 const Spacer(),
                 OrderStatusBadge(
-                  statusColor: statusColor,
-                  orderStatus: orderStatus,
-                  orderStatusColor: orderStatusColor,
+                  statusColor: getStatusBadgeColor(order.orderStatus),
+                  orderStatus: order.orderStatus,
+                  orderStatusColor: getStatusTextColor(order.orderStatus),
                 ),
               ],
             ),
@@ -58,7 +60,7 @@ class OrderManagementCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "محمد علي",
+                  order.userName,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
@@ -73,7 +75,10 @@ class OrderManagementCard extends StatelessWidget {
                     color: ColorManager.darkGrayColor,
                   ),
                 ),
-                Text("50#", style: Theme.of(context).textTheme.headlineMedium),
+                Text(
+                  order.deliveryName,
+                  style: Theme.of(context).textTheme.headlineMedium,
+                ),
               ],
             ),
             SizedBox(height: AppSize.s10.h),
@@ -87,7 +92,7 @@ class OrderManagementCard extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "09:33 م",
+                  order.orderRequestTime,
                   style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ],
@@ -100,10 +105,8 @@ class OrderManagementCard extends StatelessWidget {
                 orderDetailsForAdminDialog(
                   context,
 
-                  statusColor: statusColor,
-                  orderStatusColor: orderStatusColor,
 
-                  orderStatus: orderStatus,
+                  order: order,
                 );
               },
               width: MediaQuery.of(context).size.width,
