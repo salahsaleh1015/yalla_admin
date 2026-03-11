@@ -56,7 +56,7 @@ class DeleteOrderDialogContent extends StatelessWidget {
           if (state is DeleteOrderSuccessState) {
             clearHiveBoxes();
 
-            Navigator.pushReplacementNamed(context, Routes.adminMainLayoutRoute,arguments: 3);
+            Navigator.pushReplacementNamed(context, Routes.adminMainLayoutRoute,);
             showCustomToast(
               context,
               "تم مسح الطلب بنجاح",

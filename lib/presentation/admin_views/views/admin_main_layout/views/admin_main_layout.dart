@@ -4,11 +4,11 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_main_layout/cub
 import 'package:yalla_admin/presentation/global_widgets/global_bottom_nav_bar_widget.dart';
 
 class AdminMainLayout extends StatelessWidget {
-  AdminMainLayout({super.key, this.currentIndex});
+ const AdminMainLayout({super.key, });
 
   static String id = 'AdminMainLayout';
 
-   int? currentIndex;
+
 
   @override
   Widget build(BuildContext context) {
@@ -18,12 +18,12 @@ class AdminMainLayout extends StatelessWidget {
         builder: (context, state) {
           var cubit = AdminMainLayoutCubit.get(context);
           return Scaffold(
-            body: cubit.adminScreens[currentIndex ?? cubit.currentIndex],
+            body: cubit.adminScreens[ cubit.currentIndex],
             bottomNavigationBar: GlobalBottomNavBarWidget(
-              initialActiveIndex: currentIndex ?? cubit.currentIndex,
+              initialActiveIndex: cubit.currentIndex,
               items: cubit.adminBottomNavTabs,
-              onTap: (index) {
-                cubit.changeIndex(index);
+              onTap: (currentIndex) {
+                cubit.changeIndex(currentIndex);
               },
             ),
           );

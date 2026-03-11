@@ -41,10 +41,10 @@ class RouteGenerator {
 
       // Admin routes
       case Routes.adminMainLayoutRoute:
-        var args = settings.arguments as int?;
+
         return MaterialPageRoute(builder: (_) =>  AdminMainLayout(
-          currentIndex: args,
-        ));
+
+     ));
       case Routes.adminAdditionRoute:
         return MaterialPageRoute(builder: (_) => const AdminAdditionView());
       case Routes.adminAccountRoute:
