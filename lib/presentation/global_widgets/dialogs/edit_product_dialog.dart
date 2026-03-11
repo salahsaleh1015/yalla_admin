@@ -11,7 +11,7 @@ void editProductDialog(BuildContext context) {
       content: const EditProductDialogContent(),
       dialogTitle: "تعديل بيانات المنتج",
       actionButtonHint: "حفظ",
-      actionButtonCallBack: () {});
+     );
 }
 
 

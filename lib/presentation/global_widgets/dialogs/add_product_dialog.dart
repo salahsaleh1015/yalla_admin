@@ -11,7 +11,7 @@ void addProductDialog(BuildContext context) {
       content: const AddProductDialogContent(),
       dialogTitle: "إضافة منتج",
       actionButtonHint: "إضافة",
-      actionButtonCallBack: () {});
+      );
 }
 
 

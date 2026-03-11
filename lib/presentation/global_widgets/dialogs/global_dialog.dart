@@ -14,7 +14,7 @@ class CustomDialog extends StatelessWidget {
   final Widget content;
   final String dialogTitle;
   final String actionButtonHint;
-  final VoidCallback actionButtonCallBack;
+
   final Color? actionButtonColor;
 
   const CustomDialog({
@@ -22,7 +22,7 @@ class CustomDialog extends StatelessWidget {
     required this.content,
     required this.dialogTitle,
     required this.actionButtonHint,
-    required this.actionButtonCallBack,
+
     this.actionButtonColor,
   });
 
@@ -72,19 +72,19 @@ class CustomDialog extends StatelessWidget {
           content,
         ],
       ),
-      actions: <Widget>[
-        Padding(
-          padding: EdgeInsets.all(AppSize.s2.r),
-          child: GlobalButtonWidget(
-            isButtonEnabled: true,
-            height: AppSize.s40.h,
-            color: actionButtonColor ?? ColorManager.primary,
-            onTap: actionButtonCallBack,
-            width: MediaQuery.of(context).size.width * 0.8,
-            text: actionButtonHint,
-          ),
-        ),
-      ],
+      // actions: <Widget>[
+      //   Padding(
+      //     padding: EdgeInsets.all(AppSize.s2.r),
+      //     child: GlobalButtonWidget(
+      //       isButtonEnabled: true,
+      //       height: AppSize.s40.h,
+      //       color: actionButtonColor ?? ColorManager.primary,
+      //       onTap: actionButtonCallBack,
+      //       width: MediaQuery.of(context).size.width * 0.8,
+      //       text: actionButtonHint,
+      //     ),
+      //   ),
+      // ],
     );
   }
 }
@@ -94,7 +94,6 @@ Future<void> showCustomDialog(BuildContext context, {
   required Widget content,
   required String dialogTitle,
   required String actionButtonHint,
-  required VoidCallback actionButtonCallBack,
   Color? actionButtonColor,
 }) {
   return showDialog<void>(
@@ -105,7 +104,6 @@ Future<void> showCustomDialog(BuildContext context, {
         content: content,
         dialogTitle: dialogTitle,
         actionButtonHint: actionButtonHint,
-        actionButtonCallBack: actionButtonCallBack,
         actionButtonColor: actionButtonColor,
       );
     },

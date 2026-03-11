@@ -10,7 +10,7 @@ void addDeliveryDialog(BuildContext context) {
   showCustomDialog(context, content: const AddDeliveryDialogContent(),
       dialogTitle: "إضافة مندوب جديد",
       actionButtonHint: "إضافة",
-      actionButtonCallBack: (){});
+      );
 }
 
 

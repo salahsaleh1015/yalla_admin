@@ -11,7 +11,7 @@ void addAdsDialog(BuildContext context) {
       content: const AddAdsDialogContent(),
       dialogTitle: "إضافة شريك الإعلان",
       actionButtonHint: "إضافة",
-      actionButtonCallBack: () {});
+      );
 }
 
 

@@ -71,7 +71,7 @@ Future<void> orderDetailsForAdminDialog(BuildContext context,
                 ),
                 TextButton(
                     onPressed: () {
-                      deleteOrderDialog(context ,orderId: order.orderId);
+                      deleteOrderDialog(context ,orderId: order.orderId,orderStatus: order.orderStatus);
                     },
                     child: Text(
                       "هل تريد حذف هذا الطلب؟",

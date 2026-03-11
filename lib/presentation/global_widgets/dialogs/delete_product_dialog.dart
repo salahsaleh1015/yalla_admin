@@ -10,7 +10,7 @@ void deleteProductDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: "حذف المنتج",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "حذف",actionButtonCallBack: (){},
+      actionButtonHint: "حذف",
       content:const DeleteProductDialogContent());
 }
 

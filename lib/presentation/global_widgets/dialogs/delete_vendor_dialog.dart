@@ -18,7 +18,7 @@ void  deleteVendorDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: " حذف موزع الخدمة؟",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "حذف",actionButtonCallBack: (){},
+      actionButtonHint: "حذف",
       content:const DeleteVendorDialogContent());
 }
 

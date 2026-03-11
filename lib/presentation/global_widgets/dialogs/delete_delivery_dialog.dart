@@ -12,7 +12,7 @@ void  deleteDeliveryDialog(BuildContext context) {
   showCustomDialog(context,dialogTitle: "حذف مندوب التوصيل",
 
       actionButtonColor: ColorManager.error,
-      actionButtonHint: "حذف",actionButtonCallBack: (){},
+      actionButtonHint: "حذف",
       content:const DeleteDeliveryDialogContent());
 }
 

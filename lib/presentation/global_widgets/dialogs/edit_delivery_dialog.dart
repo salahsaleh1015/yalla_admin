@@ -9,7 +9,7 @@ void editDeliveryDialog(BuildContext context) {
   showCustomDialog(context, content: const EditDeliveryDialogContent(),
       dialogTitle: "تعديل البيانات",
       actionButtonHint: "حفظ",
-      actionButtonCallBack: (){});
+      );
 }
 
 

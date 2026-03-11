@@ -12,7 +12,7 @@ void addVendorDialog(BuildContext context) {
       content: const AddVendorDialogContent(),
       dialogTitle: "إضافة موزع جديد",
       actionButtonHint: "إضافة",
-      actionButtonCallBack: () {});
+      );
 }
 
 

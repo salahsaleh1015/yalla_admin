@@ -16,7 +16,7 @@ void editVendorDialog(BuildContext context) {
       content: const EditVendorDialogContent(),
       dialogTitle: " تعديل بيانات الموزع",
       actionButtonHint: "تعديل",
-      actionButtonCallBack: () {});
+      );
 }
 
 class EditVendorDialogContent extends StatelessWidget {
