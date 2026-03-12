@@ -11,8 +11,6 @@ import 'package:yalla_admin/presentation/global_widgets/global_padding_widget.da
 import '../../../../../core/resources/constants_manager.dart';
 
 
-
-
 class AdminDeliveryManagementView extends StatelessWidget {
   const AdminDeliveryManagementView({super.key});
 
