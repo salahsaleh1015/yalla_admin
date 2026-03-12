@@ -37,14 +37,14 @@ class FetchOrdersRepoImpl implements FetchingOrdersRepo {
   }
 
   @override
-  Future<Either<Failure, List<OrderEntity>>> fetchAllOrders() async {
+  Future<Either<Failure, List<OrderEntity>>> fetchPendingOrders() async {
     try {
       List<OrderEntity> orders;
-      orders = fetchingOrdersLocalDataSource.fetchAllOrders();
+      orders = fetchingOrdersLocalDataSource.fetchPendingOrders();
       if (orders.isNotEmpty) {
         return Right(orders);
       }
-      orders = await fetchingOrdersRemoteDataSource.fetchAllOrders();
+      orders = await fetchingOrdersRemoteDataSource.fetchPendingOrders();
       print('/////////////////////////// ok ok ok ok ');
       return Right(orders);
     } catch (e) {

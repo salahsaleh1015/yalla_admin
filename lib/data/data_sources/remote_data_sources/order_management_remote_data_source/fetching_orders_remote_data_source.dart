@@ -6,7 +6,7 @@ import 'package:yalla_admin/domain/entities/order_management_entities/order_enti
 import '../../../models/order_model.dart';
 
 abstract class FetchingOrdersRemoteDataSource {
-  Future<List<OrderEntity>> fetchAllOrders();
+  Future<List<OrderEntity>> fetchPendingOrders();
   Future<List<OrderEntity>> fetchCanceledOrders();
   Future<List<OrderEntity>> fetchCompletedOrders();
   Future<List<OrderEntity>> fetchAcceptedOrders();
@@ -31,12 +31,12 @@ class FetchingOrdersRemoteDataSourceImpl
   }
 
   @override
-  Future<List<OrderEntity>> fetchAllOrders() async {
-    var data = await firestoreOrdersServices.getAllOrders();
+  Future<List<OrderEntity>> fetchPendingOrders() async {
+    var data = await firestoreOrdersServices.getPendingOrders();
     List<OrderEntity> allOrders = getOrdersList(data);
     HiveServices.saveOrdersData(
       orders: allOrders,
-      boxName: HiveServices.kAllOrdersBox,
+      boxName: HiveServices.kPendingOrdersBox,
     );
     return allOrders;
   }

@@ -9,7 +9,7 @@ class HiveServices {
   static const kUsersNumberBox = 'users_number_box';
   static const kBannersBox = 'banners_box';
   static const kShopsBox = 'shops_box';
-  static const kAllOrdersBox = 'all_orders_box';
+  static const kPendingOrdersBox = 'pending_orders_box';
   static const kCompletedOrdersBox = 'completed_orders_box';
   static const kCanceledOrdersBox = 'canceled_orders_box';
   static const kAcceptedOrdersBox = 'accepted_orders_box';
@@ -56,7 +56,7 @@ class HiveServices {
     await Hive.openBox<int>(kUsersNumberBox);
     await Hive.openBox<HomeBannerEntity>(kBannersBox);
     await Hive.openBox<HomeShopEntity>(kShopsBox);
-    await Hive.openBox<OrderEntity>(kAllOrdersBox);
+    await Hive.openBox<OrderEntity>(kPendingOrdersBox);
     await Hive.openBox<OrderEntity>(kAcceptedOrdersBox);
     await Hive.openBox<OrderEntity>(kCanceledOrdersBox);
     await Hive.openBox<OrderEntity>(kCompletedOrdersBox);

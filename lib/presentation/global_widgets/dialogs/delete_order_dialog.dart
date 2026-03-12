@@ -18,7 +18,8 @@ import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator
 import '../../../core/resources/colors_manager.dart';
 import '../../../core/resources/values_manager.dart';
 
-void deleteOrderDialog(BuildContext context, {
+void deleteOrderDialog(
+  BuildContext context, {
   required String orderId,
   required String orderStatus,
 }) {
@@ -48,15 +49,18 @@ class DeleteOrderDialogContent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (context) => DeleteOrderCubit(DeleteOrderUseCase(
-        getIt.get<FetchOrdersRepoImpl>()
-      )),
+      create:
+          (context) => DeleteOrderCubit(
+            DeleteOrderUseCase(getIt.get<FetchOrdersRepoImpl>()),
+          ),
       child: BlocConsumer<DeleteOrderCubit, DeleteOrderStates>(
         listener: (context, state) {
           if (state is DeleteOrderSuccessState) {
             clearHiveBoxes();
-
-            Navigator.pushReplacementNamed(context, Routes.adminMainLayoutRoute,);
+            Navigator.pushReplacementNamed(
+              context,
+              Routes.adminMainLayoutRoute,
+            );
             showCustomToast(
               context,
               "تم مسح الطلب بنجاح",
@@ -73,8 +77,6 @@ class DeleteOrderDialogContent extends StatelessWidget {
           }
         },
         builder: (context, state) {
-
-
           if (state is DeleteOrderLoadingState) {
             return const Center(child: GlobalLoadingIndicator());
           }
@@ -85,11 +87,7 @@ class DeleteOrderDialogContent extends StatelessWidget {
               SizedBox(height: AppSize.s10.h),
               Text(
                 "هل أنت متأكد أنك تريد إلغاء الطلب؟",
-                style: Theme
-                    .of(context)
-                    .textTheme
-                    .headlineMedium!
-                    .copyWith(
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                   color: ColorManager.hintColor,
                 ),
               ),
@@ -99,8 +97,8 @@ class DeleteOrderDialogContent extends StatelessWidget {
                 child: GlobalButtonWidget(
                   isButtonEnabled: true,
                   height: AppSize.s40.h,
-                  color:  ColorManager.error,
-                  onTap: (){
+                  color: ColorManager.error,
+                  onTap: () {
                     DeleteOrderCubit.get(context).deleteOrder(orderId: orderId);
                   },
                   width: MediaQuery.of(context).size.width * 0.8,
@@ -116,21 +114,32 @@ class DeleteOrderDialogContent extends StatelessWidget {
 
   void clearHiveBoxes() {
     clearOrdersBoxByStatus(orderStatus);
-    HiveServices.clearHiveBox<OrderEntity>(boxName: HiveServices.kAllOrdersBox);
   }
 
   void clearOrdersBoxByStatus(String orderStatus) {
     switch (orderStatus) {
       case 'المقبولة':
-        HiveServices.clearHiveBox<OrderEntity>(boxName: HiveServices.kAcceptedOrdersBox);
+        HiveServices.clearHiveBox<OrderEntity>(
+          boxName: HiveServices.kAcceptedOrdersBox,
+        );
         break;
 
       case 'الملغية':
-        HiveServices.clearHiveBox<OrderEntity>(boxName: HiveServices.kCanceledOrdersBox);
+        HiveServices.clearHiveBox<OrderEntity>(
+          boxName: HiveServices.kCanceledOrdersBox,
+        );
         break;
 
       case 'مكتملة':
-        HiveServices.clearHiveBox<OrderEntity>(boxName: HiveServices.kCompletedOrdersBox);
+        HiveServices.clearHiveBox<OrderEntity>(
+          boxName: HiveServices.kCompletedOrdersBox,
+        );
+        break;
+
+      case 'المعلقة':
+        HiveServices.clearHiveBox<OrderEntity>(
+          boxName: HiveServices.kPendingOrdersBox,
+        );
         break;
     }
   }

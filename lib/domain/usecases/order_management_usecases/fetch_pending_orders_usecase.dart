@@ -9,16 +9,16 @@ import 'package:yalla_admin/core/usecase/usecase.dart';
 import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 import 'package:yalla_admin/domain/repos/order_management_repos/fetching_orders_repo.dart';
 
-class FetchAllOrdersUseCase
+class FetchPendingOrdersUseCase
     extends UseCase<List<OrderEntity>, NoParam> {
 
   FetchingOrdersRepo fetchingOrdersRepo;
-  FetchAllOrdersUseCase(this.fetchingOrdersRepo);
+  FetchPendingOrdersUseCase(this.fetchingOrdersRepo);
 
   @override
   Future<Either<Failure, List<OrderEntity>>> call([NoParam? param]) async {
     // check permission
-    return await fetchingOrdersRepo.fetchAllOrders(
+    return await fetchingOrdersRepo.fetchPendingOrders(
 
     );
   }

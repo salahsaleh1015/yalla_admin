@@ -5,7 +5,7 @@ import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
 
 abstract class FetchingOrdersLocalDataSource {
-  List<OrderEntity> fetchAllOrders();
+  List<OrderEntity> fetchPendingOrders();
   List<OrderEntity> fetchCanceledOrders();
   List<OrderEntity> fetchCompletedOrders();
   List<OrderEntity> fetchAcceptedOrders();
@@ -22,8 +22,8 @@ class FetchingOrdersLocalDataSourceImpl
   }
 
   @override
-  List<OrderEntity> fetchAllOrders() {
-    var box = Hive.box<OrderEntity>(HiveServices.kAllOrdersBox);
+  List<OrderEntity> fetchPendingOrders() {
+    var box = Hive.box<OrderEntity>(HiveServices.kPendingOrdersBox);
     return box.values.toList();
   }
 

@@ -8,7 +8,7 @@ class AdminOrderManagementTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const GlobalTabBar(tabs: [
       Tab(
-        text: "الكل",
+        text: "معلق",
       ),
       Tab(
         text: "جاري",
