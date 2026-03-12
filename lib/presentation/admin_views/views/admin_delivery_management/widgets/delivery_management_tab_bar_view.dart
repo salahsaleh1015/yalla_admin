@@ -13,11 +13,7 @@ class DeliveryManagementTabBarView extends StatelessWidget {
     return   SizedBox(
       height: MediaQuery.of(context).size.height * 0.56,
       child:  TabBarView(children:[
-        DeliveryManagementCardsList(
-          deliveryStatusColor: ColorManager.white,
-          deliveryStatus: "الكل",
-          statusColor: ColorManager.primary,
-        ),
+     
         const DeliveryManagementCardsList(
           deliveryStatusColor: Colors.green,
           deliveryStatus: "متاح",

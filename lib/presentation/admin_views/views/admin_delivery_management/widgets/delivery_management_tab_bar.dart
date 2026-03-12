@@ -9,9 +9,6 @@ class DeliveryManagementTabBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return  const GlobalTabBar(tabs: [
       Tab(
-        text: "الكل",
-      ),
-      Tab(
         text: "متاح",
       ),
       Tab(
