@@ -12,6 +12,6 @@ class AddDeliveriesUseCase extends UseCase<void, DeliveryEntity> {
   @override
   Future<Either<Failure, void>> call(DeliveryEntity delivery) async {
     // check permission
-    return await actionsOfDeliveriesRepo.addDelivery(deliveryEntity: delivery);
+    return await actionsOfDeliveriesRepo.addDelivery(delivery: delivery);
   }
 }

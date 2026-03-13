@@ -1,4 +1,5 @@
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:yalla_admin/domain/entities/delivery_management_entities/delivery_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
@@ -13,6 +14,9 @@ class HiveServices {
   static const kCompletedOrdersBox = 'completed_orders_box';
   static const kCanceledOrdersBox = 'canceled_orders_box';
   static const kAcceptedOrdersBox = 'accepted_orders_box';
+  static const kAvailableDeliveryBox = 'available_delivery_box';
+  static const kUnAvailableDeliveryBox = 'unAvailable_delivery_box';
+  static const kBusyDeliveryBox = 'busy_delivery_box';
   ////////////////////////////////////////////////////////////////
   static const kCompletedOrdersNumberBoxKey = 'completed_orders_number_box_key';
   static const kDeliveryNumbersBoxKey = 'delivery_numbers_box_key';
@@ -70,6 +74,13 @@ class HiveServices {
     await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
   }
 
+  static void saveDeliveriesData({
+    required List<DeliveryEntity> deliveries,
+    required String boxName,
+  }) {
+    var box = Hive.box<DeliveryEntity>(boxName);
+    box.addAll(deliveries);
+  }
   static void saveBannersData({
     required List<HomeBannerEntity> banners,
     required String boxName,
@@ -85,6 +96,7 @@ class HiveServices {
     var box = Hive.box<HomeShopEntity>(boxName);
     box.addAll(shops);
   }
+
 
   static void saveOrdersData({
     required List<OrderEntity> orders,

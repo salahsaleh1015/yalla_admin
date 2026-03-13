@@ -14,7 +14,7 @@ class DeliveryEntity {
   @HiveField(3)
   final String deliveryPhone;
   @HiveField(4)
-  final String deliveryRate;
+  final num deliveryRate;
   @HiveField(5)
   final String deliveryStatus;
 
