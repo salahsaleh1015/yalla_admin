@@ -21,6 +21,9 @@ class HiveServices {
   static const kCompletedOrdersNumberBoxKey = 'completed_orders_number_box_key';
   static const kDeliveryNumbersBoxKey = 'delivery_numbers_box_key';
   static const kUsersNumberBoxKey = 'users_number_box_key';
+  static const kAvailableDeliveriesBox = 'available_deliveries_box';
+  static const kUnAvailableDeliveriesBox = 'unAvailable_deliveries_box';
+  static const kBusyDeliveriesBox = 'busy_deliveries_box';
 
   static void cacheDeliveriesNumber({required int value}) {
     var box = Hive.box<int>(kDeliveryNumbersBox);
@@ -53,6 +56,7 @@ class HiveServices {
     Hive.registerAdapter(HomeBannerEntityAdapter());
     Hive.registerAdapter(HomeShopEntityAdapter());
     Hive.registerAdapter(OrderEntityAdapter());
+    Hive.registerAdapter(DeliveryEntityAdapter());
 
     // Open boxes
     await Hive.openBox<int>(kDeliveryNumbersBox);
@@ -64,6 +68,9 @@ class HiveServices {
     await Hive.openBox<OrderEntity>(kAcceptedOrdersBox);
     await Hive.openBox<OrderEntity>(kCanceledOrdersBox);
     await Hive.openBox<OrderEntity>(kCompletedOrdersBox);
+    await Hive.openBox<DeliveryEntity>(kAvailableDeliveryBox);
+    await Hive.openBox<DeliveryEntity>(kUnAvailableDeliveryBox);
+    await Hive.openBox<DeliveryEntity>(kBusyDeliveryBox);
 
 
     // Clear boxes
@@ -72,6 +79,9 @@ class HiveServices {
     await clearHiveBox<int>(boxName: kUsersNumberBox);
     await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
     await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
+    await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
   }
 
   static void saveDeliveriesData({
