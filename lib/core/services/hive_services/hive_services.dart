@@ -21,9 +21,9 @@ class HiveServices {
   static const kCompletedOrdersNumberBoxKey = 'completed_orders_number_box_key';
   static const kDeliveryNumbersBoxKey = 'delivery_numbers_box_key';
   static const kUsersNumberBoxKey = 'users_number_box_key';
-  static const kAvailableDeliveriesBox = 'available_deliveries_box';
-  static const kUnAvailableDeliveriesBox = 'unAvailable_deliveries_box';
-  static const kBusyDeliveriesBox = 'busy_deliveries_box';
+  // static const kAvailableDeliveriesBox = 'available_deliveries_box';
+  // static const kUnAvailableDeliveriesBox = 'unAvailable_deliveries_box';
+  // static const kBusyDeliveriesBox = 'busy_deliveries_box';
 
   static void cacheDeliveriesNumber({required int value}) {
     var box = Hive.box<int>(kDeliveryNumbersBox);

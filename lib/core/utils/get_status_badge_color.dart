@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
+import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
+import 'package:yalla_admin/domain/entities/delivery_management_entities/delivery_entity.dart';
 
 
 
@@ -32,5 +34,28 @@ Color getStatusTextColor(String status) {
       return ColorManager.greenColor;
     default:
       return ColorManager.white;
+  }
+}
+
+
+void clearDeliveriesBoxByStatus(String deliveryStatus) {
+  switch (deliveryStatus) {
+    case 'متاح':
+      HiveServices.clearHiveBox<DeliveryEntity>(
+        boxName: HiveServices.kAvailableDeliveryBox,
+      );
+      break;
+
+    case 'غير متاح':
+      HiveServices.clearHiveBox<DeliveryEntity>(
+        boxName: HiveServices.kUnAvailableDeliveryBox,
+      );
+      break;
+
+    case 'مشغول':
+      HiveServices.clearHiveBox<DeliveryEntity>(
+        boxName: HiveServices.kBusyDeliveryBox,
+      );
+      break;
   }
 }
