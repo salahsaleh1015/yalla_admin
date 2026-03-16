@@ -3,6 +3,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yalla_admin/data/models/delivery_model.dart';
+import 'package:yalla_admin/domain/entities/delivery_management_entities/delivery_entity.dart';
 
 
 class FirestoreDeliveryServices {
@@ -28,17 +29,29 @@ class FirestoreDeliveryServices {
     return value.docs;
   }
 
-  Future<void> addDelivery({required DeliveryModel delivery})async{
-    String deliveryId = documentReference.id;
-    delivery.id = deliveryId;
-    await _deliveryCollectionRef.doc(deliveryId).set(delivery.toJson());
+  Future<void> addDelivery({required DeliveryEntity delivery}) async {
+
+    final docRef = _deliveryCollectionRef.doc();
+
+    final model = DeliveryModel(
+      deliveryId: docRef.id,
+      deliveryName: delivery.deliveryName,
+      deliveryLocation: delivery.deliveryLocation,
+      deliveryPhone: delivery.deliveryPhone,
+      deliveryRate: delivery.deliveryRate,
+      deliveryStatus: delivery.deliveryStatus,
+      completedOrdersNumber: delivery.completedOrdersNumber
+    );
+
+    await docRef.set(model.toJson());
   }
+
 
   Future<void> updateDelivery(DeliveryModel delivery) async {
 
     // Step 1: Search for user by id
     final querySnapshot = await _deliveryCollectionRef
-        .where('deliveryId', isEqualTo: delivery.id)
+        .where('deliveryId', isEqualTo: delivery.deliveryId)
         .limit(1)
         .get();
 

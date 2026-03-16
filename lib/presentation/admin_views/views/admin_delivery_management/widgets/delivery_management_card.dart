@@ -61,7 +61,7 @@ class DeliveryManagementCard extends StatelessWidget {
               ),
               RatingStars(
                 value: delivery.deliveryRate.toDouble(),
-                starCount: delivery.deliveryRate.toInt(),
+              //  starCount: delivery.deliveryRate.toInt(),
                 starSize: AppSize.s20.r,
                 starOffColor: ColorManager.transparent,
                 starColor: ColorManager.activeRateColor,
@@ -81,6 +81,23 @@ class DeliveryManagementCard extends StatelessWidget {
               Text(
                 delivery.deliveryPhone,
                 style: Theme.of(context).textTheme.headlineMedium,
+              ),
+            ],
+          ),
+          SizedBox(height: AppSize.s12.h),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Text(
+                "عدد الطلبات المكتمله:   ",
+                style: Theme.of(context).textTheme.headlineMedium!.copyWith(
+                  color: ColorManager.darkGrayColor,
+                ),
+              ),
+              Text(
+                delivery.completedOrdersNumber.toString(),
+                style: Theme.of(context).textTheme.headlineMedium,
+                maxLines: 10,
               ),
             ],
           ),

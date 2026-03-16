@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
@@ -12,6 +13,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
       this.height,
       this.controller,
       this.onSaved,
+        this.formater,
       this.validator, this.letterSpacing});
   final double? height;
   final TextInputType textInputType;
@@ -20,6 +22,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
   final Function(String?)? onSaved;
   final String? Function(String?)? validator;
   final double? letterSpacing;
+  final List<TextInputFormatter>? formater;
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +35,7 @@ class GlobalTextFieldWidget extends StatelessWidget {
       child: ClipRRect(
         borderRadius: BorderRadius.circular(AppSize.s15.r),
         child: TextFormField(
-
+          inputFormatters: formater,
           controller: controller,
           cursorColor: ColorManager.primary,
           cursorHeight: AppSize.s25.h,

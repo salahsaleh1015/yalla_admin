@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/views/admin_authentication.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_add_delivery_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_delivery_management_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
@@ -20,6 +21,7 @@ class Routes {
   static const String adminEditAccountRoute = "/adminEditAccount";
   static const String adminAddAdsRoute = "/adminAddAds";
   static const String adminDeliveryManagementRoute = "/adminDeliveryManagement";
+  static const String adminAddDeliveryRoute = "/adminAddDelivery";
   static const String adminHomeRoute = "/adminHome";
   static const String adminBannerDetailsRoute = "adminBannerDetails";
   static const String adminVendorDetailsRoute = "/adminVendorDetails";
@@ -46,6 +48,8 @@ class RouteGenerator {
       case Routes.adminDeliveryManagementRoute:
         return MaterialPageRoute(
             builder: (_) => const AdminDeliveryManagementView());
+      case Routes.adminAddDeliveryRoute:
+        return MaterialPageRoute(builder: (_)=>AdminAddDeliveryView());
       case Routes.adminHomeRoute:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.adminVendorDetailsRoute:

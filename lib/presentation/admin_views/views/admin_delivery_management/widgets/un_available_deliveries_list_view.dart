@@ -60,10 +60,10 @@ class UnAvailableDeliveriesListView extends StatelessWidget {
                             child: DeliveryManagementCard(
                               statusBadgeModel: StatusBadgeModel(
                                 badgeBackgroundColor:
-                                    ColorManager.darkGrayColor,
+                                    ColorManager.lightGrayColor,
                                 deliveryStatus: "غير متاح",
                                 deliveryStatusColor:
-                                    ColorManager.lightGrayColor,
+                                    ColorManager.darkGrayColor,
                               ),
                               delivery: state.unAvailableDeliveries[index],
                             ),

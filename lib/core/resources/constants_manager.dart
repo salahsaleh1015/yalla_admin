@@ -33,6 +33,29 @@ class AppConstant{
     }
     return null;
   };
+
+
+
+
+  static  String? Function(String?)? rateValidator = (String? val) {
+    // 1. التأكد أن الحقل ليس فارغاً
+    if (val == null || val.isEmpty) {
+      return "ادخل القيمه الصحيحه";
+    }
+
+    // 2. محاولة تحويل النص إلى رقم
+    final score = int.tryParse(val);
+
+    // 3. التأكد أنه رقم صحيح ومن 1 إلى 5
+    if (score == null) {
+      return "يرجى إدخال رقم صحيح فقط";
+    }
+    if (score < 1 || score > 5) {
+      return "التقييم يجب أن يكون بين 1 و 5";
+    }
+
+    return null;
+  };
 }
 
 
@@ -53,5 +76,8 @@ String normalizeArabicNumbers(String input) {
   return input.split('').map((char) {
     return arabicToEnglish[char] ?? char;
   }).join();
+
+
+
 
 }
