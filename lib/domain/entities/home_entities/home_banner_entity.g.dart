@@ -19,6 +19,7 @@ class HomeBannerEntityAdapter extends TypeAdapter<HomeBannerEntity> {
     return HomeBannerEntity(
       bannerImage: fields[0] as String,
       bannerShopName: fields[1] as String,
+      bannerId: fields[4] as String,
       bannerShopAddress: fields[2] as String,
       bannerShopPhoneNumber: fields[3] as String,
     );
@@ -27,7 +28,7 @@ class HomeBannerEntityAdapter extends TypeAdapter<HomeBannerEntity> {
   @override
   void write(BinaryWriter writer, HomeBannerEntity obj) {
     writer
-      ..writeByte(4)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.bannerImage)
       ..writeByte(1)
@@ -35,7 +36,9 @@ class HomeBannerEntityAdapter extends TypeAdapter<HomeBannerEntity> {
       ..writeByte(2)
       ..write(obj.bannerShopAddress)
       ..writeByte(3)
-      ..write(obj.bannerShopPhoneNumber);
+      ..write(obj.bannerShopPhoneNumber)
+      ..writeByte(4)
+      ..write(obj.bannerId);
   }
 
   @override

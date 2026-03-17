@@ -1,4 +1,5 @@
 import 'package:get_it/get_it.dart';
+import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_storage_services.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_delivery_service.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_home_services.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_order_service.dart';
@@ -8,10 +9,12 @@ import 'package:yalla_admin/data/data_sources/local_data_sources/home_local_data
 import 'package:yalla_admin/data/data_sources/local_data_sources/order_management_local_data_source/fetching_orders_local_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/delivery_management_remote_data_source/actions_of_deliveries_remote_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/delivery_management_remote_data_source/fetching_deliveries_remote_data_source.dart';
+import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/add_home_data_remote_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_banners_and_shops_remote_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/order_management_remote_data_source/fetching_orders_remote_data_source.dart';
 import 'package:yalla_admin/data/repos/deliveries_management_repo/actions_of_deliveries_repo.dart';
 import 'package:yalla_admin/data/repos/deliveries_management_repo/fetching_deliveries_repo.dart';
+import 'package:yalla_admin/data/repos/home_repo/add_home_data_repo_impl.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_banners_and_shops_repo_impl.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_statistics_cards_repo_impl.dart';
 import 'package:yalla_admin/data/repos/orders_management_repo/fetch_orders_repo.dart';
@@ -23,13 +26,17 @@ final getIt = GetIt.instance;
 
 void serviceLocatorSetup() {
   // Firebase services
-  getIt.registerSingleton<FirestoreDeliveryServices>(FirestoreDeliveryServices(),);
+  getIt.registerSingleton<FirestoreDeliveryServices>(
+    FirestoreDeliveryServices(),
+  );
 
   getIt.registerSingleton<FirestoreOrdersServices>(FirestoreOrdersServices());
 
   getIt.registerSingleton<FirebaseUserServices>(FirebaseUserServices());
 
   getIt.registerSingleton<FirestoreHomeServices>(FirestoreHomeServices());
+
+  getIt.registerSingleton<FirebaseStorageServices>(FirebaseStorageServices());
 
   // repo impl
   getIt.registerSingleton<HomeStatisticsCardsRepoImpl>(
@@ -65,6 +72,17 @@ void serviceLocatorSetup() {
     ),
   );
 
+  //////////////////////////////////////////////////////////////////////////////
+
+  getIt.registerSingleton<AddHomeDataRepoImpl>(
+    AddHomeDataRepoImpl(
+      AddHomeDataRemoteDataSourceImpl(
+        getIt.get<FirestoreHomeServices>(),
+        getIt.get<FirebaseStorageServices>(),
+      ),
+    ),
+  );
+
   ///////////////////////////////////////////////////////////////////////////////////////
   getIt.registerSingleton<FetchingDeliveriesRepoImpl>(
     FetchingDeliveriesRepoImpl(
@@ -84,8 +102,4 @@ void serviceLocatorSetup() {
       ),
     ),
   );
-
-
-
-
 }

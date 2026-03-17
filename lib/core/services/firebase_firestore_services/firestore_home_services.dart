@@ -1,18 +1,14 @@
-
-
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 import 'package:yalla_admin/data/models/banner_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
 
-
 class FirestoreHomeServices {
-  final CollectionReference _bannersCollectionRef =
-  FirebaseFirestore.instance.collection("Banners");
+  final CollectionReference _bannersCollectionRef = FirebaseFirestore.instance
+      .collection("Banners");
 
-  final CollectionReference _shopsCollectionRef =
-  FirebaseFirestore.instance.collection("Shops");
+  final CollectionReference _shopsCollectionRef = FirebaseFirestore.instance
+      .collection("Shops");
 
   CollectionReference _shopsProductsCollectionRef(shopId) =>
       _shopsCollectionRef.doc(shopId).collection("Products");
@@ -27,15 +23,25 @@ class FirestoreHomeServices {
     return value.docs;
   }
 
-  Future<List<QueryDocumentSnapshot>> getProductsByShopId(
-      {required String shopId}) async {
+  Future<List<QueryDocumentSnapshot>> getProductsByShopId({
+    required String shopId,
+  }) async {
     var value = await _shopsProductsCollectionRef(shopId).get();
     return value.docs;
   }
 
   Future<void> addBannerToFireStore(BannerModel banner) async {
-    String bannerId = _bannersCollectionRef.doc().id;
-    return await _bannersCollectionRef.doc(bannerId).set(banner);
+    final docRef = _bannersCollectionRef.doc();
+
+    final model = BannerModel(
+      id: docRef.id,
+      name: banner.bannerShopName,
+      address: banner.bannerShopAddress,
+      phoneNumber: banner.bannerShopPhoneNumber,
+      image: banner.bannerImage,
+    );
+
+    await docRef.set(model.toJson());
   }
 
   Future<void> addShopToFireStore(ShopModel banner) async {

@@ -4,14 +4,14 @@
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 
 class BannerModel extends HomeBannerEntity {
-  String? bannerId;
+  String? id;
   String? image;
   String? name;
   String? address;
   String? phoneNumber;
 
   BannerModel(
-      {this.bannerId,
+      {this.id,
         this.image,
         this.name,
         this.address,
@@ -22,11 +22,25 @@ class BannerModel extends HomeBannerEntity {
     bannerShopName: name ?? 'لا توجد بيانات',
     bannerShopAddress: address ?? 'لا توجد بيانات',
     bannerShopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
+    bannerId: id??''
   );
+
+
+
+
+  factory BannerModel.fromEntity(HomeBannerEntity bannerEntity){
+    return BannerModel(
+      image: bannerEntity.bannerImage,
+      phoneNumber: bannerEntity.bannerShopPhoneNumber,
+      address: bannerEntity.bannerShopAddress,
+      name: bannerEntity.bannerShopName,
+      id: bannerEntity.bannerId
+    );
+  }
 
   factory BannerModel.fromJson(Map<String, dynamic> json) {
     return BannerModel(
-      bannerId: json['bannerId'],
+      id: json['bannerId'],
       image: json['bannerImage'],
       name: json['bannerShopName'],
       address: json['bannerShopAddress'],
@@ -35,7 +49,7 @@ class BannerModel extends HomeBannerEntity {
   }
 
   Map<String, dynamic> toJson() => {
-    'bannerId': bannerId,
+    'bannerId': id,
     'bannerImage': image,
     'bannerShopName': name,
     'bannerShopAddress': address,

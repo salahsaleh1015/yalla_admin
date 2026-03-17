@@ -50,8 +50,12 @@ class AdminVendorEmptyImage extends StatelessWidget {
             SizedBox(
               height: AppSize.s5.h,
             ),
-            const Center(
-              child: GlobalAddImageButton(),
+             Center(
+              child: GlobalAddImageButton(
+                onImageUploaded: (imageUrl) {
+                  print("Image URL: $imageUrl");
+                },
+              ),
             ),
           ],
         ),

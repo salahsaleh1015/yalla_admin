@@ -4,6 +4,8 @@
 	<dict>
 		<key>CFBundleDevelopmentRegion</key>
 		<string>$(DEVELOPMENT_LANGUAGE)</string>
+		<key>NSPhotoLibraryUsageDescription</key>
+        <string>This app needs access to your photo gallery to select images.</string>
 		<key>CFBundleDisplayName</key>
 		<string>Yalla Admin</string>
 		<key>CFBundleExecutable</key>

@@ -13,10 +13,13 @@ class HomeBannerEntity {
   final String   bannerShopAddress;
   @HiveField(3)
   final String  bannerShopPhoneNumber;
+  @HiveField(4)
+  final String bannerId;
 
   HomeBannerEntity(
       {required this.bannerImage,
         required this.bannerShopName,
+        required this.bannerId,
         required this.bannerShopAddress,
         required this.bannerShopPhoneNumber});
 }

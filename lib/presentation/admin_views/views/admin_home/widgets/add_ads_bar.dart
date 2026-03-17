@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/add_ads_dialoge.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_admin_add_button_widget.dart';
@@ -23,8 +24,8 @@ class AddAdsBar extends StatelessWidget {
           GlobalAdminAddButtonWidget(
             text: "إضافة شريك الإعلان",
             onTap: () {
-              addAdsDialog(context);
-            },
+              Navigator.pushNamed(context, Routes.adminAddBannerRoute);
+            }
           ),
         ],
       ),
