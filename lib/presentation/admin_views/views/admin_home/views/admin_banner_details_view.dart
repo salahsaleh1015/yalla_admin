@@ -35,7 +35,7 @@ class BannerDetailsView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      "ابن البلد",
+                      banner.bannerShopName,
                       style: Theme.of(context).textTheme.headlineLarge!.copyWith(
                           fontSize: FontSize.s26.sp
                       ),
@@ -57,7 +57,7 @@ class BannerDetailsView extends StatelessWidget {
                       width: AppSize.s5.w,
                     ),
                     Text(
-                      "مدينة 6 أكتوبر، محافظة الجيزة",
+                      banner.bannerShopAddress,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
                           fontSize: FontSize.s20.sp
                       ),
@@ -78,7 +78,7 @@ class BannerDetailsView extends StatelessWidget {
                       width: AppSize.s5.w,
                     ),
                     Text(
-                      "+20 113 222 4343",
+                      banner.bannerShopPhoneNumber,
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
                           fontSize: FontSize.s20.sp
                       ),

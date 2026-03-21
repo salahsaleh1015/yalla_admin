@@ -37,14 +37,16 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
   TextEditingController _locationController = TextEditingController();
 
   bool isButtonEnabled = false;
+  bool isImageAdded = false;
 
   void _checkIfFieldAreFilled() {
     final isFilled =
         _nameController.text.isNotEmpty ||
         _phoneController.text.isNotEmpty ||
         _locationController.text.isNotEmpty;
+
     setState(() {
-      isButtonEnabled = isFilled;
+      isButtonEnabled = isFilled && isImageAdded;
     });
   }
 
@@ -115,9 +117,15 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                   child: GlobalAddImageButton(
                     onImageUploaded: (url) {
                       print("Image URL: $url");
-
                       imageUrl = url;
 
+                      if (imageUrl.isNotEmpty) {
+                        setState(() {
+                          isImageAdded = true;
+                          // Trigger the check here!
+                          _checkIfFieldAreFilled();
+                        });
+                      }
                     },
                   ),
                 ),

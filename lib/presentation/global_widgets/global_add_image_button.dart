@@ -8,8 +8,8 @@ import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_s
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/repos/home_repo/add_home_data_repo_impl.dart';
 import 'package:yalla_admin/domain/usecases/home_usecases/upload_image_usecase.dart';
-import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/upload_image_cubit/upload_image_cubit.dart';
-import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/upload_image_cubit/upload_image_state.dart';
+import 'package:yalla_admin/presentation/controllers/home_controllers/upload_image_cubit/upload_image_cubit.dart';
+import 'package:yalla_admin/presentation/controllers/home_controllers/upload_image_cubit/upload_image_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
 import '../../../core/resources/font_manager.dart';
 import 'dart:io';
