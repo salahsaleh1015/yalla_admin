@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/add_ads_bar.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/adds_bars.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_statistics_cards_list.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_advertisement_list_widget.dart';
@@ -43,37 +43,7 @@ class AdminHomeView extends StatelessWidget {
             height: AppSize.s15.h,
           ),
            const GlobalAdvertisementListWidget(),
-          SizedBox(
-            height: AppSize.s30.h,
-            child: Row(
-              children: [
-                Text(
-                  "موزعي الخدمة",
-                  style: Theme.of(context)
-                      .textTheme
-                      .titleSmall!
-                      .copyWith(color: ColorManager.black),
-                ),
-                const Spacer(),
-                // TextButton(
-                //     onPressed: () {
-                //     Navigator.pushNamed(context,Routes);
-                //     },
-                //     child: Row(
-                //       children: [
-                //         Text(
-                //           "عرض الكل",
-                //           style: Theme.of(context).textTheme.bodySmall,
-                //         ),
-                //         Icon(
-                //           Icons.arrow_forward,
-                //           color: ColorManager.primary,
-                //         ),
-                //       ],
-                //     )),
-              ],
-            ),
-          ),
+          AddShopsBar(),
           SizedBox(
             height: AppSize.s15.h,
           ),

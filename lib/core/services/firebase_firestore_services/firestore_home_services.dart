@@ -44,8 +44,18 @@ class FirestoreHomeServices {
     await docRef.set(model.toJson());
   }
 
-  Future<void> addShopToFireStore(ShopModel banner) async {
-    String bannerId = _bannersCollectionRef.doc().id;
-    return await _bannersCollectionRef.doc(bannerId).set(banner);
+  Future<void> addShopToFireStore(ShopModel shop) async {
+
+    final docRef = _shopsCollectionRef.doc();
+
+    final model = ShopModel(
+      Id: docRef.id,
+      image: shop.shopImage,
+      name: shop.shopName,
+      address: shop.shopAddress,
+      phoneNumber: shop.shopPhoneNumber
+    );
+
+    await docRef.set(model.toJson());
   }
 }

@@ -5,7 +5,9 @@ import 'package:dartz/dartz.dart';
 import 'package:yalla_admin/core/errors/failure.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/add_home_data_remote_data_source.dart';
 import 'package:yalla_admin/data/models/banner_model.dart';
+import 'package:yalla_admin/data/models/shop_model.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
 
 class AddHomeDataRepoImpl implements AddHomeDataRepo {
@@ -41,6 +43,23 @@ class AddHomeDataRepoImpl implements AddHomeDataRepo {
         imageFile: imageFile,
       );
       return Right(imagePath);
+    } catch (e) {
+      print('///////////////////////////');
+      print(e.toString());
+      if (e is FirebaseException) {
+        return Left(FirebaseFailure.fromFirebaseException(e));
+      }
+      return Left(FirebaseFailure.fromException(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, void>> addShop({required HomeShopEntity shop})async {
+    try {
+      final shopModel = ShopModel.fromEntity(shop);
+
+      await addHomeDataRemoteDataSource.addShop(shop: shopModel);
+      return const Right(null);
     } catch (e) {
       print('///////////////////////////');
       print(e.toString());

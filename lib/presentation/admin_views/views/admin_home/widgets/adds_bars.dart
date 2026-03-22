@@ -32,3 +32,30 @@ class AddAdsBar extends StatelessWidget {
     );
   }
 }
+
+
+class AddShopsBar extends StatelessWidget {
+  const AddShopsBar({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: AppSize.s30.h,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            "المحلات المتاحه",
+            style: Theme.of(context).textTheme.bodyMedium,
+          ),
+          GlobalAdminAddButtonWidget(
+              text: "إضافة محل جديد",
+              onTap: () {
+                Navigator.pushNamed(context, Routes.adminAddShopRoute);
+              }
+          ),
+        ],
+      ),
+    );
+  }
+}

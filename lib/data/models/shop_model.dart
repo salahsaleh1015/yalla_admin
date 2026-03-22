@@ -27,6 +27,18 @@ class ShopModel extends HomeShopEntity {
       shopRate: rate ?? 0,
       shopId: Id ?? '');
 
+
+  factory ShopModel.fromEntity(HomeShopEntity shopEntity){
+    return ShopModel(
+        image: shopEntity.shopImage,
+        phoneNumber: shopEntity.shopPhoneNumber,
+        address: shopEntity.shopAddress,
+        name: shopEntity.shopName,
+
+    );
+  }
+
+
   factory ShopModel.fromJson(Map<String, dynamic> json) => ShopModel(
     phoneNumber: json['shopPhoneNumber'],
     address: json['shopAddress'],
