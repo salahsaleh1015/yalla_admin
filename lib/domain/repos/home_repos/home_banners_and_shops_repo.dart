@@ -14,5 +14,6 @@ abstract class HomeBannersAndShopsRepo {
 
 abstract class AddHomeDataRepo {
   Future<Either<Failure, void>> addBanner({required HomeBannerEntity banner});
+  Future<Either<Failure, void>> addShop({required HomeShopEntity shop});
   Future<Either<Failure, String>> uploadImage({required File imageFile});
 }

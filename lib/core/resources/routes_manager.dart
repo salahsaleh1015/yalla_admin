@@ -6,6 +6,7 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_add_delivery_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_delivery_management_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_banner_view.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_shop_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_home_view.dart';
@@ -29,6 +30,8 @@ class Routes {
   static const String adminAddVendorRoute = "/adminAddVendor";
   static const String adminAuthenticationRoute = "/adminAuthentication";
   static const String adminAddBannerRoute = "/adminAddBanner";
+  static const String adminAddShopRoute = "/adminAddShop";
+
 
 
 
@@ -64,6 +67,8 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_)=>BannerDetailsView(
           banner: args,
         ));
+      case Routes.adminAddShopRoute:
+        return MaterialPageRoute(builder: (_)=>AdminAddShopView());
       case Routes.adminAddBannerRoute:
         return MaterialPageRoute(builder: (_)=>AdminAddBannerView());
       case Routes.adminAuthenticationRoute:

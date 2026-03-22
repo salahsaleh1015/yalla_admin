@@ -14,7 +14,7 @@ class AppInitializer {
     return Routes.adminAuthenticationRoute;
   }
 
-  static void initHive() {
-    HiveServices.initHive();
+  static Future<void> initHive() async{
+   await HiveServices.initHive();
   }
 }

@@ -49,7 +49,7 @@ class HiveServices {
   //   var box = Hive.box<OrderEntity>(boxName);
   //   await box.clear();
   // }
-  static void initHive() async {
+  static Future<void> initHive() async {
     await Hive.initFlutter();
 
     // Register adapters

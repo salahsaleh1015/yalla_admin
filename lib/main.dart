@@ -10,17 +10,20 @@ import 'package:yalla_admin/translations/codegen_loader.g.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  // Step 1: Determine the start route
-  final startRoute = AppInitializer.getStartRoute();
 
   // Step 1: Initialize core dependencies
   await AppInitializer.initCore();
 
+  // hive initialization
+ await AppInitializer.initHive();
+
   // dependency injection
   serviceLocatorSetup();
 
-  // hive initialization
-  AppInitializer.initHive();
+
+
+  // Step 1: Determine the start route
+  final startRoute = AppInitializer.getStartRoute();
 
   runApp(
     EasyLocalization(

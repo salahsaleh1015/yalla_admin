@@ -30,8 +30,14 @@ class HomeBannersAndShopsRepoImpl implements HomeBannersAndShopsRepo {
       return Right(banners);
     } catch (e) {
       if (e is FirebaseException) {
+        debugPrint("ايه الكلام ");
+
+        debugPrint(e.message);
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+      debugPrint("2 ايه الكلام ");
+
+      debugPrint(e.toString());
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }

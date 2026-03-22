@@ -13,8 +13,7 @@ import 'package:yalla_admin/presentation/global_widgets/global_advertisement_ite
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
 
 import '../../../../core/resources/routes_manager.dart';
-import '../../core/services/dependency_injection_services/service_locator_setup.dart'
-    show getIt;
+import '../../core/services/dependency_injection_services/service_locator_setup.dart';
 import 'no_data_widget.dart';
 
 class GlobalAdvertisementListWidget extends StatelessWidget {
@@ -34,7 +33,7 @@ class GlobalAdvertisementListWidget extends StatelessWidget {
           builder: (context, state) {
             var cubit = GetBannersCubit.get(context);
             if (state is GetBannersErrorState) {
-              return Center(child: Text("حدث خطأ ما حاول مره اخرى"));
+              return Center(child: Text(state.errorMessage));
             } else if (state is GetBannersLoadingState) {
               return const Center(child: GlobalLoadingIndicator());
             } else if (state is GetBannersLoadedState) {
