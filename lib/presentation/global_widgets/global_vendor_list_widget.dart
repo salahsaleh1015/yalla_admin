@@ -51,22 +51,8 @@ class GlobalVendorListWidget extends StatelessWidget {
                   ),
                   itemCount: state.shops.length,
                   itemBuilder: (context, index) {
-                    // var shop = ShopModel(
-                    //   shopId:  cubit.shopsList[index].shopId,
-                    //     shopName: cubit.shopsList[index].shopName,
-                    //     shopAddress: cubit.shopsList[index].shopAddress,
-                    //     shopPhoneNumber: cubit.shopsList[index].shopPhoneNumber,
-                    //     shopImage: AssetsManager.shopTest,
-                    //     shopRate: cubit.shopsList[index].shopRate);
                     return GlobalVendorItemWidget(
-
-                     // shop: state.shops[index],
-                      onTap: () {
-                        // Navigator.pushNamed(context, Routes.shopDetailsRoute,
-                        //     arguments:
-                        //     state.shops[index]
-                        // );
-                      },
+                     shop: state.shops[index],
                     );
                   }
               ),

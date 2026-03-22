@@ -6,6 +6,7 @@ import 'package:yalla_admin/data/data_sources/local_data_sources/home_local_data
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_banners_and_shops_remote_data_source.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
 
 class HomeBannersAndShopsRepoImpl implements HomeBannersAndShopsRepo {
@@ -61,5 +62,22 @@ class HomeBannersAndShopsRepoImpl implements HomeBannersAndShopsRepo {
     }
   }
 
-
+  @override
+  Future<Either<Failure, List<HomeShopProductEntity>>> getHomeShopProducts({
+    required String shopId,
+  }) async {
+    try {
+      List<HomeShopProductEntity> products;
+      products = await homeBannersAndShopsRemoteDataSource.getShopProducts(
+        shopId: shopId,
+      );
+      debugPrint(" the shops from the internet");
+      return Right(products);
+    } catch (e) {
+      if (e is FirebaseException) {
+        return Left(FirebaseFailure.fromFirebaseException(e));
+      }
+      return Left(FirebaseFailure.fromException(e.toString()));
+    }
+  }
 }

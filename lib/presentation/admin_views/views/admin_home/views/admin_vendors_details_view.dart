@@ -36,7 +36,9 @@ class AdminVendorDetailsView extends StatelessWidget {
           SizedBox(
             height: AppSize.s25.h,
           ),
-          const AdminProductsList(),
+           AdminProductsList(
+            shopId: '',
+          ),
         ],
       ),
     );

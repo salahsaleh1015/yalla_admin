@@ -1,6 +1,3 @@
-
-
-
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 
 class BannerModel extends HomeBannerEntity {
@@ -10,31 +7,24 @@ class BannerModel extends HomeBannerEntity {
   String? address;
   String? phoneNumber;
 
-  BannerModel(
-      {this.id,
-        this.image,
-        this.name,
-        this.address,
-        this.phoneNumber})
-      : super(
-    bannerImage: image ??
-        "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
-    bannerShopName: name ?? 'لا توجد بيانات',
-    bannerShopAddress: address ?? 'لا توجد بيانات',
-    bannerShopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
-    bannerId: id??''
-  );
+  BannerModel({this.id, this.image, this.name, this.address, this.phoneNumber})
+    : super(
+        bannerImage:
+            image ??
+            "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
+        bannerShopName: name ?? 'لا توجد بيانات',
+        bannerShopAddress: address ?? 'لا توجد بيانات',
+        bannerShopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
+        bannerId: id ?? '',
+      );
 
-
-
-
-  factory BannerModel.fromEntity(HomeBannerEntity bannerEntity){
+  factory BannerModel.fromEntity(HomeBannerEntity bannerEntity) {
     return BannerModel(
       image: bannerEntity.bannerImage,
       phoneNumber: bannerEntity.bannerShopPhoneNumber,
       address: bannerEntity.bannerShopAddress,
       name: bannerEntity.bannerShopName,
-      id: bannerEntity.bannerId
+      id: bannerEntity.bannerId,
     );
   }
 
