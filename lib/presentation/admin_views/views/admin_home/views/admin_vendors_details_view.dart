@@ -10,9 +10,9 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/sh
 
 
 class AdminVendorDetailsView extends StatelessWidget {
-  const AdminVendorDetailsView({super.key});
+  const AdminVendorDetailsView({super.key, required this.shopId});
 
-  static String id = "AdminShopDetailsView";
+  final String shopId;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -37,7 +37,7 @@ class AdminVendorDetailsView extends StatelessWidget {
             height: AppSize.s25.h,
           ),
            AdminProductsList(
-            shopId: '',
+            shopId: shopId,
           ),
         ],
       ),

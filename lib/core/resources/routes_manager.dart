@@ -58,8 +58,11 @@ class RouteGenerator {
       case Routes.adminHomeRoute:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.adminVendorDetailsRoute:
+        final args = settings.arguments as String;
         return MaterialPageRoute(
-            builder: (_) => const AdminVendorDetailsView());
+            builder: (_) =>  AdminVendorDetailsView(
+              shopId: args,
+            ));
       case Routes.adminAddVendorRoute:
         return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
       case Routes.adminBannerDetailsRoute:
