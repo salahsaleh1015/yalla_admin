@@ -20,7 +20,7 @@ abstract class AddHomeDataRepo {
   Future<Either<Failure, void>> addBanner({required HomeBannerEntity banner});
   Future<Either<Failure, void>> addShop({required HomeShopEntity shop});
   Future<Either<Failure, String>> uploadImage({required File imageFile});
-  Future<Either<Failure, void>> addShopProduct({required AddShopProductModel addShopProductModel,});
-  Future<Either<Failure, void>> editShopProduct({required EditShopProductModel editShopProductModel,});
-  Future<Either<Failure, void>> deleteShopProduct({required DeleteShopProductModel deleteShopProductModel,});
+  Future<Either<Failure, void>> addShopProduct({required AddShopProductModelForDomain addShopProductModel,});
+  Future<Either<Failure, void>> editShopProduct({required EditShopProductModelForDomain editShopProductModel,});
+  Future<Either<Failure, void>> deleteShopProduct({required DeleteShopProductModelForDomain deleteShopProductModel,});
 }
