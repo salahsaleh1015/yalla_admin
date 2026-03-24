@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/delete_product_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/edit_product_dialog.dart';
@@ -15,11 +16,12 @@ class AdminProductItem extends StatelessWidget {
   const AdminProductItem({
     super.key,
     required this.product,
-    required this.index,
+    required this.index, required this.shopId,
   });
 
   final HomeShopProductEntity product;
   final int index;
+  final String shopId;
   @override
   Widget build(BuildContext context) {
     return TweenAnimationBuilder<double>(
@@ -86,7 +88,10 @@ class AdminProductItem extends StatelessWidget {
                 isButtonEnabled: true,
                 text: "تعديل",
                 onTap: () {
-                  editProductDialog(context);
+                  editProductDialog(context,deleteShopProductModelForDomain:DeleteShopProductModelForDomain(
+                    productId: product.productId,
+                    shopId: shopId,
+                  ) );
                 },
                 width: MediaQuery.of(context).size.width,
                 height: AppSize.s30.h,
@@ -94,7 +99,10 @@ class AdminProductItem extends StatelessWidget {
               SizedBox(height: AppSize.s5.h),
               GlobalLightButtonWidget(
                 onTap: () {
-                  deleteProductDialog(context);
+                  deleteProductDialog(context,deleteShopProductModelForDomain:DeleteShopProductModelForDomain(
+                    productId: product.productId,
+                    shopId: shopId,
+                  ) );
                 },
                 width: MediaQuery.of(context).size.width,
                 height: AppSize.s30.h,

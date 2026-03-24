@@ -47,6 +47,7 @@ class AdminProductsList extends StatelessWidget {
                         itemBuilder:
                             (context, index) => AdminProductItem(
                               index: index,
+                              shopId: shopId,
                               product: state.products[index],
                             ),
                       );

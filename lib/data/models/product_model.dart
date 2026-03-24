@@ -15,9 +15,7 @@ class ProductModel extends HomeShopProductEntity {
         productDescription: description ?? 'لا توجد بيانات',
       );
 
-
-
-  factory ProductModel.fromEntity(HomeShopProductEntity product){
+  factory ProductModel.fromEntity(HomeShopProductEntity product) {
     return ProductModel(
       name: product.productName,
       image: product.productImage,
@@ -27,8 +25,7 @@ class ProductModel extends HomeShopProductEntity {
     );
   }
 
-
- factory ProductModel.fromJson(Map<String,dynamic>json){
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
       name: json['productName'],
       image: json['productImage'],
@@ -38,18 +35,23 @@ class ProductModel extends HomeShopProductEntity {
     );
   }
 
+  Map<String, dynamic> toJson() {
+    final data = <String, dynamic>{
+      'productName': name,
+      'productDescription': description,
+      "productPrice": price,
+    };
 
-  Map<String,dynamic> toJson(){
-   return {
-     'productName':name,
-     'productImage':image,
-     'productDescription':description,
-     'productId':id,
-     "productPrice":price
+    // ضيف الصورة بس لو فيها قيمة
+    if (image != null && image!.isNotEmpty) {
+      data["productImage"] = image;
+    }
 
+    // ضيف الصورة بس لو فيها قيمة
+    if (id != null && id!.isNotEmpty) {
+      data["productId"] = id;
+    }
 
-   };
+    return data;
   }
-
-
 }

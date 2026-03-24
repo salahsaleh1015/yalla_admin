@@ -31,46 +31,48 @@ class CustomDialog extends StatelessWidget {
     return AlertDialog(
       backgroundColor: ColorManager.white,
       contentPadding: EdgeInsets.all(AppPadding.p8.r),
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Text(
-                dialogTitle,
-                style: Theme.of(context)
-                    .textTheme
-                    .bodySmall!
-                    .copyWith(fontSize: FontSize.s22),
-              ),
-              SizedBox(
-                width: AppSize.s70.w,
-              ),
-              IconButton(
-                onPressed: () {
-                  Navigator.pop(context);
-                },
-                icon: Icon(
-                  Icons.close,
-                  color: ColorManager.secondaryTextColor,
+      content: SingleChildScrollView(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  dialogTitle,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(fontSize: FontSize.s22),
                 ),
-              ),
-            ],
-          ),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
-          Divider(
-            thickness: 1,
-            color: ColorManager.secondaryTextColor,
-          ),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
-          content,
-        ],
+                SizedBox(
+                  width: AppSize.s70.w,
+                ),
+                IconButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  icon: Icon(
+                    Icons.close,
+                    color: ColorManager.secondaryTextColor,
+                  ),
+                ),
+              ],
+            ),
+            SizedBox(
+              height: AppSize.s10.h,
+            ),
+            Divider(
+              thickness: 1,
+              color: ColorManager.secondaryTextColor,
+            ),
+            SizedBox(
+              height: AppSize.s10.h,
+            ),
+            content,
+          ],
+        ),
       ),
       // actions: <Widget>[
       //   Padding(

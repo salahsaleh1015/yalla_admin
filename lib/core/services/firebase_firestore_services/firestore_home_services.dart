@@ -83,10 +83,9 @@ class FirestoreHomeServices {
     required ProductModel updatedProduct,
   }) async {
     try {
-      await _shopsProductsCollectionRef(
-        shopId,
-      ).doc(productId).update(updatedProduct.toJson());
-      // ملحوظة: تأكد إن toJson() مش بترجع الـ ID لو مش عايز تخزنه مرتين
+      await _shopsProductsCollectionRef(shopId)
+          .doc(productId)
+          .update(updatedProduct.toJson());
     } catch (e) {
       throw Exception("فشل تعديل المنتج: $e");
     }

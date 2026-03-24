@@ -11,7 +11,7 @@ class DeleteProductCubit extends Cubit<DeleteProductStates> {
  static DeleteProductCubit get(context)=>BlocProvider.of(context);
 
   DeleteShopProductUseCase deleteShopProductUseCase;
-  Future<void> addProduct({
+  Future<void> deleteProduct({
     required DeleteShopProductModelForDomain deleteProduct,
   }) async {
     emit(DeleteProductLoadingState());

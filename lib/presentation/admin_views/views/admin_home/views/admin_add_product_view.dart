@@ -114,7 +114,7 @@ class _AdminAddProductViewState extends State<AdminAddProductView> {
 
                   validator: AppConstant.priceValidation,
                   textInputType: TextInputType.number,
-                  hintText: "ادخل تقييم المندوب من 1 الي 5",
+                  hintText: "ادخل سعر المنتج بشكل صحيح",
                 ),
                 buildSpace(),
                 Center(
