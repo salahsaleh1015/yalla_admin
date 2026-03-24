@@ -9,7 +9,6 @@ import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/services/dependency_injection_services/service_locator_setup.dart';
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/data/repos/home_repo/add_home_data_repo_impl.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:yalla_admin/domain/usecases/home_usecases/shop_product_usecases.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
@@ -20,6 +19,8 @@ import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dar
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_padding_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_text_field_widget.dart';
+
+import '../../../../../data/repos/home_repo/home_details_transactions_repo_impl.dart';
 
 class AdminAddProductView extends StatefulWidget {
   const AdminAddProductView({super.key, required this.shopId});
@@ -137,7 +138,7 @@ class _AdminAddProductViewState extends State<AdminAddProductView> {
                 BlocProvider<AddProductCubit>(
                   create:
                       (context) => AddProductCubit(
-                        AddShopProductUseCase(getIt.get<AddHomeDataRepoImpl>()),
+                        AddProductUseCase(getIt.get<HomeDetailsTransactionsRepoImpl>()),
                       ),
                   child: Padding(
                     padding: EdgeInsets.all(AppSize.s2.r),

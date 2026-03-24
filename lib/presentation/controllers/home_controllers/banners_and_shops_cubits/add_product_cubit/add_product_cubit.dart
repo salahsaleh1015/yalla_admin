@@ -8,7 +8,7 @@ class AddProductCubit extends Cubit<AddProductStates> {
 
   static AddProductCubit get(context) => BlocProvider.of(context);
 
-  AddShopProductUseCase addShopProductUseCase;
+  AddProductUseCase addShopProductUseCase;
 
   Future<void> addProduct({
     required AddShopProductModelForDomain addProduct,

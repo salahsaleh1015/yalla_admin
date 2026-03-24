@@ -5,12 +5,12 @@ import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_statistics_cards_repo_impl.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/get_the_number_of_deliveries_usecase.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/statistics_cards_cubits/get_the_number_of_deliveries_cubit/get_the_number_of_deliveries_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/statistics_cards_cubits/get_the_number_of_deliveries_cubit/get_the_number_of_deliveries_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_decorated_container.dart';
 
 import '../../../../../core/services/dependency_injection_services/service_locator_setup.dart';
+import '../../../../../domain/usecases/home_usecases/fetch_statistics_cards_usecases.dart';
 
 class CountedDeliveriesCard extends StatelessWidget {
   const CountedDeliveriesCard({super.key});
@@ -20,7 +20,7 @@ class CountedDeliveriesCard extends StatelessWidget {
     return BlocProvider<GetTheNumberOfDeliveriesCubit>(
       create:
           (context) => GetTheNumberOfDeliveriesCubit(
-            GetTheNumberOfDeliveriesUseCase(
+            FetchNumberOfDeliveriesUseCase(
               getIt<HomeStatisticsCardsRepoImpl>(),
             ),
           )..getTheNumberDeliveries(),

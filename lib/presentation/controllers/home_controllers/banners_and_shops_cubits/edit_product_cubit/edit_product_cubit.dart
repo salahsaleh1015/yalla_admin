@@ -10,7 +10,7 @@ class EditProductCubit extends Cubit<EditProductStates> {
 
  static EditProductCubit get(context)=>BlocProvider.of(context);
 
-  EditShopProductUseCase deleteShopProductUseCase;
+  EditProductUseCase deleteShopProductUseCase;
   Future<void> editProduct({
     required EditShopProductModelForDomain updatedProduct,
   }) async {

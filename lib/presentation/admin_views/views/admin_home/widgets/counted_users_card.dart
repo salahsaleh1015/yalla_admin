@@ -6,7 +6,7 @@ import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/services/dependency_injection_services/service_locator_setup.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_statistics_cards_repo_impl.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/get_the_number_of_users_usecase.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/fetch_statistics_cards_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/statistics_cards_cubits/get_the_number_of_users_cubit/get_the_number_of_users_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/statistics_cards_cubits/get_the_number_of_users_cubit/get_the_number_of_users_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_decorated_container.dart';
@@ -19,7 +19,7 @@ class CountedUsersCard extends StatelessWidget {
     return BlocProvider<GetTheNumberOfUsersCubit>(
       create:
           (context) => GetTheNumberOfUsersCubit(
-            GetTheNumberOfUsersUseCase(getIt<HomeStatisticsCardsRepoImpl>()),
+            FetchNumberOfUsersCardUseCase(getIt<HomeStatisticsCardsRepoImpl>()),
           )..getTheNumberUsers(),
       child: GlobalDecoratedContainer(
         width: AppSize.s120.w,

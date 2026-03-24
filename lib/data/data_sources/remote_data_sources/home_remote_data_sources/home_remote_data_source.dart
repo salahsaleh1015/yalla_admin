@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_storage_services.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_home_services.dart';
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/data/models/banner_model.dart';
@@ -8,16 +11,22 @@ import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dar
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 
-abstract class HomeBannersAndShopsRemoteDataSource {
+abstract class HomeRemoteDataSource {
   Future<List<HomeBannerEntity>> getHomeBanners();
   Future<List<HomeShopEntity>> getHomeShops();
-  Future<List<HomeShopProductEntity>> getShopProducts({required String shopId});
+  Future<void> addBanner({required BannerModel banner});
+  Future<void> addShop({required ShopModel shop});
+  Future<String> uploadImage({required File imageFile});
 }
 
-class HomeBannersAndShopsRemoteDataSourceImpl
-    implements HomeBannersAndShopsRemoteDataSource {
+class HomeRemoteDataSourceImpl
+    implements HomeRemoteDataSource {
   FirestoreHomeServices firestoreHomeServices;
-  HomeBannersAndShopsRemoteDataSourceImpl(this.firestoreHomeServices);
+  FirebaseStorageServices firebaseStorageServices;
+  HomeRemoteDataSourceImpl(
+    this.firestoreHomeServices,
+    this.firebaseStorageServices,
+  );
 
   @override
   Future<List<HomeBannerEntity>> getHomeBanners() async {
@@ -58,24 +67,20 @@ class HomeBannersAndShopsRemoteDataSourceImpl
     return shops;
   }
 
+
+
   @override
-  Future<List<HomeShopProductEntity>> getShopProducts({
-    required String shopId,
-  }) async {
-    var data = await firestoreHomeServices.getProductsByShopId(shopId: shopId);
-    List<HomeShopProductEntity> products = getProductsList(data);
-    return products;
+  Future<void> addBanner({required BannerModel banner}) async {
+    await firestoreHomeServices.addBannerToFireStore(banner);
   }
 
-  List<HomeShopProductEntity> getProductsList(
-    List<QueryDocumentSnapshot> docs,
-  ) {
-    List<HomeShopProductEntity> products = [];
+  @override
+  Future<String> uploadImage({required File imageFile}) async {
+    return await firebaseStorageServices.uploadImageToFirebase(imageFile);
+  }
 
-    for (var doc in docs) {
-      products.add(ProductModel.fromJson(doc.data() as Map<String, dynamic>));
-    }
-
-    return products;
+  @override
+  Future<void> addShop({required ShopModel shop}) async {
+    await firestoreHomeServices.addShopToFireStore(shop);
   }
 }

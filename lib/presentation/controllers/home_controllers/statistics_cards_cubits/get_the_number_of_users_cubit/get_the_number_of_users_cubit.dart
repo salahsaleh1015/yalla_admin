@@ -1,11 +1,11 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/get_the_number_of_users_usecase.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/fetch_statistics_cards_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/statistics_cards_cubits/get_the_number_of_users_cubit/get_the_number_of_users_state.dart';
 
 class GetTheNumberOfUsersCubit extends Cubit<GetTheNumberOfUsersStates> {
   GetTheNumberOfUsersCubit(this.getTheNumberOfUsersUseCase)
     : super(GetTheNumberOfUsersInitialState());
-  final GetTheNumberOfUsersUseCase getTheNumberOfUsersUseCase;
+  final FetchNumberOfUsersCardUseCase getTheNumberOfUsersUseCase;
 
   static GetTheNumberOfUsersCubit get(context) => BlocProvider.of(context);
 

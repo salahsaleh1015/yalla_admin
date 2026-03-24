@@ -5,7 +5,7 @@ import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart'
 
 class ShopModel extends HomeShopEntity {
   String? name;
-  String? Id;
+  String? id;
   String? address;
   String? phoneNumber;
   String? image;
@@ -17,7 +17,7 @@ class ShopModel extends HomeShopEntity {
         this.address,
         this.image,
         this.rate,
-        this.Id})
+        this.id})
       : super(
       shopAddress: address ?? '',
       shopImage: image ??
@@ -25,7 +25,7 @@ class ShopModel extends HomeShopEntity {
       shopName: name ?? 'لا توجد بيانات',
       shopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
       shopRate: rate ?? 0,
-      shopId: Id ?? '');
+      shopId: id ?? '');
 
 
   factory ShopModel.fromEntity(HomeShopEntity shopEntity){
@@ -45,17 +45,26 @@ class ShopModel extends HomeShopEntity {
     name: json['shopName'],
     image: json['shopImage'],
     rate: json['shopRate'],
-    Id: json['shopId'],
+    id: json['shopId'],
   );
 
   Map<String, dynamic> toJson() {
-    return {
-      'shopName': shopName,
-      'shopId': shopId,
-      'shopAddress': shopAddress,
-      'shopPhoneNumber': shopPhoneNumber,
-      'shopImage': shopImage,
-      'shopRate': shopRate,
+    final data = <String, dynamic> {
+      'shopName': name,
+      'shopAddress': address,
+      'shopPhoneNumber': phoneNumber,
+      'shopRate': rate,
     };
+    // ضيف الصورة بس لو فيها قيمة
+    if (image != null && image!.isNotEmpty) {
+      data["shopImage"] = image;
+    }
+
+    // ضيف الصورة بس لو فيها قيمة
+    if (id != null && id!.isNotEmpty) {
+      data["shopId"] = id;
+    }
+
+    return data;
   }
 }

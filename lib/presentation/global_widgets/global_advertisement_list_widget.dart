@@ -5,8 +5,8 @@ import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
-import 'package:yalla_admin/data/repos/home_repo/home_banners_and_shops_repo_impl.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/get_banners_usecase.dart';
+import 'package:yalla_admin/data/repos/home_repo/home_transactions_repo_impl.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/home_transactions_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/get_banners_cubit/get_banners_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/get_banners_cubit/get_banners_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_advertisement_item_widget.dart';
@@ -24,7 +24,7 @@ class GlobalAdvertisementListWidget extends StatelessWidget {
     return BlocProvider<GetBannersCubit>(
       create:
           (context) => GetBannersCubit(
-            GetBannersUseCase(getIt.get<HomeBannersAndShopsRepoImpl>()),
+            GetBannersUseCase(getIt.get<HomeTransactionsRepoImpl>()),
           )..fetchBanners(),
       child: SizedBox(
         width: double.infinity,

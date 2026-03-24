@@ -18,7 +18,7 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   });
 
   @override
-  Future<Either<Failure, int>> getTheNumberOfCompletedOrders() async {
+  Future<Either<Failure, int>> fetchTheNumberOfCompletedOrders() async {
     try {
 
 
@@ -43,7 +43,7 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   }
 
   @override
-  Future<Either<Failure, int>> getTheNumberOfDeliveries() async {
+  Future<Either<Failure, int>> fetchTheNumberOfDeliveries() async {
     try {
       int deliveries;
 
@@ -69,7 +69,7 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   }
 
   @override
-  Future<Either<Failure, int>> getTheNumberOfUsers() async {
+  Future<Either<Failure, int>> fetchTheNumberOfUsers() async {
     try {
       int users;
       // users = homeStatisticsCardsLocalDataSource.getTheNumberOfUsers();

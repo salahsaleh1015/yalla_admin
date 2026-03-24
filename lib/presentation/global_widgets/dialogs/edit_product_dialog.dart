@@ -7,7 +7,7 @@ import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/data/repos/home_repo/add_home_data_repo_impl.dart';
+import 'package:yalla_admin/data/repos/home_repo/home_details_transactions_repo_impl.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:yalla_admin/domain/usecases/home_usecases/shop_product_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/edit_product_cubit/edit_product_cubit.dart';
@@ -110,6 +110,7 @@ class _EditProductDialogContentState extends State<EditProductDialogContent> {
               ),
               buildSmallSpace(),
               GlobalTextFieldWidget(
+                height: AppSize.s80.h,
                 validator: (String? value) {
                   if (value!.isEmpty) {
                     return "ادخل الوصف بالكامل ";
@@ -134,7 +135,7 @@ class _EditProductDialogContentState extends State<EditProductDialogContent> {
               BlocProvider<EditProductCubit>(
                 create:
                     (context) => EditProductCubit(
-                      EditShopProductUseCase(getIt.get<AddHomeDataRepoImpl>()),
+                      EditProductUseCase(getIt.get<HomeDetailsTransactionsRepoImpl>()),
                     ),
                 child: BlocConsumer<EditProductCubit, EditProductStates>(
                   listener: (context, state) {

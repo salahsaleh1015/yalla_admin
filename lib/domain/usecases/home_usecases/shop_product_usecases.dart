@@ -1,43 +1,100 @@
-
-
-
-
 import 'package:dartz/dartz.dart';
 import 'package:yalla_admin/core/usecase/usecase.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
+import 'package:yalla_admin/data/models/edit_shop_image_model.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
 
 import '../../../core/errors/failure.dart';
+import '../../entities/home_entities/home_shop_entity.dart';
 
-class AddShopProductUseCase extends UseCase<void, AddShopProductModelForDomain> {
-  AddHomeDataRepo addHomeDataRepo;
+class AddProductUseCase extends UseCase<void, AddShopProductModelForDomain> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
-  AddShopProductUseCase(this.addHomeDataRepo);
+  AddProductUseCase(this.homeDetailsTransactionsRepo);
   @override
-  Future<Either<Failure, void>> call(AddShopProductModelForDomain addProduct) async {
-    return await addHomeDataRepo.addShopProduct(addShopProductModel: addProduct);
+  Future<Either<Failure, void>> call(
+    AddShopProductModelForDomain addProduct,
+  ) async {
+    return await homeDetailsTransactionsRepo.addProduct(
+      addShopProductModel: addProduct,
+    );
   }
 }
 
+class EditProductUseCase extends UseCase<void, EditShopProductModelForDomain> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
-class EditShopProductUseCase extends UseCase<void, EditShopProductModelForDomain> {
-  AddHomeDataRepo addHomeDataRepo;
-
-  EditShopProductUseCase(this.addHomeDataRepo);
+  EditProductUseCase(this.homeDetailsTransactionsRepo);
   @override
-  Future<Either<Failure, void>> call(EditShopProductModelForDomain editProduct) async {
-    return await addHomeDataRepo.editShopProduct(editShopProductModel: editProduct);
+  Future<Either<Failure, void>> call(
+    EditShopProductModelForDomain editProduct,
+  ) async {
+    return await homeDetailsTransactionsRepo.editProduct(
+      editShopProductModel: editProduct,
+    );
   }
 }
 
+class DeleteProductUseCase
+    extends UseCase<void, DeleteShopProductModelForDomain> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
-class DeleteShopProductUseCase extends UseCase<void, DeleteShopProductModelForDomain> {
-  AddHomeDataRepo addHomeDataRepo;
-
-  DeleteShopProductUseCase(this.addHomeDataRepo);
+  DeleteProductUseCase(this.homeDetailsTransactionsRepo);
   @override
-  Future<Either<Failure, void>> call(DeleteShopProductModelForDomain deleteProduct) async {
-    return await addHomeDataRepo.deleteShopProduct(deleteShopProductModel: deleteProduct);
+  Future<Either<Failure, void>> call(
+    DeleteShopProductModelForDomain deleteProduct,
+  ) async {
+    return await homeDetailsTransactionsRepo.deleteProduct(
+      deleteShopProductModel: deleteProduct,
+    );
+  }
+}
+
+class GetProductsUseCase extends UseCase<List<HomeShopProductEntity>, String> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
+
+  GetProductsUseCase(this.homeDetailsTransactionsRepo);
+  @override
+  Future<Either<Failure, List<HomeShopProductEntity>>> call(
+    String shopId,
+  ) async {
+    return await homeDetailsTransactionsRepo.fetchProducts(shopId: shopId);
+  }
+}
+
+class EditShopInfoUseCase extends UseCase<void, HomeShopEntity> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
+
+  EditShopInfoUseCase(this.homeDetailsTransactionsRepo);
+
+  @override
+  Future<Either<Failure, void>> call(HomeShopEntity newShop) async {
+    return await homeDetailsTransactionsRepo.editShopInfo(newShop: newShop);
+  }
+}
+
+class EditShopImageUseCase extends UseCase<void, EditShopImageModel> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
+
+  EditShopImageUseCase(this.homeDetailsTransactionsRepo);
+  @override
+  Future<Either<Failure, void>> call(
+    EditShopImageModel editShopImageModel,
+  ) async {
+    return await homeDetailsTransactionsRepo.editShopImage(
+      editShopImageModel: editShopImageModel,
+    );
+  }
+}
+
+class DeleteShopUseCase extends UseCase<void, String> {
+  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
+
+  DeleteShopUseCase(this.homeDetailsTransactionsRepo);
+  @override
+  Future<Either<Failure, void>> call(String shopId) async {
+    return await homeDetailsTransactionsRepo.deleteShop(shopId: shopId);
   }
 }

@@ -7,9 +7,9 @@ import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
-import 'package:yalla_admin/data/repos/home_repo/add_home_data_repo_impl.dart';
+import 'package:yalla_admin/data/repos/home_repo/home_transactions_repo_impl.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/add_shop_usecase.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/home_transactions_usecases.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_shops_cubit/add_shops_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_shops_cubit/add_shops_state.dart';
@@ -149,7 +149,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                 BlocProvider<AddShopsCubit>(
                   create:
                       (context) => AddShopsCubit(
-                        AddShopUseCase(getIt.get<AddHomeDataRepoImpl>()),
+                        AddShopUseCase(getIt.get<HomeTransactionsRepoImpl>()),
                       ),
                   child: Padding(
                     padding: EdgeInsets.all(AppSize.s2.r),
