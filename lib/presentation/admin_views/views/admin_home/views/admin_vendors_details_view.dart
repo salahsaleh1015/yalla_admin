@@ -32,7 +32,7 @@ class AdminVendorDetailsView extends StatelessWidget {
           SizedBox(
             height: AppSize.s10.h,
           ),
-          const AdminAddProductForShopBar(),
+           AdminAddProductForShopBar(shopId: shopId,),
           SizedBox(
             height: AppSize.s25.h,
           ),

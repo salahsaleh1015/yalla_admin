@@ -3,6 +3,21 @@ class AppConstant{
   static const int maxLinesOfOrderDetails = 10;
   static const int managementTabBarLength = 3;
 
+
+
+  static String? Function(String?)? priceValidation = (value) {
+    if (value == null || value.isEmpty) {
+      return "من فضلك ادخل رقم";
+    }
+
+    if (double.tryParse(value) == null) {
+      return "يجب إدخال أرقام فقط";
+    }
+
+    return null;
+  };
+
+
   static  String? Function(String?)? emailValidation = (val) {
     if (val == null || val.isEmpty) {
       return "ادخل البريد الالكتروني";
