@@ -10,7 +10,7 @@ import 'package:yalla_admin/core/services/dependency_injection_services/service_
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/shop_product_usecases.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/shop_details_usecases.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_product_cubit/add_product_state.dart';

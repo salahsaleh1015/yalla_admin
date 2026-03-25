@@ -84,7 +84,7 @@ class GlobalVendorItemWidget extends StatelessWidget {
                     isButtonEnabled: true,
                     width: double.infinity,
                     onTap: (){
-                      Navigator.pushNamed(context, Routes.adminVendorDetailsRoute,arguments: shop.shopId);
+                      Navigator.pushNamed(context, Routes.adminVendorDetailsRoute,arguments: shop);
                     },
                     text: "تفاصيل",
                   )

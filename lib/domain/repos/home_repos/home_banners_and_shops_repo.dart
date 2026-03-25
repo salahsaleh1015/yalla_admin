@@ -30,7 +30,9 @@ abstract class HomeDetailsTransactionsRepo {
   Future<Either<Failure, void>> deleteProduct({
     required DeleteShopProductModelForDomain deleteShopProductModel,
   });
-  Future<Either<Failure, void>> editShopInfo({required HomeShopEntity newShop});
+  Future<Either<Failure, void>> editShopInfo({
+   required EditShopInfoModelForDomain editShopInfoModel,
+  });
 
   Future<Either<Failure, void>> editShopImage({
     required EditShopImageModel editShopImageModel,

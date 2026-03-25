@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 
 class ShopInfoItemWidget extends StatelessWidget {
-  const ShopInfoItemWidget({super.key, });
+  const ShopInfoItemWidget({super.key, required this.shop, });
 
+  final HomeShopEntity shop;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,7 +19,7 @@ class ShopInfoItemWidget extends StatelessWidget {
           Row(
             children: [
               Text(
-                "ابن ابلد",
+                shop.shopName,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               const Spacer(),
@@ -30,7 +32,7 @@ class ShopInfoItemWidget extends StatelessWidget {
                 width: AppSize.s5.w,
               ),
               Text(
-                "4.0/5.0",
+               shop.shopRate.toString(),
                 style: Theme.of(context).textTheme.labelSmall,
               ),
             ],
@@ -49,7 +51,7 @@ class ShopInfoItemWidget extends StatelessWidget {
                 width: AppSize.s5.w,
               ),
               Text(
-                "مدينة 6 أكتوبر, محافظة الجيزة",
+                shop.shopAddress,
                 style: Theme.of(context).textTheme.labelSmall,
               )
             ],
@@ -68,24 +70,13 @@ class ShopInfoItemWidget extends StatelessWidget {
                 width: AppSize.s5.w,
               ),
               Text(
-                "+20 113 222 4343",
+               shop.shopPhoneNumber,
                 style: Theme.of(context).textTheme.labelMedium,
               ),
               SizedBox(
                 width: AppSize.s30.w,
               ),
-              // Icon(
-              //   Icons.timer_rounded,
-              //   size: AppSize.s25.r,
-              //   color: ColorManager.darkGrayColor,
-              // ),
-              // SizedBox(
-              //   width: AppSize.s5.w,
-              // ),
-              // Text(
-              //   "مفتوح 10 صباحًا - 2 صباحًا",
-              //   style: Theme.of(context).textTheme.labelMedium,
-              // )
+
             ],
           ),
           SizedBox(

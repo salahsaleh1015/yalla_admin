@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_add_product_for_shop_bar.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_products_list.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_vendor_image_item.dart';
@@ -10,20 +11,25 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/sh
 
 
 class AdminVendorDetailsView extends StatelessWidget {
-  const AdminVendorDetailsView({super.key, required this.shopId});
+  const AdminVendorDetailsView({super.key, required this.shop});
 
-  final String shopId;
+  final HomeShopEntity shop;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const AdminVendorImageItem(),
+           AdminVendorImageItem(
+            shopId: shop.shopId,
+             shopImage: shop.shopImage,
+          ),
           SizedBox(
             height: AppSize.s10.h,
           ),
-          const ShopInfoItemWidget(),
+           ShopInfoItemWidget(
+            shop: shop,
+          ),
           Divider(
             indent: AppSize.s20.w,
             endIndent: AppSize.s20.w,
@@ -32,12 +38,12 @@ class AdminVendorDetailsView extends StatelessWidget {
           SizedBox(
             height: AppSize.s10.h,
           ),
-           AdminAddProductForShopBar(shopId: shopId,),
+           AdminAddProductForShopBar(shopId: shop.shopId,),
           SizedBox(
             height: AppSize.s25.h,
           ),
            AdminProductsList(
-            shopId: shopId,
+            shopId: shop.shopId,
           ),
         ],
       ),

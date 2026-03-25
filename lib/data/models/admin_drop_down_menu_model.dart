@@ -4,6 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/delete_vendor_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/edit_vendor_info_dialog.dart';
 
@@ -54,16 +55,16 @@ abstract class MenuItems {
     );
   }
 
-  static void onChanged(BuildContext context, DropdownMenuModel item) {
+  static void onChanged(BuildContext context, DropdownMenuModel item,{required String shopId}) {
     switch (item) {
       case MenuItems.editInfo:
-        editVendorDialog(context);
+        editVendorDialog(context,shopId: shopId);
         break;
       case MenuItems.changeImage:
         debugPrint('change image');
         break;
       case MenuItems.deleteVendor:
-        deleteVendorDialog(context);
+        deleteVendorDialog(context,shopId: shopId);
         break;
     }
   }

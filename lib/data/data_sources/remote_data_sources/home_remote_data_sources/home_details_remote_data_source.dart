@@ -23,22 +23,16 @@ abstract class HomeDetailsRemoteDataSource {
   Future<void> deleteProduct({
     required DeleteShopProductModelForData deleteShopProductModel,
   });
-  Future<void> editShopInfo({required ShopModel shop});
+  Future<void> editShopInfo({required EditShopInfoModelForData newShopInfo});
 
   Future<void> deleteShop({required String shopId});
 
   Future<void> editShopImage({required EditShopImageModel editShopImageModel});
-
-
 }
 
 class HomeDetailsRemoteDataSourceImpl implements HomeDetailsRemoteDataSource {
-  HomeDetailsRemoteDataSourceImpl(
-    this.firestoreHomeDetailsServices,
-  );
+  HomeDetailsRemoteDataSourceImpl(this.firestoreHomeDetailsServices);
   FirestoreHomeDetailsServices firestoreHomeDetailsServices;
-
-
 
   @override
   Future<void> addProduct({
@@ -72,26 +66,27 @@ class HomeDetailsRemoteDataSourceImpl implements HomeDetailsRemoteDataSource {
   }
 
   @override
-  Future<void> editShopInfo({required ShopModel shop}) async {
+  Future<void> editShopInfo({required EditShopInfoModelForData newShopInfo}) async {
     await firestoreHomeDetailsServices.editShopInfo(
-      shopId: shop.shopId,
-      newShopInfo: shop,
+      shopId: newShopInfo.shopId,
+      newShopInfo: newShopInfo.newShop,
     );
   }
-
 
   @override
   Future<List<HomeShopProductEntity>> getShopProducts({
     required String shopId,
   }) async {
-    var data = await firestoreHomeDetailsServices.getProductsByShopId(shopId: shopId);
+    var data = await firestoreHomeDetailsServices.getProductsByShopId(
+      shopId: shopId,
+    );
     List<HomeShopProductEntity> products = getProductsList(data);
     return products;
   }
 
   List<HomeShopProductEntity> getProductsList(
-      List<QueryDocumentSnapshot> docs,
-      ) {
+    List<QueryDocumentSnapshot> docs,
+  ) {
     List<HomeShopProductEntity> products = [];
 
     for (var doc in docs) {
@@ -102,14 +97,16 @@ class HomeDetailsRemoteDataSourceImpl implements HomeDetailsRemoteDataSource {
   }
 
   @override
-  Future<void> deleteShop({required String shopId}) async{
-
+  Future<void> deleteShop({required String shopId}) async {
     await firestoreHomeDetailsServices.deleteShop(shopId: shopId);
   }
 
   @override
-  Future<void> editShopImage({required EditShopImageModel editShopImageModel}) async{
-
-await firestoreHomeDetailsServices.editShopImage(editShopImageModel: editShopImageModel);
+  Future<void> editShopImage({
+    required EditShopImageModel editShopImageModel,
+  }) async {
+    await firestoreHomeDetailsServices.editShopImage(
+      editShopImageModel: editShopImageModel,
+    );
   }
 }

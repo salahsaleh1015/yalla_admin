@@ -59,6 +59,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
     _locationController.addListener(_checkIfFieldAreFilled);
     _phoneController.addListener(_checkIfFieldAreFilled);
     _nameController.addListener(_checkIfFieldAreFilled);
+    _rateController.addListener(_checkIfFieldAreFilled);
   }
 
   String imageUrl = "";
@@ -119,12 +120,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                 buildSmallSpace(),
                 GlobalTextFieldWidget(
                   controller: _rateController,
-                  formater: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(1),
-                  ],
                   validator: AppConstant.rateValidator,
-
                   textInputType: TextInputType.number,
                   hintText: "ادخل تقييم المندوب من 1 الي 5",
                 ),
@@ -154,20 +150,29 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                   child: Padding(
                     padding: EdgeInsets.all(AppSize.s2.r),
                     child: BlocConsumer<AddShopsCubit, AddShopsStates>(
-                      listener: (context, state) {
+                      listener: (context, state) async{
                         if (state is AddShopSuccessState) {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
                             backgroundColor: ColorManager.primary,
                           );
-                          HiveServices.clearHiveBox<HomeShopEntity>(
+                        await  HiveServices.clearHiveBox<HomeShopEntity>(
                             boxName: HiveServices.kShopsBox,
                           );
                           Navigator.pushReplacementNamed(
                             context,
                             Routes.adminMainLayoutRoute,
                           );
+                        }
+                        if (state is AddShopErrorState) {
+                          Navigator.pop(context);
+                          showCustomToast(
+                            context,
+                            "حدث خطا ما",
+                            backgroundColor: ColorManager.error,
+                          );
+                         Navigator.pop(context);
                         }
                       },
                       builder: (context, state) {
@@ -181,15 +186,13 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                             color: ColorManager.primary,
                             onTap: () async {
                               if (_formKey.currentState!.validate()) {
-                                num rate =
-                                    num.tryParse(_rateController.text) ?? 0;
                                 AddShopsCubit.get(context).addShop(
                                   shop: HomeShopEntity(
                                     shopId: "",
                                     shopAddress: _locationController.text,
                                     shopName: _nameController.text,
                                     shopPhoneNumber: _phoneController.text,
-                                    shopRate: rate,
+                                    shopRate: _rateController.text,
                                     shopImage: imageUrl,
                                   ),
                                 );

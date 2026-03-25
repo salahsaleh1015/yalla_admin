@@ -64,14 +64,14 @@ class GetProductsUseCase extends UseCase<List<HomeShopProductEntity>, String> {
   }
 }
 
-class EditShopInfoUseCase extends UseCase<void, HomeShopEntity> {
+class EditShopInfoUseCase extends UseCase<void, EditShopInfoModelForDomain> {
   HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
   EditShopInfoUseCase(this.homeDetailsTransactionsRepo);
 
   @override
-  Future<Either<Failure, void>> call(HomeShopEntity newShop) async {
-    return await homeDetailsTransactionsRepo.editShopInfo(newShop: newShop);
+  Future<Either<Failure, void>> call(EditShopInfoModelForDomain newShop) async {
+    return await homeDetailsTransactionsRepo.editShopInfo(editShopInfoModel: newShop);
   }
 }
 

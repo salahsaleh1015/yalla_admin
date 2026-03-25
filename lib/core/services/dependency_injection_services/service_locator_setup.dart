@@ -37,6 +37,7 @@ void serviceLocatorSetup() {
 
   getIt.registerSingleton<FirestoreHomeServices>(FirestoreHomeServices());
 
+  getIt.registerSingleton<FirestoreHomeDetailsServices>(FirestoreHomeDetailsServices());
   getIt.registerSingleton<FirebaseStorageServices>(FirebaseStorageServices());
 
   // repo impl

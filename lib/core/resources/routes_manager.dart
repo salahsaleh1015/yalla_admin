@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/views/admin_authentication.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_add_delivery_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_delivery_management_view.dart';
@@ -60,10 +61,10 @@ class RouteGenerator {
       case Routes.adminHomeRoute:
         return MaterialPageRoute(builder: (_) => const AdminHomeView());
       case Routes.adminVendorDetailsRoute:
-        final args = settings.arguments as String;
+        final args = settings.arguments as HomeShopEntity;
         return MaterialPageRoute(
             builder: (_) =>  AdminVendorDetailsView(
-              shopId: args,
+              shop: args,
             ));
       case Routes.adminAddVendorRoute:
         return MaterialPageRoute(builder: (_) => const AdminAddVendorView());

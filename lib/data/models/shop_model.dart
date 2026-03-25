@@ -9,7 +9,7 @@ class ShopModel extends HomeShopEntity {
   String? address;
   String? phoneNumber;
   String? image;
-  num? rate;
+  String? rate;
 
   ShopModel(
       {this.name,
@@ -24,7 +24,7 @@ class ShopModel extends HomeShopEntity {
           "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
       shopName: name ?? 'لا توجد بيانات',
       shopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
-      shopRate: rate ?? 0,
+      shopRate: rate ?? "",
       shopId: id ?? '');
 
 
@@ -34,6 +34,7 @@ class ShopModel extends HomeShopEntity {
         phoneNumber: shopEntity.shopPhoneNumber,
         address: shopEntity.shopAddress,
         name: shopEntity.shopName,
+        rate: shopEntity.shopRate
 
     );
   }

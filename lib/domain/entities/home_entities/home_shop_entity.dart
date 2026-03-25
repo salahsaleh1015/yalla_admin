@@ -18,7 +18,7 @@ class HomeShopEntity {
   @HiveField(4)
   final String shopImage;
   @HiveField(5)
-  final num shopRate;
+  final String shopRate;
 
   HomeShopEntity({
     required this.shopName,

@@ -48,6 +48,7 @@ class FirestoreHomeServices {
       name: shop.shopName,
       address: shop.shopAddress,
       phoneNumber: shop.shopPhoneNumber,
+      rate: shop.rate
     );
 
     await docRef.set(model.toJson());

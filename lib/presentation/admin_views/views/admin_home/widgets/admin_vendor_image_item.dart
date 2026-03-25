@@ -4,23 +4,26 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_circular_button_widget.dart';
 
 import '../../../../../core/resources/assets_manager.dart';
 import '../../../../../data/models/admin_drop_down_menu_model.dart';
 
 class AdminVendorImageItem extends StatelessWidget {
-  const AdminVendorImageItem({super.key});
+  const AdminVendorImageItem({super.key, required this.shopId, required this.shopImage});
 
+  final String shopId;
+  final String shopImage;
   @override
   Widget build(BuildContext context) {
     return Container(
       height: AppSize.s150.h,
       width: double.infinity,
-      decoration: const BoxDecoration(
+      decoration:  BoxDecoration(
           image: DecorationImage(
         fit: BoxFit.fill,
-        image: AssetImage(AssetsManager.shopTest),
+        image: NetworkImage(shopImage),
       )),
       child: Padding(
         padding: EdgeInsets.symmetric(
@@ -55,7 +58,7 @@ class AdminVendorImageItem extends StatelessWidget {
                   padding: EdgeInsets.only(left: AppPadding.p16.w, right: AppPadding.p16.w),
                 ),
                 onChanged: (value) {
-                  MenuItems.onChanged(context, value!);
+                  MenuItems.onChanged(context, value!, shopId: shopId);
                 },
                 dropdownStyleData: DropdownStyleData(
                   width:AppSize.s250.w,

@@ -7,7 +7,7 @@ import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_details_transactions_repo_impl.dart';
-import 'package:yalla_admin/domain/usecases/home_usecases/shop_product_usecases.dart';
+import 'package:yalla_admin/domain/usecases/home_usecases/shop_details_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/delete_product_cubit/delete_product_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/delete_product_cubit/delete_product_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/global_dialog.dart';
