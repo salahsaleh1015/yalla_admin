@@ -15,6 +15,49 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admi
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_main_layout/views/admin_main_layout.dart';
 
+class AppPageRoute extends PageRouteBuilder {
+  final Widget child;
+
+  AppPageRoute({required this.child})
+      : super(
+    transitionDuration: const Duration(milliseconds: 350),
+    reverseTransitionDuration: const Duration(milliseconds: 300),
+    pageBuilder: (context, animation, secondaryAnimation) => child,
+    transitionsBuilder: (context, animation, secondaryAnimation, child) {
+      // Fade
+      final fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOut,
+        ),
+      );
+
+      // Slide (من تحت لفوق بسيط)
+      final slideAnimation = Tween<Offset>(
+        begin: const Offset(0, 0.1),
+        end: Offset.zero,
+      ).animate(
+        CurvedAnimation(
+          parent: animation,
+          curve: Curves.easeOutCubic,
+        ),
+      );
+
+      return FadeTransition(
+        opacity: fadeAnimation,
+        child: SlideTransition(
+          position: slideAnimation,
+          child: child,
+        ),
+      );
+    },
+  );
+}
+
+
+
+
+
 
 class Routes {
 
@@ -49,39 +92,37 @@ class RouteGenerator {
       // Admin routes
       case Routes.adminMainLayoutRoute:
 
-        return MaterialPageRoute(builder: (_) =>  AdminMainLayout(
+        return AppPageRoute(child: AdminMainLayout(
 
      ));
 
       case Routes.adminDeliveryManagementRoute:
-        return MaterialPageRoute(
-            builder: (_) => const AdminDeliveryManagementView());
+        return AppPageRoute(child: const AdminDeliveryManagementView());
       case Routes.adminAddDeliveryRoute:
-        return MaterialPageRoute(builder: (_)=>AdminAddDeliveryView());
+        return AppPageRoute(child:AdminAddDeliveryView());
       case Routes.adminHomeRoute:
-        return MaterialPageRoute(builder: (_) => const AdminHomeView());
+        return AppPageRoute(child: const AdminHomeView());
       case Routes.adminVendorDetailsRoute:
         final args = settings.arguments as HomeShopEntity;
-        return MaterialPageRoute(
-            builder: (_) =>  AdminVendorDetailsView(
+        return AppPageRoute(child:  AdminVendorDetailsView(
               shop: args,
             ));
       case Routes.adminAddVendorRoute:
-        return MaterialPageRoute(builder: (_) => const AdminAddVendorView());
+        return AppPageRoute(child: const AdminAddVendorView());
       case Routes.adminBannerDetailsRoute:
         final args = settings.arguments as HomeBannerEntity;
-        return MaterialPageRoute(builder: (_)=>BannerDetailsView(
+        return AppPageRoute(child:BannerDetailsView(
           banner: args,
         ));
       case Routes.adminAddShopRoute:
-        return MaterialPageRoute(builder: (_)=>AdminAddShopView());
+        return AppPageRoute(child:AdminAddShopView());
       case Routes.adminAddShopProductRoute:
       final args = settings.arguments as String;
-        return MaterialPageRoute(builder: (_)=>AdminAddProductView(
+        return AppPageRoute(child:AdminAddProductView(
           shopId:args,
         ));
       case Routes.adminAddBannerRoute:
-        return MaterialPageRoute(builder: (_)=>AdminAddBannerView());
+        return AppPageRoute(child:AdminAddBannerView());
       case Routes.adminAuthenticationRoute:
         return MaterialPageRoute(
             builder: (_) =>  AdminAuthenticationView());
@@ -92,8 +133,7 @@ class RouteGenerator {
   }
 
   static Route<dynamic> _undefinedRoute() {
-    return MaterialPageRoute(
-      builder: (_) => Scaffold(
+    return AppPageRoute(child: Scaffold(
         appBar: AppBar(title: const Text("No Route Found")),
         body: const Center(child: Text("Route not defined")),
       ),
