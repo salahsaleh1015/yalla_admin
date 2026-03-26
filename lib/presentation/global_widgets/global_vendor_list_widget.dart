@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -15,23 +14,20 @@ import '../../../../core/resources/routes_manager.dart';
 import '../../core/resources/values_manager.dart';
 
 class GlobalVendorListWidget extends StatelessWidget {
-  const GlobalVendorListWidget({
-    super.key,
-  });
+  const GlobalVendorListWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider<GetShopsCubit>(
-      create: (context) => GetShopsCubit(
-        GetShopsUseCase(getIt.get<HomeTransactionsRepoImpl>()),
-      )..fetchShops(),
+      create:
+          (context) => GetShopsCubit(
+            GetShopsUseCase(getIt.get<HomeTransactionsRepoImpl>()),
+          )..fetchShops(),
       child: BlocBuilder<GetShopsCubit, GetShopsStates>(
         builder: (context, state) {
           var cubit = GetShopsCubit.get(context);
           if (state is GetShopsLoadingState) {
-            return const Center(
-              child: GlobalLoadingIndicator(),
-            );
+            return const Center(child: GlobalLoadingIndicator());
           } else if (state is GetShopsErrorState) {
             return Center(
               child: Text(
@@ -40,29 +36,30 @@ class GlobalVendorListWidget extends StatelessWidget {
                 style: Theme.of(context).textTheme.headlineSmall,
               ),
             );
-          } else if(state is GetShopsLoadedState){
+          } else if (state is GetShopsLoadedState) {
             return SizedBox(
               width: double.infinity,
               height: AppSize.s408.h,
               child: ListView.separated(
-                  scrollDirection: Axis.horizontal,
-                  separatorBuilder: (context, index) => SizedBox(
-                    width: AppSize.s10.w,
-                  ),
-                  itemCount: state.shops.length,
-                  itemBuilder: (context, index) {
-                    return GlobalVendorItemWidget(
-                     shop: state.shops[index],
-                    );
-                  }
+                scrollDirection: Axis.horizontal,
+                separatorBuilder:
+                    (context, index) => SizedBox(width: AppSize.s10.w),
+                itemCount: state.shops.length,
+                itemBuilder: (context, index) {
+                  return GlobalVendorItemWidget(
+                    index: index,
+                    shop: state.shops[index],
+                  );
+                },
               ),
             );
-          }else{
+          } else {
             return Center(
-                child: Text(
-                  "لا يوجد اعلانات",
-                  style: Theme.of(context).textTheme.headlineSmall,
-                ));
+              child: Text(
+                "لا يوجد اعلانات",
+                style: Theme.of(context).textTheme.headlineSmall,
+              ),
+            );
           }
         },
       ),

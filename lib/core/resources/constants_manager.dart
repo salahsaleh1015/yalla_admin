@@ -1,8 +1,8 @@
 class AppConstant{
 
   static const int maxLinesOfOrderDetails = 10;
-  static const int managementTabBarLength = 3;
-
+  static const int orderManagementTabBarLength = 4;
+  static const int deliveryManagementTabBarLength = 3;
 
 
   static String? Function(String?)? priceValidation = (value) {

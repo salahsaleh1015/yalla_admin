@@ -51,6 +51,7 @@ class GlobalAdvertisementListWidget extends StatelessWidget {
                                 arguments: state.bannersList[index]);
                           },
                           child: GlobalAdvertisementItemWidget(
+                            index: index,
                             title: state.bannersList[index].bannerShopName,
                             image: state.bannersList[index].bannerImage,
                           ),

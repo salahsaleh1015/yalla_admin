@@ -18,7 +18,7 @@ class AdminDeliveryManagementView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: AppConstant.managementTabBarLength,
+      length: AppConstant.deliveryManagementTabBarLength,
       child: GlobalPaddingWidget(
           child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

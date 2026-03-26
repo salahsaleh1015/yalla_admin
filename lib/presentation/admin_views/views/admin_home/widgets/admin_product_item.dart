@@ -5,6 +5,7 @@ import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_enti
 import 'package:yalla_admin/presentation/global_widgets/dialogs/delete_product_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/edit_product_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
+import 'package:yalla_admin/presentation/global_widgets/global_custom_animation_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_decorated_container.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_light_button_widget.dart';
 
@@ -16,7 +17,8 @@ class AdminProductItem extends StatelessWidget {
   const AdminProductItem({
     super.key,
     required this.product,
-    required this.index, required this.shopId,
+    required this.index,
+    required this.shopId,
   });
 
   final HomeShopProductEntity product;
@@ -24,24 +26,8 @@ class AdminProductItem extends StatelessWidget {
   final String shopId;
   @override
   Widget build(BuildContext context) {
-    return TweenAnimationBuilder<double>(
-      duration: Duration(
-        milliseconds: 400 + (index * 100),
-      ), // تأخير بسيط لكل عنصر
-      tween: Tween(begin: 0.0, end: 1.0),
-      curve: Curves.easeOutQuad,
-      builder: (context, value, child) {
-        return Opacity(
-          opacity: value,
-          child: Transform.translate(
-            offset: Offset(
-              0,
-              20 * (1 - value),
-            ), // هيتحرك 20 بكسل لفوق وهو بيظهر
-            child: child,
-          ),
-        );
-      },
+    return GlobalCustomAnimationWidget(
+      index: index,
       child: Padding(
         padding: EdgeInsets.only(bottom: AppPadding.p10.h),
         child: GlobalDecoratedContainer(
@@ -88,10 +74,14 @@ class AdminProductItem extends StatelessWidget {
                 isButtonEnabled: true,
                 text: "تعديل",
                 onTap: () {
-                  editProductDialog(context,deleteShopProductModelForDomain:DeleteShopProductModelForDomain(
-                    productId: product.productId,
-                    shopId: shopId,
-                  ) );
+                  editProductDialog(
+                    context,
+                    deleteShopProductModelForDomain:
+                        DeleteShopProductModelForDomain(
+                          productId: product.productId,
+                          shopId: shopId,
+                        ),
+                  );
                 },
                 width: MediaQuery.of(context).size.width,
                 height: AppSize.s30.h,
@@ -99,10 +89,14 @@ class AdminProductItem extends StatelessWidget {
               SizedBox(height: AppSize.s5.h),
               GlobalLightButtonWidget(
                 onTap: () {
-                  deleteProductDialog(context,deleteShopProductModelForDomain:DeleteShopProductModelForDomain(
-                    productId: product.productId,
-                    shopId: shopId,
-                  ) );
+                  deleteProductDialog(
+                    context,
+                    deleteShopProductModelForDomain:
+                        DeleteShopProductModelForDomain(
+                          productId: product.productId,
+                          shopId: shopId,
+                        ),
+                  );
                 },
                 width: MediaQuery.of(context).size.width,
                 height: AppSize.s30.h,

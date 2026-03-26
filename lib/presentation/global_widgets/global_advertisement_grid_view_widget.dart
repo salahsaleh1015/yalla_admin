@@ -18,6 +18,7 @@ class GlobalAdvertisementGridViewWidget extends StatelessWidget {
           crossAxisSpacing: AppSize.s10.w,
           mainAxisSpacing: AppSize.s10.h
       ), itemBuilder: (context, index) =>  GlobalAdvertisementItemWidget(
+      index: index,
       image: AssetsManager.shopTest,
       title: "هارت اتاك",
       width: MediaQuery.of(context).size.width*0.5,

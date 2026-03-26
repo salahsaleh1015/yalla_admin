@@ -16,7 +16,7 @@ class AdminOrderManagementView extends StatelessWidget {
   Widget build(BuildContext context) {
     return GlobalPaddingWidget(
         child: DefaultTabController(
-          length: AppConstant.managementTabBarLength,
+          length: AppConstant.orderManagementTabBarLength,
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
