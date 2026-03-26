@@ -34,9 +34,6 @@ abstract class HomeDetailsTransactionsRepo {
    required EditShopInfoModelForDomain editShopInfoModel,
   });
 
-  Future<Either<Failure, void>> editShopImage({
-    required EditShopImageModel editShopImageModel,
-  });
 
   Future<Either<Failure, void>> deleteShop({required String shopId});
 }

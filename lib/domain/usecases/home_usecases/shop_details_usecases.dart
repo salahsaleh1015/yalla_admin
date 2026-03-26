@@ -75,19 +75,7 @@ class EditShopInfoUseCase extends UseCase<void, EditShopInfoModelForDomain> {
   }
 }
 
-class EditShopImageUseCase extends UseCase<void, EditShopImageModel> {
-  HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
-  EditShopImageUseCase(this.homeDetailsTransactionsRepo);
-  @override
-  Future<Either<Failure, void>> call(
-    EditShopImageModel editShopImageModel,
-  ) async {
-    return await homeDetailsTransactionsRepo.editShopImage(
-      editShopImageModel: editShopImageModel,
-    );
-  }
-}
 
 class DeleteShopUseCase extends UseCase<void, String> {
   HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;

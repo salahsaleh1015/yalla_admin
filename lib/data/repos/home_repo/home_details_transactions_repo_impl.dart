@@ -120,25 +120,6 @@ class HomeDetailsTransactionsRepoImpl implements HomeDetailsTransactionsRepo {
     }
   }
 
-  @override
-  Future<Either<Failure, void>> editShopImage({
-    required EditShopImageModel editShopImageModel,
-  }) async {
-    try {
-      await homeDetailsRemoteDataSource.editShopImage(
-        editShopImageModel: editShopImageModel, // ✅ صح
-      );
-
-      return const Right(null);
-    } catch (e) {
-      print('///////////////////////////');
-      print(e.toString());
-      if (e is FirebaseException) {
-        return Left(FirebaseFailure.fromFirebaseException(e));
-      }
-      return Left(FirebaseFailure.fromException(e.toString()));
-    }
-  }
 
   @override
   Future<Either<Failure, void>> editShopInfo({

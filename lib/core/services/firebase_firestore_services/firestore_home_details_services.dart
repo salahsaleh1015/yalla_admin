@@ -75,18 +75,6 @@ class FirestoreHomeDetailsServices {
     }
   }
 
-  Future<void> editShopImage({
-    required EditShopImageModel editShopImageModel,
-
-  }) async {
-    try {
-      await _shopsCollectionRef.doc(editShopImageModel.shopId).update({
-        "shopImage": editShopImageModel.imageUrl,
-      });
-    } catch (e) {
-      throw Exception("فشل تحديث الصورة: $e");
-    }
-  }
 
   Future<void> deleteShop({required String shopId})async{
     await _shopsCollectionRef.doc(shopId).delete();

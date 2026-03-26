@@ -27,7 +27,7 @@ abstract class HomeDetailsRemoteDataSource {
 
   Future<void> deleteShop({required String shopId});
 
-  Future<void> editShopImage({required EditShopImageModel editShopImageModel});
+
 }
 
 class HomeDetailsRemoteDataSourceImpl implements HomeDetailsRemoteDataSource {
@@ -101,12 +101,5 @@ class HomeDetailsRemoteDataSourceImpl implements HomeDetailsRemoteDataSource {
     await firestoreHomeDetailsServices.deleteShop(shopId: shopId);
   }
 
-  @override
-  Future<void> editShopImage({
-    required EditShopImageModel editShopImageModel,
-  }) async {
-    await firestoreHomeDetailsServices.editShopImage(
-      editShopImageModel: editShopImageModel,
-    );
-  }
+
 }

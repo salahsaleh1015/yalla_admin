@@ -21,13 +21,11 @@ class DropdownMenuModel {
 abstract class MenuItems {
   static const List<DropdownMenuModel> firstItems = [
     editInfo,
-    changeImage,
     deleteVendor
   ];
 
   static const editInfo = DropdownMenuModel(text: 'تعديل المعلومات', icon: Icons.edit);
-  static const changeImage =
-  DropdownMenuModel(text: 'تغيير الصورة', icon: Icons.camera_alt);
+
   static const deleteVendor =
   DropdownMenuModel(text: 'حذف موزع الخدمة', icon: FontAwesomeIcons.trash);
 
@@ -59,9 +57,6 @@ abstract class MenuItems {
     switch (item) {
       case MenuItems.editInfo:
         editVendorDialog(context,shopId: shopId);
-        break;
-      case MenuItems.changeImage:
-        debugPrint('change image');
         break;
       case MenuItems.deleteVendor:
         deleteVendorDialog(context,shopId: shopId);
