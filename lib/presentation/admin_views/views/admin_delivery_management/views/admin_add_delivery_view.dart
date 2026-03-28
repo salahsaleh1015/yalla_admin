@@ -143,7 +143,7 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
-                            backgroundColor: ColorManager.greenColor,
+                              type: ToastType.success
                           );
                           HiveServices.clearHiveBox<DeliveryEntity>(
                             boxName: HiveServices.kUnAvailableDeliveryBox,

@@ -1,10 +1,15 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_storage_services.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 
 import 'package:yalla_admin/data/models/banner_model.dart';
 import 'package:yalla_admin/data/models/product_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
 
 class FirestoreHomeServices {
+
+  FirebaseStorageServices _storageServices =  FirebaseStorageServices();
+
   final CollectionReference _bannersCollectionRef = FirebaseFirestore.instance
       .collection("Banners");
 
@@ -54,5 +59,34 @@ class FirestoreHomeServices {
     await docRef.set(model.toJson());
   }
 
+
+
+  Future<void> deleteBanner({
+    required DeleteBannerModelForData deleteBannerModel,
+  }) async {
+    try {
+      final docRef = _bannersCollectionRef.doc(deleteBannerModel.bannerId);
+
+      final docSnapshot = await docRef.get();
+
+      if (!docSnapshot.exists) {
+        throw Exception("Banner not found");
+      }
+
+      // Delete image
+      if (deleteBannerModel.bannerImageUrl.isNotEmpty) {
+        await _storageServices.deleteImageFromFirebase(
+          deleteBannerModel.bannerImageUrl,
+        );
+      }
+
+      // Delete doc
+      await docRef.delete();
+
+    } catch (e) {
+      print("Delete banner error: $e");
+      rethrow;
+    }
+  }
 
 }

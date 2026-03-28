@@ -1,5 +1,6 @@
 import 'package:dartz/dartz.dart';
 import 'package:yalla_admin/core/usecase/usecase.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
@@ -16,6 +17,15 @@ class AddBannerUseCase extends UseCase<void, HomeBannerEntity> {
   }
 }
 
+class DeleteBannerUseCase extends UseCase<void, DeleteBannerModelForDomain> {
+  HomeTransactionsRepo homeTransactionsDataRepo;
+
+  DeleteBannerUseCase(this.homeTransactionsDataRepo);
+  @override
+  Future<Either<Failure, void>> call(DeleteBannerModelForDomain deleteModel) async {
+    return await homeTransactionsDataRepo.deleteBanner(deleteBannerModel: deleteModel);
+  }
+}
 
 class AddShopUseCase extends UseCase<void, HomeShopEntity> {
   HomeTransactionsRepo homeTransactionsDataRepo;

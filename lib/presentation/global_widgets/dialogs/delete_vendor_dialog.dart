@@ -6,6 +6,7 @@ import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/core/services/dependency_injection_services/service_locator_setup.dart';
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_details_transactions_repo_impl.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/usecases/home_usecases/shop_details_usecases.dart';
@@ -17,21 +18,22 @@ import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator
 
 import '../../../core/resources/colors_manager.dart';
 
-void deleteVendorDialog(BuildContext context, {required String shopId}) {
+void deleteVendorDialog(BuildContext context, {required DeleteShopModelForDomain deleteShopMadel}) {
   showCustomDialog(
     context,
     dialogTitle: " حذف موزع الخدمة؟",
 
     actionButtonColor: ColorManager.error,
     actionButtonHint: "حذف",
-    content: DeleteVendorDialogContent(shopId: shopId),
+    content: DeleteVendorDialogContent(
+        deleteShopMadel: deleteShopMadel),
   );
 }
 
 class DeleteVendorDialogContent extends StatelessWidget {
-  const DeleteVendorDialogContent({super.key, required this.shopId});
+  const DeleteVendorDialogContent({super.key, required this.deleteShopMadel});
 
-  final String shopId;
+  final DeleteShopModelForDomain deleteShopMadel;
 
   @override
   Widget build(BuildContext context) {
@@ -55,7 +57,7 @@ class DeleteVendorDialogContent extends StatelessWidget {
                 showCustomToast(
                   context,
                   "تمت المسج بنجاح",
-                  backgroundColor: ColorManager.primary,
+                    type: ToastType.success
                 );
                 await HiveServices.clearHiveBox<HomeShopEntity>(
                   boxName: HiveServices.kShopsBox,
@@ -70,7 +72,7 @@ class DeleteVendorDialogContent extends StatelessWidget {
                 showCustomToast(
                   context,
                   "حدث خطا ما",
-                  backgroundColor: ColorManager.error,
+                    type: ToastType.error
                 );
 
               }
@@ -81,7 +83,7 @@ class DeleteVendorDialogContent extends StatelessWidget {
               ) : GlobalButtonWidget(
                 text: "مسح",
                 onTap: () {
-                  DeleteShopCubit.get(context).deleteShop(shopId: shopId);
+                  DeleteShopCubit.get(context).deleteShop(deleteShopMadel: deleteShopMadel);
                 },
                 width: double.infinity,
                 isButtonEnabled: true,

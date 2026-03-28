@@ -103,10 +103,12 @@ class HomeDetailsTransactionsRepoImpl implements HomeDetailsTransactionsRepo {
   }
 
   @override
-  Future<Either<Failure, void>> deleteShop({required String shopId}) async {
+  Future<Either<Failure, void>> editShopInfo({
+    required EditShopInfoModelForDomain editShopInfoModel,
+  }) async {
     try {
-      await homeDetailsRemoteDataSource.deleteShop(
-        shopId: shopId, // ✅ صح
+      await homeDetailsRemoteDataSource.editShopInfo(
+        newShopInfo: editShopInfoModel.toDataModel(), // ✅ صح
       );
 
       return const Right(null);
@@ -120,14 +122,13 @@ class HomeDetailsTransactionsRepoImpl implements HomeDetailsTransactionsRepo {
     }
   }
 
-
   @override
-  Future<Either<Failure, void>> editShopInfo({
-    required EditShopInfoModelForDomain editShopInfoModel,
-  }) async{
+  Future<Either<Failure, void>> deleteShop({
+    required DeleteShopModelForDomain deleteShopMadel,
+  }) async {
     try {
-      await homeDetailsRemoteDataSource.editShopInfo(
-        newShopInfo: editShopInfoModel.toDataModel(), // ✅ صح
+      await homeDetailsRemoteDataSource.deleteShop(
+        deleteShopModel: deleteShopMadel.toDataModel(), // ✅ صح
       );
 
       return const Right(null);

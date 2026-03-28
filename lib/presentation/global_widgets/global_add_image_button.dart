@@ -85,7 +85,6 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-
                 /// 🔹 Title
                 Text(
                   "تأكيد رفع الصورة",
@@ -111,16 +110,19 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
 
                 /// 🔼 Bloc
                 BlocProvider<UploadImageCubit>(
-                  create: (context) => UploadImageCubit(
-                    UploadImageUseCase(getIt.get<HomeTransactionsRepoImpl>()),
-                  ),
+                  create:
+                      (context) => UploadImageCubit(
+                        UploadImageUseCase(
+                          getIt.get<HomeTransactionsRepoImpl>(),
+                        ),
+                      ),
                   child: BlocConsumer<UploadImageCubit, UploadImageStates>(
                     listener: (context, state) {
                       if (state is UploadImageErrorState) {
                         showCustomToast(
                           context,
                           "حدث خطأ ما حاول مرة أخرى",
-                          backgroundColor: ColorManager.error,
+                          type: ToastType.error,
                         );
                       }
 
@@ -128,7 +130,7 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
                         showCustomToast(
                           context,
                           "تمت الإضافة بنجاح",
-                          backgroundColor: ColorManager.primary,
+                          type: ToastType.success,
                         );
 
                         widget.onImageUploaded(state.imageUrl);
@@ -145,7 +147,6 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
 
                       return Row(
                         children: [
-
                           /// ❌ Cancel
                           Expanded(
                             child: OutlinedButton(
@@ -165,8 +166,9 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
                           Expanded(
                             child: GestureDetector(
                               onTap: () {
-                                UploadImageCubit.get(context)
-                                    .uploadImage(file: imageFile);
+                                UploadImageCubit.get(
+                                  context,
+                                ).uploadImage(file: imageFile);
                               },
                               child: Container(
                                 height: 45,
@@ -180,7 +182,9 @@ class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
                                   ),
                                   boxShadow: [
                                     BoxShadow(
-                                      color: ColorManager.primary.withOpacity(0.3),
+                                      color: ColorManager.primary.withOpacity(
+                                        0.3,
+                                      ),
                                       blurRadius: 8,
                                       offset: const Offset(0, 4),
                                     ),

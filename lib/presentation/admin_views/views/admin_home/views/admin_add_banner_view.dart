@@ -143,7 +143,7 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
-                            backgroundColor: ColorManager.primary,
+                              type: ToastType.success
                           );
                           HiveServices.clearHiveBox<HomeBannerEntity>(
                             boxName: HiveServices.kBannersBox,

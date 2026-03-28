@@ -60,7 +60,7 @@ class DeleteDeliveryDialogContent extends StatelessWidget {
             showCustomToast(
               context,
               "تم مسح الطلب بنجاح",
-              backgroundColor: ColorManager.greenColor,
+                type: ToastType.success
             );
             clearDeliveriesBoxByStatus(deliveryStatus);
             Navigator.pushReplacementNamed(
@@ -73,7 +73,7 @@ class DeleteDeliveryDialogContent extends StatelessWidget {
             showCustomToast(
               context,
               "حدث خطا ما حاول في وقت لاحق",
-              backgroundColor: ColorManager.error,
+                type: ToastType.error
             );
           }
         },

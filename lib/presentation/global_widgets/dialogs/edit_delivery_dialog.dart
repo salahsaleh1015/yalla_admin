@@ -83,7 +83,7 @@ class _EditDeliveryDialogContentState extends State<EditDeliveryDialogContent> {
             showCustomToast(
               context,
               "تم التعديل الطلب بنجاح",
-              backgroundColor: ColorManager.greenColor,
+                type: ToastType.success
             );
             clearDeliveriesBoxByStatus(widget.delivery.deliveryStatus);
             Navigator.pushReplacementNamed(
@@ -96,7 +96,7 @@ class _EditDeliveryDialogContentState extends State<EditDeliveryDialogContent> {
             showCustomToast(
               context,
               "حدث خطا ما حاول في وقت لاحق",
-              backgroundColor: ColorManager.error,
+                type: ToastType.error
             );
           }
         },

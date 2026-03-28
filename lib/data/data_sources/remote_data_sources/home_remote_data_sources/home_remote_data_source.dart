@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_storage_services.dart';
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_home_services.dart';
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/data/models/banner_model.dart';
 import 'package:yalla_admin/data/models/product_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
@@ -17,6 +18,7 @@ abstract class HomeRemoteDataSource {
   Future<void> addBanner({required BannerModel banner});
   Future<void> addShop({required ShopModel shop});
   Future<String> uploadImage({required File imageFile});
+  Future<void> deleteBanner({required DeleteBannerModelForData deleteBannerModel});
 }
 
 class HomeRemoteDataSourceImpl
@@ -82,5 +84,10 @@ class HomeRemoteDataSourceImpl
   @override
   Future<void> addShop({required ShopModel shop}) async {
     await firestoreHomeServices.addShopToFireStore(shop);
+  }
+
+  @override
+  Future<void> deleteBanner({required DeleteBannerModelForData deleteBannerModel})async {
+    await firestoreHomeServices.deleteBanner(deleteBannerModel: deleteBannerModel);
   }
 }

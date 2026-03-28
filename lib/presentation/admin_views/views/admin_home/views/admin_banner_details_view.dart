@@ -1,12 +1,10 @@
-
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/font_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/shop_image_item.dart';
 
@@ -21,12 +19,12 @@ class BannerDetailsView extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ShopImageItem(
-            image: banner.bannerImage,
-
+            deleteBannerModel: DeleteBannerModelForDomain(
+              bannerId: banner.bannerId,
+              bannerImageUrl: banner.bannerImage,
+            ),
           ),
-          SizedBox(
-            height: AppSize.s10.h,
-          ),
+          SizedBox(height: AppSize.s10.h),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: AppPadding.p10.w),
             child: Column(
@@ -36,16 +34,13 @@ class BannerDetailsView extends StatelessWidget {
                   children: [
                     Text(
                       banner.bannerShopName,
-                      style: Theme.of(context).textTheme.headlineLarge!.copyWith(
-                          fontSize: FontSize.s26.sp
-                      ),
+                      style: Theme.of(context).textTheme.headlineLarge!
+                          .copyWith(fontSize: FontSize.s26.sp),
                     ),
                     const Spacer(),
                   ],
                 ),
-                SizedBox(
-                  height: AppSize.s10.h,
-                ),
+                SizedBox(height: AppSize.s10.h),
                 Row(
                   children: [
                     Icon(
@@ -53,20 +48,16 @@ class BannerDetailsView extends StatelessWidget {
                       size: AppSize.s25.r,
                       color: ColorManager.darkGrayColor,
                     ),
-                    SizedBox(
-                      width: AppSize.s5.w,
-                    ),
+                    SizedBox(width: AppSize.s5.w),
                     Text(
                       banner.bannerShopAddress,
                       style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                          fontSize: FontSize.s20.sp
+                        fontSize: FontSize.s20.sp,
                       ),
-                    )
+                    ),
                   ],
                 ),
-                SizedBox(
-                  height: AppSize.s10.h,
-                ),
+                SizedBox(height: AppSize.s10.h),
                 Row(
                   children: [
                     Icon(
@@ -74,23 +65,17 @@ class BannerDetailsView extends StatelessWidget {
                       size: AppSize.s25.r,
                       color: ColorManager.darkGrayColor,
                     ),
-                    SizedBox(
-                      width: AppSize.s5.w,
-                    ),
+                    SizedBox(width: AppSize.s5.w),
                     Text(
                       banner.bannerShopPhoneNumber,
                       style: Theme.of(context).textTheme.labelMedium!.copyWith(
-                          fontSize: FontSize.s20.sp
+                        fontSize: FontSize.s20.sp,
                       ),
                     ),
-                    SizedBox(
-                      width: AppSize.s30.w,
-                    ),
+                    SizedBox(width: AppSize.s30.w),
                   ],
                 ),
-                SizedBox(
-                  height: AppSize.s10.h,
-                ),
+                SizedBox(height: AppSize.s10.h),
               ],
             ),
           ),
@@ -99,12 +84,13 @@ class BannerDetailsView extends StatelessWidget {
             endIndent: AppSize.s20.w,
             color: ColorManager.socialButtonColor,
           ),
-          SizedBox(
-            height: AppSize.s50.h,
-          ),
+          SizedBox(height: AppSize.s50.h),
           Center(
-            child: Image.asset(AssetsManager.splashLogo, height:MediaQuery.of(context).size.height*0.3,
-              width: MediaQuery.of(context).size.width*0.8,),
+            child: Image.asset(
+              AssetsManager.splashLogo,
+              height: MediaQuery.of(context).size.height * 0.3,
+              width: MediaQuery.of(context).size.width * 0.8,
+            ),
           ),
         ],
       ),

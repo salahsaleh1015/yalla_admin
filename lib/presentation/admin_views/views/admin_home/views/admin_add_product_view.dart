@@ -148,7 +148,7 @@ class _AdminAddProductViewState extends State<AdminAddProductView> {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
-                            backgroundColor: ColorManager.primary,
+                              type: ToastType.success
                           );
 
                           Navigator.pushReplacementNamed(

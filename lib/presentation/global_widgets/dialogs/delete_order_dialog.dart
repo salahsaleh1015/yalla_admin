@@ -64,7 +64,7 @@ class DeleteOrderDialogContent extends StatelessWidget {
             showCustomToast(
               context,
               "تم مسح الطلب بنجاح",
-              backgroundColor: ColorManager.greenColor,
+                type: ToastType.success
             );
           }
 
@@ -72,7 +72,7 @@ class DeleteOrderDialogContent extends StatelessWidget {
             showCustomToast(
               context,
               "حدث خطا ما حاول في وقت لاحق",
-              backgroundColor: ColorManager.error,
+              type: ToastType.error,
             );
           }
         },

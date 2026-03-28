@@ -144,7 +144,7 @@ class _EditProductDialogContentState extends State<EditProductDialogContent> {
                       showCustomToast(
                         context,
                         "تم التعديل بنجاح",
-                        backgroundColor: ColorManager.primary,
+                          type: ToastType.success
                       );
                       Navigator.pushReplacementNamed(
                         context,
@@ -157,7 +157,7 @@ class _EditProductDialogContentState extends State<EditProductDialogContent> {
                       showCustomToast(
                         context,
                         "حدث خطا ما",
-                        backgroundColor: ColorManager.error,
+                          type: ToastType.error
                       );
                     }
                   },

@@ -155,7 +155,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
-                            backgroundColor: ColorManager.primary,
+                              type: ToastType.success
                           );
                         await  HiveServices.clearHiveBox<HomeShopEntity>(
                             boxName: HiveServices.kShopsBox,
@@ -170,7 +170,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
                           showCustomToast(
                             context,
                             "حدث خطا ما",
-                            backgroundColor: ColorManager.error,
+                              type: ToastType.error
                           );
                          Navigator.pop(context);
                         }

@@ -21,4 +21,18 @@ class FirebaseStorageServices {
       rethrow; // Propagate the exception to the caller
     }
   }
+
+
+  Future<void> deleteImageFromFirebase(String imageUrl) async {
+    try {
+      final ref = FirebaseStorage.instance.refFromURL(imageUrl);
+
+      await ref.delete();
+
+      print("Image deleted successfully");
+    } catch (e) {
+      print("Delete error: $e");
+      rethrow;
+    }
+  }
 }

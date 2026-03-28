@@ -144,7 +144,7 @@ class _EditVendorDialogContentState extends State<EditVendorDialogContent> {
                         showCustomToast(
                           context,
                           "تمت التعديل بنجاح",
-                          backgroundColor: ColorManager.primary,
+                            type: ToastType.success
                         );
                        await HiveServices.clearHiveBox<HomeShopEntity>(
                           boxName: HiveServices.kShopsBox,
@@ -160,7 +160,7 @@ class _EditVendorDialogContentState extends State<EditVendorDialogContent> {
                         showCustomToast(
                           context,
                           "حدث خطا ما",
-                          backgroundColor: ColorManager.error,
+                            type: ToastType.error
                         );
 
                       }

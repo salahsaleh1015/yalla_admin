@@ -78,6 +78,38 @@ class EditShopProductModelForData {
   });
 }
 
+class DeleteBannerModelForDomain {
+  final String bannerId, bannerImageUrl;
+
+  DeleteBannerModelForDomain({
+    required this.bannerId,
+    required this.bannerImageUrl,
+  });
+}
+
+class DeleteBannerModelForData {
+  final String bannerId, bannerImageUrl;
+
+  DeleteBannerModelForData({
+    required this.bannerId,
+    required this.bannerImageUrl,
+  });
+}
+
+class DeleteShopModelForDomain {
+  final String shopId, shopImageUrl;
+
+  DeleteShopModelForDomain({required this.shopId, required this.shopImageUrl});
+}
+
+class DeleteShopModelForData {
+  final String shopId, shopImageUrl;
+
+  DeleteShopModelForData({required this.shopId, required this.shopImageUrl});
+
+
+}
+
 extension AddShopProductMapper on AddShopProductModelForDomain {
   AddShopProductModelForData toDataModel() {
     return AddShopProductModelForData(
@@ -108,6 +140,23 @@ extension EditShopInfoMapper on EditShopInfoModelForDomain {
     return EditShopInfoModelForData(
       shopId: shopId,
       newShop: ShopModel.fromEntity(newShop),
+    );
+  }
+}
+
+extension DeleteBannerMapper on DeleteBannerModelForDomain {
+  DeleteBannerModelForData toDataModel() {
+    return DeleteBannerModelForData(
+      bannerId: bannerId,
+      bannerImageUrl: bannerImageUrl,
+    );
+  }
+}
+extension DeleteShopMapper on DeleteShopModelForDomain {
+  DeleteShopModelForData toDataModel() {
+    return DeleteShopModelForData(
+      shopId: shopId,
+      shopImageUrl: shopImageUrl,
     );
   }
 }

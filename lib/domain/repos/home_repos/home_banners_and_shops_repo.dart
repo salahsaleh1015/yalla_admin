@@ -15,6 +15,8 @@ abstract class HomeTransactionsRepo {
   Future<Either<Failure, String>> uploadImage({required File imageFile});
   Future<Either<Failure, List<HomeBannerEntity>>> fetchHomeBanners();
   Future<Either<Failure, List<HomeShopEntity>>> fetchHomeShops();
+  Future<Either<Failure, void>> deleteBanner({required DeleteBannerModelForDomain deleteBannerModel});
+
 }
 
 abstract class HomeDetailsTransactionsRepo {
@@ -35,5 +37,5 @@ abstract class HomeDetailsTransactionsRepo {
   });
 
 
-  Future<Either<Failure, void>> deleteShop({required String shopId});
+  Future<Either<Failure, void>> deleteShop({required DeleteShopModelForDomain deleteShopMadel});
 }

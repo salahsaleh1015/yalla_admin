@@ -38,6 +38,9 @@ Future<void> main() async {
   );
 }
 
+
+
+
 class YallaAdminApp extends StatelessWidget {
   YallaAdminApp({super.key, required this.startRoute});
 
@@ -58,10 +61,9 @@ class YallaAdminApp extends StatelessWidget {
             theme: getApplicationTheme(context),
             debugShowCheckedModeBanner: false,
             title: 'Yalla Admin app',
-
             onGenerateRoute: routeGenerator.getRoute,
-            //initialRoute: startRoute,
-            initialRoute: Routes.adminMainLayoutRoute,
+            initialRoute: startRoute,
+            //initialRoute: Routes.adminMainLayoutRoute,
           ),
     );
   }

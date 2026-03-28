@@ -63,7 +63,7 @@ class DeleteProductDialogContent extends StatelessWidget {
                 showCustomToast(
                   context,
                   "تم الحذف بنجاح",
-                  backgroundColor: ColorManager.primary,
+                    type: ToastType.success
                 );
                 Navigator.pushReplacementNamed(
                   context,
@@ -76,7 +76,7 @@ class DeleteProductDialogContent extends StatelessWidget {
                 showCustomToast(
                   context,
                   "حدث خطا ما",
-                  backgroundColor: ColorManager.error,
+                    type: ToastType.error
                 );
               }
             },

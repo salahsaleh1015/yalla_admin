@@ -71,18 +71,22 @@ class EditShopInfoUseCase extends UseCase<void, EditShopInfoModelForDomain> {
 
   @override
   Future<Either<Failure, void>> call(EditShopInfoModelForDomain newShop) async {
-    return await homeDetailsTransactionsRepo.editShopInfo(editShopInfoModel: newShop);
+    return await homeDetailsTransactionsRepo.editShopInfo(
+      editShopInfoModel: newShop,
+    );
   }
 }
 
-
-
-class DeleteShopUseCase extends UseCase<void, String> {
+class DeleteShopUseCase extends UseCase<void, DeleteShopModelForDomain> {
   HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;
 
   DeleteShopUseCase(this.homeDetailsTransactionsRepo);
   @override
-  Future<Either<Failure, void>> call(String shopId) async {
-    return await homeDetailsTransactionsRepo.deleteShop(shopId: shopId);
+  Future<Either<Failure, void>> call(
+    DeleteShopModelForDomain deleteShopMadel,
+  ) async {
+    return await homeDetailsTransactionsRepo.deleteShop(
+      deleteShopMadel: deleteShopMadel,
+    );
   }
 }

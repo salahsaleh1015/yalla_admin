@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:yalla_admin/core/errors/failure.dart';
 import 'package:yalla_admin/data/data_sources/local_data_sources/home_local_data_sources/home_banners_and_shops_local_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_remote_data_source.dart';
+import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/data/models/banner_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
@@ -66,8 +67,6 @@ class HomeTransactionsRepoImpl implements HomeTransactionsRepo {
     }
   }
 
-
-
   @override
   Future<Either<Failure, void>> addBanner({
     required HomeBannerEntity banner,
@@ -86,6 +85,7 @@ class HomeTransactionsRepoImpl implements HomeTransactionsRepo {
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }
+
   @override
   Future<Either<Failure, void>> addShop({required HomeShopEntity shop}) async {
     try {
@@ -108,9 +108,7 @@ class HomeTransactionsRepoImpl implements HomeTransactionsRepo {
     try {
       String imagePath;
 
-      imagePath = await homeRemoteDataSource.uploadImage(
-        imageFile: imageFile,
-      );
+      imagePath = await homeRemoteDataSource.uploadImage(imageFile: imageFile);
       return Right(imagePath);
     } catch (e) {
       print('///////////////////////////');
@@ -122,4 +120,22 @@ class HomeTransactionsRepoImpl implements HomeTransactionsRepo {
     }
   }
 
+  @override
+  Future<Either<Failure, void>> deleteBanner({
+    required DeleteBannerModelForDomain deleteBannerModel,
+  }) async{
+    try {
+      await homeRemoteDataSource.deleteBanner(
+        deleteBannerModel: deleteBannerModel.toDataModel(), // ✅ صح
+      );
+      return const Right(null);
+    } catch (e) {
+      print('///////////////////////////');
+      print(e.toString());
+      if (e is FirebaseException) {
+        return Left(FirebaseFailure.fromFirebaseException(e));
+      }
+      return Left(FirebaseFailure.fromException(e.toString()));
+    }
+  }
 }
