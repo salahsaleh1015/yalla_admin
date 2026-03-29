@@ -62,8 +62,8 @@ class YallaAdminApp extends StatelessWidget {
             debugShowCheckedModeBanner: false,
             title: 'Yalla Admin app',
             onGenerateRoute: routeGenerator.getRoute,
-            initialRoute: startRoute,
-            //initialRoute: Routes.adminMainLayoutRoute,
+            //initialRoute: startRoute,
+            initialRoute: Routes.adminMainLayoutRoute,
           ),
     );
   }

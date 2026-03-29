@@ -13,22 +13,23 @@ class HomeStatisticsCardsLocalDataSourceImpl
   int getTheNumberOfCompletedOrders() {
     var box = Hive.box<int>(HiveServices.kCompletedOrdersNumberBox);
 
-    return box.get(HiveServices.kCompletedOrdersNumberBoxKey,)
-        as int;
+    // return box.get(HiveServices.kCompletedOrdersNumberBoxKey,)
+    //     as int;
 
+    return box.get(HiveServices.kCompletedOrdersNumberBoxKey) ?? 0;
   }
 
   @override
   int getTheNumberOfDeliveries() {
     var box = Hive.box<int>(HiveServices.kDeliveryNumbersBox);
 
-    return box.get(HiveServices.kDeliveryNumbersBoxKey,) as int;
+    return box.get(HiveServices.kDeliveryNumbersBoxKey) ?? 0;
   }
 
   @override
   int getTheNumberOfUsers() {
     var box = Hive.box<int>(HiveServices.kUsersNumberBox);
 
-    return box.get(HiveServices.kUsersNumberBoxKey,) as int;
+    return box.get(HiveServices.kUsersNumberBoxKey) ?? 0;
   }
 }

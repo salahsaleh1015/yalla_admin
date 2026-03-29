@@ -28,7 +28,7 @@ class GlobalAddImageButton extends StatefulWidget {
 class _GlobalAddImageButtonState extends State<GlobalAddImageButton> {
   Future<void> _pickImageFromGallery() async {
     final ImagePicker picker = ImagePicker();
-    final XFile? image = await picker.pickImage(source: ImageSource.camera);
+    final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
     if (image != null) {
       final file = File(image.path);

@@ -15,7 +15,6 @@ import 'package:yalla_admin/presentation/controllers/home_controllers/banners_an
 import 'package:yalla_admin/presentation/global_widgets/dialogs/global_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
-
 import '../../../core/resources/colors_manager.dart';
 
 void deleteVendorDialog(BuildContext context, {required DeleteShopModelForDomain deleteShopMadel}) {

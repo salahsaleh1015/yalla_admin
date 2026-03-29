@@ -56,7 +56,7 @@ class _AdminAuthenticationViewState extends State<AdminAuthenticationView> {
                 GlobalTextFieldWidget(
                   controller: _passwordController,
                   validator: (val) {
-                    if (val!.length != 11 ||
+                    if (val!.length != 12 ||
                         _passwordController.text != "12345678910") {
                       return "ادخل الرقم بشكل صحيح";
                     }
@@ -72,7 +72,7 @@ class _AdminAuthenticationViewState extends State<AdminAuthenticationView> {
                   text: "متابعة",
                   onTap: () {
                     if (_formKey.currentState!.validate() &&
-                        _passwordController.text == "12345678910") {
+                        _passwordController.text == "M0-Y@ll@2026") {
                       Navigator.pushReplacementNamed(
                         context,
                         Routes.adminMainLayoutRoute,

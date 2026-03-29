@@ -20,24 +20,29 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   @override
   Future<Either<Failure, int>> fetchTheNumberOfCompletedOrders() async {
     try {
+      // نحاول نجيب الرقم من الـ local data source
+      int completedOrders =
+          homeStatisticsCardsLocalDataSource.getTheNumberOfCompletedOrders();
 
+      // لو الرقم غير موجود أو 0، نجرب نحصل عليه من الـ remote
+      if (completedOrders == 0) {
+        completedOrders =
+            await homeStatisticsCardsRemoteDataSource
+                .getTheNumberOfCompletedOrders();
 
-      int completedOrders;
-      // completedOrders =
-      //     homeStatisticsCardsLocalDataSource.getTheNumberOfCompletedOrders();
-      // if (completedOrders.isNaN) {
-      //   return Right(completedOrders);
-      // }
-      completedOrders =
-          await homeStatisticsCardsRemoteDataSource
-              .getTheNumberOfCompletedOrders();
+        debugPrint("ابه الكلام يا نجوميا 3");
+      }
+
+      // رجع الرقم كـ Right
       return Right(completedOrders);
     } catch (e) {
-
-
       if (e is FirebaseException) {
+        debugPrint("ابه الكلام يا نجوميا 1");
+        debugPrint(e.toString());
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+      debugPrint("2ابه الكلام يا نجوميا ");
+      debugPrint(e.toString());
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }
@@ -45,18 +50,20 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   @override
   Future<Either<Failure, int>> fetchTheNumberOfDeliveries() async {
     try {
-      int deliveries;
+      // نحاول نجيب الرقم من الـ local data source
+      int deliveries =
+          homeStatisticsCardsLocalDataSource.getTheNumberOfDeliveries();
 
-      // deliveries =
-      //     homeStatisticsCardsLocalDataSource.getTheNumberOfDeliveries();
-      // debugPrint("/////////////////// this is data layer repo out if");
-      // debugPrint(deliveries.toString());
-      // if (deliveries.isEven) {
-      //   debugPrint("/////////////////// this is data layer repo in if");
-      //   return Right(deliveries);
-      // }
-      deliveries =
-          await homeStatisticsCardsRemoteDataSource.getTheNumberOfDeliveries();
+      // لو الرقم غير موجود أو 0، نجرب نحصل عليه من الـ remote
+      if (deliveries == 0) {
+        deliveries =
+            await homeStatisticsCardsRemoteDataSource
+                .getTheNumberOfDeliveries();
+
+        debugPrint("ابه الكلام يا نجوميا 3");
+      }
+
+      // رجع الرقم كـ Right
       return Right(deliveries);
     } catch (e) {
       debugPrint("/////////////////// this is data layer repo");
@@ -71,12 +78,20 @@ class HomeStatisticsCardsRepoImpl implements HomeStatisticsCardsRepo {
   @override
   Future<Either<Failure, int>> fetchTheNumberOfUsers() async {
     try {
-      int users;
-      // users = homeStatisticsCardsLocalDataSource.getTheNumberOfUsers();
-      // if (users.isNaN) {
-      //   return Right(users);
-      // }
-      users = await homeStatisticsCardsRemoteDataSource.getTheNumberOfUsers();
+      // نحاول نجيب الرقم من الـ local data source
+      int users =
+      homeStatisticsCardsLocalDataSource.getTheNumberOfUsers();
+
+      // لو الرقم غير موجود أو 0، نجرب نحصل عليه من الـ remote
+      if (users == 0) {
+        users =
+        await homeStatisticsCardsRemoteDataSource
+            .getTheNumberOfUsers();
+
+        debugPrint("ابه الكلام يا نجوميا 3");
+      }
+
+      // رجع الرقم كـ Right
       return Right(users);
     } catch (e) {
       if (e is FirebaseException) {
