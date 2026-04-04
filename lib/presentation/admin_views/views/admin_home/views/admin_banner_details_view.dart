@@ -49,10 +49,13 @@ class BannerDetailsView extends StatelessWidget {
                       color: ColorManager.darkGrayColor,
                     ),
                     SizedBox(width: AppSize.s5.w),
-                    Text(
-                      banner.bannerShopAddress,
-                      style: Theme.of(context).textTheme.labelSmall!.copyWith(
-                        fontSize: FontSize.s20.sp,
+                    Expanded(
+                      child: Text(
+                        banner.bannerShopAddress,
+                        style: Theme.of(context).textTheme.labelSmall,
+                        maxLines: 3,
+                        overflow: TextOverflow.ellipsis,
+
                       ),
                     ),
                   ],

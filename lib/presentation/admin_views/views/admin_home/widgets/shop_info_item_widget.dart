@@ -50,9 +50,11 @@ class ShopInfoItemWidget extends StatelessWidget {
               SizedBox(
                 width: AppSize.s5.w,
               ),
-              Text(
-                shop.shopAddress,
-                style: Theme.of(context).textTheme.labelSmall,
+              Expanded(
+                child: Text(
+                  shop.shopAddress,
+                  style: Theme.of(context).textTheme.labelSmall,
+                ),
               )
             ],
           ),
