@@ -1,12 +1,11 @@
-
-
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
+import 'package:yalla_admin/presentation/global_widgets/global_circular_button_widget.dart';
 
-class AddDeliveryBarHeader extends StatelessWidget {
-  const AddDeliveryBarHeader({super.key});
+class AddBarHeader extends StatelessWidget {
+  const AddBarHeader({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,12 +14,17 @@ class AddDeliveryBarHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("اضف مندوب", style: Theme.of(context).textTheme.titleMedium),
           Image.asset(
-            AssetsManager.deliveryAvatar,
+            AssetsManager.adminAvatar,
             width: AppSize.s55.w,
             height: AppSize.s50.h,
             fit: BoxFit.fill,
+          ),
+          GlobalCircularButtonWidget(
+            onTap: () {
+              Navigator.pop(context);
+            },
+            icon: Icons.arrow_forward_ios,
           ),
         ],
       ),

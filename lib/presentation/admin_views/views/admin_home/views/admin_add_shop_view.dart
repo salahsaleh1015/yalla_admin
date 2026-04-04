@@ -13,6 +13,7 @@ import 'package:yalla_admin/domain/usecases/home_usecases/home_transactions_usec
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_shops_cubit/add_shops_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_shops_cubit/add_shops_state.dart';
+import 'package:yalla_admin/presentation/global_widgets/add_bar_header.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_add_image_button.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
@@ -73,7 +74,7 @@ class _AdminAddShopViewState extends State<AdminAddShopView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const AdminMainBar(),
+                const AddBarHeader(),
                 SizedBox(height: AppSize.s50.h),
 
                 Text(

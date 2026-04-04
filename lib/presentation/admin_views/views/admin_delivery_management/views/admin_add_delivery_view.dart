@@ -13,9 +13,9 @@ import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/repos/deliveries_management_repo/actions_of_deliveries_repo.dart';
 import 'package:yalla_admin/domain/entities/delivery_management_entities/delivery_entity.dart';
 import 'package:yalla_admin/domain/usecases/delivery_management_usecases/add_delivery_usecase.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/widgets/add_delivery_bar_header.dart';
 import 'package:yalla_admin/presentation/controllers/deliveries_management_controllers/add_delivery_cubit/add_delivery_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/deliveries_management_controllers/add_delivery_cubit/add_delivery_state.dart';
+import 'package:yalla_admin/presentation/global_widgets/add_bar_header.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/add_image_section.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
@@ -70,7 +70,7 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                AddDeliveryBarHeader(),
+                AddBarHeader(),
                 SizedBox(height: AppSize.s50.h),
 
 

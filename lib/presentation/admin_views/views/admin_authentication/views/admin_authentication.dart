@@ -26,7 +26,7 @@ class _AdminAuthenticationViewState extends State<AdminAuthenticationView> {
   bool isButtonEnabled = false;
 
   void _checkIfFieldAreFilled() {
-    final isFilled = _passwordController.text.length == 11;
+    final isFilled = _passwordController.text.length == 12;
     setState(() {
       isButtonEnabled = isFilled;
     });
@@ -57,7 +57,7 @@ class _AdminAuthenticationViewState extends State<AdminAuthenticationView> {
                   controller: _passwordController,
                   validator: (val) {
                     if (val!.length != 12 ||
-                        _passwordController.text != "12345678910") {
+                        _passwordController.text != "M0-Y@ll@2026") {
                       return "ادخل الرقم بشكل صحيح";
                     }
                     return null;

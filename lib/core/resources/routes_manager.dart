@@ -9,7 +9,6 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_manage
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_banner_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_product_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_shop_view.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_vendor_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_home_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
@@ -107,14 +106,13 @@ class RouteGenerator {
         return AppPageRoute(child:  AdminVendorDetailsView(
               shop: args,
             ));
-      case Routes.adminAddVendorRoute:
-        return AppPageRoute(child: const AdminAddVendorView());
+
       case Routes.adminBannerDetailsRoute:
         final args = settings.arguments as HomeBannerEntity;
         return AppPageRoute(child:BannerDetailsView(
           banner: args,
         ));
-      case Routes.adminAddShopRoute:
+      case Routes.adminAddShopRoute: /////
         return AppPageRoute(child:AdminAddShopView());
       case Routes.adminAddShopProductRoute:
       final args = settings.arguments as String;
