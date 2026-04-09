@@ -12,7 +12,10 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admi
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_home_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
+import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_main_layout/views/admin_main_layout.dart';
+
+import '../../presentation/admin_views/views/admin_home/views/admin_problems_and_recommendations_view.dart';
 
 class AppPageRoute extends PageRouteBuilder {
   final Widget child;
@@ -76,6 +79,7 @@ class Routes {
   static const String adminAddBannerRoute = "/adminAddBanner";
   static const String adminAddShopRoute = "/adminAddShop";
   static const String adminAddShopProductRoute = "/adminAddShopProduct";
+  static const String adminProblemsAndRecommendationsRoute = "/adminProblemsAndRecommendationsRoute";
 
 
 
@@ -88,6 +92,8 @@ class RouteGenerator {
   Route<dynamic> getRoute(RouteSettings settings) {
     switch (settings.name) {
 
+      case Routes.adminAuthenticationRoute:
+        return AppPageRoute(child:  AdminAuthenticationView());
       // Admin routes
       case Routes.adminMainLayoutRoute:
 
@@ -121,9 +127,10 @@ class RouteGenerator {
         ));
       case Routes.adminAddBannerRoute:
         return AppPageRoute(child:AdminAddBannerView());
-      case Routes.adminAuthenticationRoute:
-        return MaterialPageRoute(
-            builder: (_) =>  AdminAuthenticationView());
+
+
+      case Routes.adminProblemsAndRecommendationsRoute:
+        return AppPageRoute(child:  AdminProblemsAndRecommendationsView());
 
       default:
         return _undefinedRoute();

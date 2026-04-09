@@ -3,6 +3,8 @@ import 'package:yalla_admin/domain/entities/delivery_management_entities/deliver
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/entities/order_management_entities/order_entity.dart';
+import 'package:yalla_admin/domain/entities/problems_and_recommendations_entites/problem_entity.dart';
+import 'package:yalla_admin/domain/entities/problems_and_recommendations_entites/recommendation_entity.dart';
 
 class HiveServices {
   static const kCompletedOrdersNumberBox = 'completed_orders_number_box';
@@ -24,6 +26,8 @@ class HiveServices {
   // static const kAvailableDeliveriesBox = 'available_deliveries_box';
   // static const kUnAvailableDeliveriesBox = 'unAvailable_deliveries_box';
   // static const kBusyDeliveriesBox = 'busy_deliveries_box';
+  static const kProblemsBox = "problems_box";
+  static const kRecommendationsBox = "recommendations_box";
 
   static void cacheDeliveriesNumber({required int value}) {
     var box = Hive.box<int>(kDeliveryNumbersBox);
@@ -57,6 +61,9 @@ class HiveServices {
     Hive.registerAdapter(HomeShopEntityAdapter());
     Hive.registerAdapter(OrderEntityAdapter());
     Hive.registerAdapter(DeliveryEntityAdapter());
+    Hive.registerAdapter(ProblemEntityAdapter());
+    Hive.registerAdapter(RecommendationEntityAdapter());
+
 
     // Open boxes
     await Hive.openBox<int>(kDeliveryNumbersBox);
@@ -71,17 +78,26 @@ class HiveServices {
     await Hive.openBox<DeliveryEntity>(kAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kUnAvailableDeliveryBox);
     await Hive.openBox<DeliveryEntity>(kBusyDeliveryBox);
+    await Hive.openBox<ProblemEntity>(kProblemsBox);
 
+    await Hive.openBox<RecommendationEntity>(kRecommendationsBox);
 
     // Clear boxes
     await clearHiveBox<int>(boxName: kDeliveryNumbersBox);
     await clearHiveBox<int>(boxName: kCompletedOrdersNumberBox);
     await clearHiveBox<int>(boxName: kUsersNumberBox);
+    await clearHiveBox<OrderEntity>(boxName: kAcceptedOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kPendingOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kCanceledOrdersBox);
+    await clearHiveBox<OrderEntity>(boxName: kCompletedOrdersBox);
     await clearHiveBox<HomeBannerEntity>(boxName: kBannersBox);
     await clearHiveBox<HomeShopEntity>(boxName: kShopsBox);
     await clearHiveBox<DeliveryEntity>(boxName: kAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kUnAvailableDeliveryBox);
     await clearHiveBox<DeliveryEntity>(boxName: kBusyDeliveryBox);
+    await clearHiveBox<ProblemEntity>(boxName: kProblemsBox);
+    await clearHiveBox<RecommendationEntity>(boxName: kRecommendationsBox);
+
   }
 
   static void saveDeliveriesData({
@@ -97,6 +113,22 @@ class HiveServices {
   }) {
     var box = Hive.box<HomeBannerEntity>(boxName);
     box.addAll(banners);
+  }
+
+  static void saveProblemsData({
+    required List<ProblemEntity> problems,
+    required String boxName,
+  }){
+    var box = Hive.box<ProblemEntity>(boxName);
+    box.addAll(problems);
+  }
+
+  static void saveRecommendationsData({
+    required List<RecommendationEntity> recommendations,
+    required String boxName,
+  }){
+    var box = Hive.box<RecommendationEntity>(boxName);
+    box.addAll(recommendations);
   }
 
   static void saveShopsData({
