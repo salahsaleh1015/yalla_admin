@@ -1,9 +1,4 @@
 
-import 'package:flutter/material.dart';
-import 'package:yalla_admin/core/resources/colors_manager.dart';
-import 'package:yalla_admin/core/resources/values_manager.dart';
-import 'package:yalla_admin/data/models/status_badge_model.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/widgets/delivery_management_card.dart';
 
 // class DeliveryManagementCardsList extends StatelessWidget {
 //   const DeliveryManagementCardsList({

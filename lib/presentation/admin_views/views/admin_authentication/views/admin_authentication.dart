@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/widgets/sign_in_content.dart';

@@ -14,7 +14,6 @@ import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart'
 import 'package:yalla_admin/domain/usecases/home_usecases/shop_details_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/edit_shop_info_cubit/edit_shop_info_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/edit_shop_info_cubit/edit_shop_info_state.dart';
-import 'package:yalla_admin/presentation/global_widgets/dialogs/add_image_section.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/global_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';

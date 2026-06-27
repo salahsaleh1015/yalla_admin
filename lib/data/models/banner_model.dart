@@ -3,27 +3,22 @@ import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dar
 class BannerModel extends HomeBannerEntity {
   String? id;
   String? image;
-  String? name;
-  String? address;
-  String? phoneNumber;
-
-  BannerModel({this.id, this.image, this.name, this.address, this.phoneNumber})
-    : super(
-        bannerImage:
-            image ??
-            "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
-        bannerShopName: name ?? 'لا توجد بيانات',
-        bannerShopAddress: address ?? 'لا توجد بيانات',
-        bannerShopPhoneNumber: phoneNumber ?? 'لا توجد بيانات',
-        bannerId: id ?? '',
-      );
+  String? language;
+  BannerModel({
+    this.id,
+    this.image,
+    this.language,
+  }) : super(
+    bannerId: id ?? "",
+    bannerLanguage: language ?? "arabic",
+    bannerImage: image ??
+        "https://firebasestorage.googleapis.com/v0/b/yalla-delivery-app-f5ce2.firebasestorage.app/o/bannerFourImage.jpeg?alt=media&token=1adf43c1-0958-46ed-b80a-988202f1c543",
+  );
 
   factory BannerModel.fromEntity(HomeBannerEntity bannerEntity) {
     return BannerModel(
       image: bannerEntity.bannerImage,
-      phoneNumber: bannerEntity.bannerShopPhoneNumber,
-      address: bannerEntity.bannerShopAddress,
-      name: bannerEntity.bannerShopName,
+      language: bannerEntity.bannerLanguage,
       id: bannerEntity.bannerId,
     );
   }
@@ -32,17 +27,14 @@ class BannerModel extends HomeBannerEntity {
     return BannerModel(
       id: json['bannerId'],
       image: json['bannerImage'],
-      name: json['bannerShopName'],
-      address: json['bannerShopAddress'],
-      phoneNumber: json['bannerShopPhoneNumber'],
+      language: json['bannerLanguage'],
     );
   }
+
 
   Map<String, dynamic> toJson() => {
     'bannerId': id,
     'bannerImage': image,
-    'bannerShopName': name,
-    'bannerShopAddress': address,
-    'bannerShopPhoneNumber': phoneNumber,
+    'bannerLanguage': language,
   };
 }

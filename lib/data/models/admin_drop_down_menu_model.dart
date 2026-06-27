@@ -5,7 +5,6 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/delete_vendor_dialog.dart';
 import 'package:yalla_admin/presentation/global_widgets/dialogs/edit_vendor_info_dialog.dart';
 

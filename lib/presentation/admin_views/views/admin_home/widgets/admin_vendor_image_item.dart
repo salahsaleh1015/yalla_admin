@@ -4,10 +4,8 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_circular_button_widget.dart';
 
-import '../../../../../core/resources/assets_manager.dart';
 import '../../../../../data/models/admin_drop_down_menu_model.dart';
 
 class AdminVendorImageItem extends StatelessWidget {

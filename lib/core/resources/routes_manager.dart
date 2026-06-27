@@ -1,7 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_authentication/views/admin_authentication.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_management/views/admin_add_delivery_view.dart';
@@ -9,10 +7,8 @@ import 'package:yalla_admin/presentation/admin_views/views/admin_delivery_manage
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_banner_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_product_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_add_shop_view.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_banner_details_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_home_view.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/views/admin_vendors_details_view.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_main_layout/views/admin_main_layout.dart';
 
 import '../../presentation/admin_views/views/admin_home/views/admin_problems_and_recommendations_view.dart';
@@ -113,11 +109,11 @@ class RouteGenerator {
               shop: args,
             ));
 
-      case Routes.adminBannerDetailsRoute:
-        final args = settings.arguments as HomeBannerEntity;
-        return AppPageRoute(child:BannerDetailsView(
-          banner: args,
-        ));
+      // case Routes.adminBannerDetailsRoute:
+      //   final args = settings.arguments as HomeBannerEntity;
+      //   return AppPageRoute(child:BannerDetailsView(
+      //     banner: args,
+      //   ));
       case Routes.adminAddShopRoute: /////
         return AppPageRoute(child:AdminAddShopView());
       case Routes.adminAddShopProductRoute:

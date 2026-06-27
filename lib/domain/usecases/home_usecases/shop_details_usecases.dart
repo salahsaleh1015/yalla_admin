@@ -1,13 +1,11 @@
 import 'package:dartz/dartz.dart';
 import 'package:yalla_admin/core/usecase/usecase.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/data/models/edit_shop_image_model.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
 
 import '../../../core/errors/failure.dart';
-import '../../entities/home_entities/home_shop_entity.dart';
 
 class AddProductUseCase extends UseCase<void, AddShopProductModelForDomain> {
   HomeDetailsTransactionsRepo homeDetailsTransactionsRepo;

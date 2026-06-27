@@ -1,8 +1,6 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yalla_admin/core/resources/colors_manager.dart';
-import 'package:yalla_admin/core/resources/routes_manager.dart';
 import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/adds_bars.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
@@ -42,7 +40,7 @@ class AdminHomeView extends StatelessWidget {
           SizedBox(
             height: AppSize.s15.h,
           ),
-           const GlobalAdvertisementListWidget(),
+         const GlobalAdvertisementListWidget(),
           AddShopsBar(),
           SizedBox(
             height: AppSize.s15.h,

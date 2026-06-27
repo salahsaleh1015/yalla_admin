@@ -1,5 +1,4 @@
 import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_delivery_service.dart';
-import 'package:yalla_admin/data/models/delete_delivery_model.dart';
 
 import '../../../models/delivery_model.dart';
 

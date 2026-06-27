@@ -3,12 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/data/repos/problems_and_recommendations_repo/problems_and_recommendations_repo.dart';
 import 'package:yalla_admin/domain/entities/problems_and_recommendations_entites/problem_entity.dart';
-import 'package:yalla_admin/domain/entities/problems_and_recommendations_entites/recommendation_entity.dart';
 import 'package:yalla_admin/domain/usecases/problems_and_recommendations_usecases/delete_usecases.dart';
 import 'package:yalla_admin/presentation/controllers/problems_and_recommendations_controllers/delete_problem_cubit/delete_problem_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/problems_and_recommendations_controllers/delete_problem_cubit/delete_problem_state.dart';
-import 'package:yalla_admin/presentation/controllers/problems_and_recommendations_controllers/delete_recommendations_cubit/delete_recommendations_cubit.dart';
-import 'package:yalla_admin/presentation/controllers/problems_and_recommendations_controllers/delete_recommendations_cubit/delete_recommendations_state.dart';
 
 import '../../../core/resources/colors_manager.dart';
 import '../../../core/resources/routes_manager.dart';

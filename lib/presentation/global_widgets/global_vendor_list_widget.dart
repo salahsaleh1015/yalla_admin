@@ -9,7 +9,6 @@ import 'package:yalla_admin/presentation/controllers/home_controllers/banners_an
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_vendor_item_widget.dart';
 
-import '../../../../core/resources/routes_manager.dart';
 
 import '../../core/resources/values_manager.dart';
 

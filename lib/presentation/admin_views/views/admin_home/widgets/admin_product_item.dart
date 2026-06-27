@@ -10,7 +10,6 @@ import 'package:yalla_admin/presentation/global_widgets/global_decorated_contain
 import 'package:yalla_admin/presentation/global_widgets/global_light_button_widget.dart';
 
 import '../../../../../../core/resources/values_manager.dart';
-import '../../../../../core/resources/assets_manager.dart';
 import '../../../../../core/resources/colors_manager.dart';
 
 class AdminProductItem extends StatelessWidget {

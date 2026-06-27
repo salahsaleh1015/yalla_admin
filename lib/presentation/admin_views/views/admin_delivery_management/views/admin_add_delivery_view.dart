@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/constants_manager.dart';
 import 'package:yalla_admin/core/resources/routes_manager.dart';
@@ -16,7 +15,6 @@ import 'package:yalla_admin/domain/usecases/delivery_management_usecases/add_del
 import 'package:yalla_admin/presentation/controllers/deliveries_management_controllers/add_delivery_cubit/add_delivery_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/deliveries_management_controllers/add_delivery_cubit/add_delivery_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/add_bar_header.dart';
-import 'package:yalla_admin/presentation/global_widgets/dialogs/add_image_section.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_padding_widget.dart';

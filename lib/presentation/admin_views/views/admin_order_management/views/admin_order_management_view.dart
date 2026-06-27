@@ -7,7 +7,6 @@ import 'package:yalla_admin/core/resources/values_manager.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_order_management/widgets/order_management_tab_bar.dart';
 import 'package:yalla_admin/presentation/admin_views/views/admin_order_management/widgets/order_management_tab_bar_view.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_padding_widget.dart';
-import 'package:yalla_admin/presentation/global_widgets/global_search_card_item_widget.dart';
 
 class AdminOrderManagementView extends StatelessWidget {
   const AdminOrderManagementView({super.key});

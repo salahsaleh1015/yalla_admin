@@ -1,9 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter/material.dart';
-import 'package:hive/hive.dart';
 import 'package:yalla_admin/core/errors/failure.dart';
-import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/data/data_sources/local_data_sources/home_local_data_sources/home_statistics_cards_local_data_source.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_statistics_cards_remote_data_source.dart';
 import 'package:yalla_admin/domain/repos/home_repos/home_statistics_cards_repo.dart';

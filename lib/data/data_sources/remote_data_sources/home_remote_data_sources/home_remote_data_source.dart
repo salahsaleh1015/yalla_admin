@@ -6,11 +6,9 @@ import 'package:yalla_admin/core/services/firebase_firestore_services/firestore_
 import 'package:yalla_admin/core/services/hive_services/hive_services.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
 import 'package:yalla_admin/data/models/banner_model.dart';
-import 'package:yalla_admin/data/models/product_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<HomeBannerEntity>> getHomeBanners();

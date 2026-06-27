@@ -60,6 +60,8 @@ dependencies:
   injectable: ^2.5.1
   get_it: ^8.2.0
 
+  carousel_slider: ^5.1.2
+
   # shared preferences local storage
   shared_preferences: ^2.5.3
 

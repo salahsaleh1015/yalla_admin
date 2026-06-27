@@ -3,7 +3,6 @@ import 'package:yalla_admin/core/services/firebase_firestore_services/firebase_s
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
 
 import 'package:yalla_admin/data/models/banner_model.dart';
-import 'package:yalla_admin/data/models/product_model.dart';
 import 'package:yalla_admin/data/models/shop_model.dart';
 
 class FirestoreHomeServices {
@@ -11,7 +10,7 @@ class FirestoreHomeServices {
   FirebaseStorageServices _storageServices =  FirebaseStorageServices();
 
   final CollectionReference _bannersCollectionRef = FirebaseFirestore.instance
-      .collection("Banners");
+      .collection("BannersV2");
 
   final CollectionReference _shopsCollectionRef = FirebaseFirestore.instance
       .collection("Shops");
@@ -35,9 +34,7 @@ class FirestoreHomeServices {
 
     final model = BannerModel(
       id: docRef.id,
-      name: banner.bannerShopName,
-      address: banner.bannerShopAddress,
-      phoneNumber: banner.bannerShopPhoneNumber,
+      language: banner.language,
       image: banner.bannerImage,
     );
 

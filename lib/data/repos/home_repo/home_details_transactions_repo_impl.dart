@@ -1,4 +1,3 @@
-import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dartz/dartz.dart';
@@ -6,11 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:yalla_admin/core/errors/failure.dart';
 import 'package:yalla_admin/data/data_sources/remote_data_sources/home_remote_data_sources/home_details_remote_data_source.dart';
 import 'package:yalla_admin/data/models/add_home_data_models.dart';
-import 'package:yalla_admin/data/models/banner_model.dart';
-import 'package:yalla_admin/data/models/edit_shop_image_model.dart';
-import 'package:yalla_admin/data/models/shop_model.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
-import 'package:yalla_admin/domain/entities/home_entities/home_shop_entity.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_shop_product_entity.dart';
 import 'package:yalla_admin/domain/repos/home_repos/home_banners_and_shops_repo.dart';
 

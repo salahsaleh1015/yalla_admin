@@ -10,11 +10,9 @@ import 'package:yalla_admin/core/utils/popup_toast_helper.dart';
 import 'package:yalla_admin/data/repos/home_repo/home_transactions_repo_impl.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 import 'package:yalla_admin/domain/usecases/home_usecases/home_transactions_usecases.dart';
-import 'package:yalla_admin/presentation/admin_views/views/admin_home/widgets/admin_main_bar.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_banner_cubit/add_banner_cubit.dart';
 import 'package:yalla_admin/presentation/controllers/home_controllers/banners_and_shops_cubits/add_banner_cubit/add_banner_state.dart';
 import 'package:yalla_admin/presentation/global_widgets/add_bar_header.dart';
-import 'package:yalla_admin/presentation/global_widgets/dialogs/add_image_section.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_add_image_button.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_button_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator.dart';
@@ -169,11 +167,8 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                                 AddBannerCubit.get(context).addBanner(
                                   banner: HomeBannerEntity(
                                     bannerImage: imageUrl,
-                                    bannerShopName: _nameController.text,
                                     bannerId: '',
-                                    bannerShopAddress: _locationController.text,
-                                    bannerShopPhoneNumber:
-                                        _phoneController.text,
+                                      bannerLanguage: "arabic"
                                   ),
                                 );
                               }
