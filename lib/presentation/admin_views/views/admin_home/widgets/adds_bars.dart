@@ -23,7 +23,7 @@ class AddAdsBar extends StatelessWidget {
           GlobalAdminAddButtonWidget(
             text: "إضافة شريك الإعلان",
             onTap: () {
-              Navigator.pushNamed(context, Routes.adminAddBannerRoute);
+            Navigator.pushNamed(context, Routes.adminAddBannerRoute);
             }
           ),
         ],

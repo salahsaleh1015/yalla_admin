@@ -1,16 +1,17 @@
-
-
-
-
-
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:yalla_admin/domain/entities/home_entities/home_banner_entity.dart';
 
+import '../../../../../data/models/add_home_data_models.dart';
+import '../../../../global_widgets/dialogs/delete_banner_dialog.dart';
+
 class HomeCarouselBanner extends StatefulWidget {
-  const HomeCarouselBanner(
-      {super.key, required this.bannersLength, required this.banners});
+  const HomeCarouselBanner({
+    super.key,
+    required this.bannersLength,
+    required this.banners,
+  });
   final int bannersLength;
   final List<HomeBannerEntity> banners;
 
@@ -29,40 +30,51 @@ class _HomeCarouselBannerState extends State<HomeCarouselBanner> {
           height: 170.h,
           child: CarouselSlider.builder(
             itemCount: widget.bannersLength,
-            itemBuilder:
-                (BuildContext context, int itemIndex, int pageViewIndex) {
-              return ClipRRect(
+            itemBuilder: (
+              BuildContext context,
+              int itemIndex,
+              int pageViewIndex,
+            ) {
+              return GestureDetector(
+                onTap: () {
+                  deleteBannerDialog(
+                    context,
+                    deleteBannerModel: DeleteBannerModelForDomain(
+                      bannerId: widget.banners[itemIndex].bannerId,
+                      bannerImageUrl: widget.banners[itemIndex].bannerImage,
+                    ),
+                  );
+                },
+                child: ClipRRect(
                   borderRadius: BorderRadius.circular(16),
                   child: Image(
-                    image: NetworkImage(
-                      widget.banners[itemIndex].bannerImage,
-                    ),
+                    image: NetworkImage(widget.banners[itemIndex].bannerImage),
                     width: MediaQuery.sizeOf(context).width,
                     fit: BoxFit.fill,
-                  ));
+                  ),
+                ),
+              );
             },
             options: CarouselOptions(
-                aspectRatio: 16 / 7,
-                viewportFraction: 0.8,
-                enableInfiniteScroll: true,
-                autoPlay: true,
-                autoPlayInterval: Duration(seconds: 3),
-                autoPlayAnimationDuration: Duration(milliseconds: 800),
-                autoPlayCurve: Curves.fastOutSlowIn,
-                enlargeCenterPage: true,
-                enlargeFactor: 0.3,
-                scrollDirection: Axis.horizontal,
-                onPageChanged: (i, reason) {
-                  setState(() {
-                    currentIndex = i;
-                  });
-                }),
+              aspectRatio: 16 / 7,
+              viewportFraction: 0.8,
+              enableInfiniteScroll: true,
+              autoPlay: true,
+              autoPlayInterval: Duration(seconds: 3),
+              autoPlayAnimationDuration: Duration(milliseconds: 800),
+              autoPlayCurve: Curves.fastOutSlowIn,
+              enlargeCenterPage: true,
+              enlargeFactor: 0.3,
+              scrollDirection: Axis.horizontal,
+              onPageChanged: (i, reason) {
+                setState(() {
+                  currentIndex = i;
+                });
+              },
+            ),
           ),
         ),
-        SizedBox(
-          height: 8.h,
-        ),
-
+        SizedBox(height: 8.h),
       ],
     );
   }

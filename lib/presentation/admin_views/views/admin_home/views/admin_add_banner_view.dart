@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:yalla_admin/core/resources/assets_manager.dart';
 import 'package:yalla_admin/core/resources/colors_manager.dart';
 import 'package:yalla_admin/core/resources/constants_manager.dart';
 import 'package:yalla_admin/core/resources/routes_manager.dart';
@@ -31,31 +32,18 @@ class AdminAddBannerView extends StatefulWidget {
 class _AdminAddBannerViewState extends State<AdminAddBannerView> {
   GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  TextEditingController _nameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController();
-  TextEditingController _locationController = TextEditingController();
-
   bool isButtonEnabled = false;
   bool isImageAdded = false;
 
   void _checkIfFieldAreFilled() {
-    final isFilled =
-        _nameController.text.isNotEmpty ||
-        _phoneController.text.isNotEmpty ||
-        _locationController.text.isNotEmpty;
-
     setState(() {
-      isButtonEnabled = isFilled && isImageAdded;
+      isButtonEnabled = isImageAdded;
     });
   }
 
   @override
   void initState() {
     super.initState();
-
-    _locationController.addListener(_checkIfFieldAreFilled);
-    _phoneController.addListener(_checkIfFieldAreFilled);
-    _nameController.addListener(_checkIfFieldAreFilled);
   }
 
   String imageUrl = "";
@@ -67,49 +55,27 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
           child: Form(
             key: _formKey,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 const AddBarHeader(),
                 SizedBox(height: AppSize.s50.h),
-
-                Text(
-                  "أسم المعلن",
-                  style: Theme.of(context).textTheme.bodyMedium,
-                ),
-                buildSmallSpace(),
-                GlobalTextFieldWidget(
-                  controller: _nameController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return "ادخل الاسم بالكامل ";
-                    }
-                    return null;
-                  },
-                  textInputType: TextInputType.text,
-                  hintText: "ادخل اسم مندوب التوصيل",
-                ),
-                buildSpace(),
-                Text("التليفون", style: Theme.of(context).textTheme.bodyMedium),
-                buildSmallSpace(),
-                GlobalTextFieldWidget(
-                  validator: AppConstant.phoneValidation,
-                  controller: _phoneController,
-                  textInputType: TextInputType.phone,
-                  hintText: "ادخل رقم التلفيون",
-                ),
-                buildSpace(),
-                Text("العنوان", style: Theme.of(context).textTheme.bodyMedium),
-                buildSmallSpace(),
-                GlobalTextFieldWidget(
-                  controller: _locationController,
-                  validator: (String? value) {
-                    if (value!.isEmpty) {
-                      return "ادخل العنوان بالكامل ";
-                    }
-                    return null;
-                  },
-                  textInputType: TextInputType.text,
-                  hintText: "ادخل عنوان المندوب",
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  height: MediaQuery.sizeOf(context).height * 0.2,
+                  decoration: BoxDecoration(
+                    color: ColorManager.lightGrayColor,
+                    borderRadius: BorderRadius.circular(AppSize.s8.r),
+                  ),
+                  child: ClipRRect(
+                    borderRadius: BorderRadius.circular(16.r),
+                    child: Image(
+                      image:
+                          imageUrl == ''
+                              ? AssetImage(AssetsManager.notFound)
+                              : NetworkImage(imageUrl),
+                      fit: BoxFit.fill,
+                    ),
+                  ),
                 ),
                 buildSpace(),
                 Center(
@@ -137,14 +103,14 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                   child: Padding(
                     padding: EdgeInsets.all(AppSize.s2.r),
                     child: BlocConsumer<AddBannerCubit, AddBannerStates>(
-                      listener: (context, state) {
+                      listener: (context, state) async {
                         if (state is AddBannerSuccessState) {
                           showCustomToast(
                             context,
                             "تمت الاضافه بنجاح",
-                              type: ToastType.success
+                            type: ToastType.success,
                           );
-                          HiveServices.clearHiveBox<HomeBannerEntity>(
+                          await HiveServices.clearHiveBox<HomeBannerEntity>(
                             boxName: HiveServices.kBannersBox,
                           );
                           Navigator.pushReplacementNamed(
@@ -158,7 +124,7 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                           return Center(child: GlobalLoadingIndicator());
                         } else {
                           return GlobalButtonWidget(
-                            isButtonEnabled: isButtonEnabled,
+                            isButtonEnabled: imageUrl != '',
 
                             height: AppSize.s40.h,
                             color: ColorManager.primary,
@@ -168,7 +134,7 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
                                   banner: HomeBannerEntity(
                                     bannerImage: imageUrl,
                                     bannerId: '',
-                                      bannerLanguage: "arabic"
+                                    bannerLanguage: "arabic",
                                   ),
                                 );
                               }
@@ -199,9 +165,6 @@ class _AdminAddBannerViewState extends State<AdminAddBannerView> {
 
   @override
   void dispose() {
-    _nameController.dispose();
-    _phoneController.dispose();
-    _locationController.dispose();
     super.dispose();
   }
 }
