@@ -36,15 +36,12 @@ class OrderManagementCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
                   Text(
-                    "رقم الطلب: ",
+                    "حاله الطلب: ",
                     style: Theme.of(context).textTheme.headlineMedium!.copyWith(
                       color: ColorManager.darkGrayColor,
                     ),
                   ),
-                  Text(
-                    orderIndex.toString(),
-                    style: Theme.of(context).textTheme.headlineMedium,
-                  ),
+
                   const Spacer(),
                   OrderStatusBadge(
                     statusColor: getStatusBadgeColor(order.orderStatus),
@@ -62,9 +59,14 @@ class OrderManagementCard extends StatelessWidget {
                       color: ColorManager.darkGrayColor,
                     ),
                   ),
-                  Text(
-                    order.userName,
-                    style: Theme.of(context).textTheme.headlineMedium,
+                  // Wrap this text in an Expanded widget
+                  Expanded(
+                    child: Text(
+                      order.userName,
+                      style: Theme.of(context).textTheme.headlineMedium,
+                      overflow: TextOverflow.ellipsis,
+                      maxLines: 1, // Ensures it stays on a single line and triggers ellipsis
+                    ),
                   ),
                 ],
               ),
