@@ -20,6 +20,8 @@ import 'package:yalla_admin/presentation/global_widgets/global_loading_indicator
 import 'package:yalla_admin/presentation/global_widgets/global_padding_widget.dart';
 import 'package:yalla_admin/presentation/global_widgets/global_text_field_widget.dart';
 
+import '../../../../global_widgets/global_add_image_button.dart';
+
 class AdminAddDeliveryView extends StatefulWidget {
   const AdminAddDeliveryView({super.key});
 
@@ -36,6 +38,7 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
   final TextEditingController _rateController = TextEditingController();
 
   bool isButtonEnabled = false;
+
 
   void _checkIfFieldAreFilled() {
     final isFilled =
@@ -57,7 +60,7 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
     _nameController.addListener(_checkIfFieldAreFilled);
     _rateController.addListener(_checkIfFieldAreFilled);
   }
-
+  String imageUrl = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -126,6 +129,18 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
                   hintText: "ادخل تقييم المندوب من 1 الي 5",
                 ),
                 buildSpace(),
+
+                Center(
+                  child: GlobalAddImageButton(
+                    onImageUploaded: (url) {
+                      print("Image URL: $url");
+                      imageUrl = url;
+
+
+                    },
+                  ),
+                ),
+                buildSpace(),
                 BlocProvider<AddDeliveryCubit>(
                   create:
                       (context) => AddDeliveryCubit(
@@ -169,6 +184,7 @@ class _AdminAddDeliveryViewState extends State<AdminAddDeliveryView> {
                                 AddDeliveryCubit.get(context)
                                     .addUnAvailableDeliveries(
                                       delivery: DeliveryEntity(
+                                        deliveryImage: imageUrl,
                                         completedOrdersNumber: 0,
                                         deliveryId: "",
                                         deliveryLocation:

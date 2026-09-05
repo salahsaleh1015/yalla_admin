@@ -27,7 +27,7 @@ abstract class MenuItems {
   static const editInfo = DropdownMenuModel(text: 'تعديل المعلومات', icon: Icons.edit);
 
   static const deleteVendor =
-  DropdownMenuModel(text: 'حذف موزع الخدمة', icon: FontAwesomeIcons.trash);
+  DropdownMenuModel(text: 'حذف موزع الخدمة', icon: Icons.restore_from_trash_rounded);
 
   static Widget buildItem(DropdownMenuModel item) {
     return Row(

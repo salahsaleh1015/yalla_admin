@@ -24,13 +24,14 @@ class DeliveryEntityAdapter extends TypeAdapter<DeliveryEntity> {
       deliveryRate: fields[4] as num,
       deliveryStatus: fields[5] as String,
       completedOrdersNumber: fields[6] as int,
+      deliveryImage: fields[7] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, DeliveryEntity obj) {
     writer
-      ..writeByte(7)
+      ..writeByte(8)
       ..writeByte(0)
       ..write(obj.deliveryId)
       ..writeByte(1)
@@ -44,7 +45,9 @@ class DeliveryEntityAdapter extends TypeAdapter<DeliveryEntity> {
       ..writeByte(5)
       ..write(obj.deliveryStatus)
       ..writeByte(6)
-      ..write(obj.completedOrdersNumber);
+      ..write(obj.completedOrdersNumber)
+      ..writeByte(7)
+      ..write(obj.deliveryImage);
   }
 
   @override

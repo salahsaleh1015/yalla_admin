@@ -169,6 +169,7 @@ class _EditDeliveryDialogContentState extends State<EditDeliveryDialogContent> {
 
                         UpdateDeliveryCubit.get(context).updateDeliveries(
                           delivery: DeliveryEntity(
+                            deliveryImage: widget.delivery.deliveryImage,
                             completedOrdersNumber:
                                 widget.delivery.completedOrdersNumber,
                             deliveryId: widget.delivery.deliveryId,

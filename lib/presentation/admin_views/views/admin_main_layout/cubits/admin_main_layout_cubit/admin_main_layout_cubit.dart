@@ -23,7 +23,7 @@ class AdminMainLayoutCubit extends Cubit<AdminMainLayoutState> {
   List<TabItem> adminBottomNavTabs = [
 
     const TabItem(icon: Icons.delivery_dining, title: 'الديلفرات'),
-    const TabItem(icon: FontAwesomeIcons.house, title: 'الرئيسية'),
+    const TabItem(icon: Icons.home, title: 'الرئيسية'),
     const TabItem(icon:  Icons.file_open_rounded, title: 'الطلبات'),
 
   ];

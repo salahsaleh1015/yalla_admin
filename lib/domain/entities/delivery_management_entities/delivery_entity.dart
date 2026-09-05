@@ -19,6 +19,9 @@ class DeliveryEntity {
   final String deliveryStatus;
   @HiveField(6)
   final int completedOrdersNumber;
+  @HiveField(7)
+  final String deliveryImage;
+
 
   DeliveryEntity({
     required this.deliveryId,
@@ -27,6 +30,7 @@ class DeliveryEntity {
     required this.deliveryPhone,
     required this.deliveryRate,
     required this.deliveryStatus,
-    required this.completedOrdersNumber
+    required this.completedOrdersNumber,
+    required this.deliveryImage
   });
 }

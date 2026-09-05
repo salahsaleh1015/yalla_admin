@@ -27,8 +27,12 @@ class FetchingDeliveriesRepoImpl implements FetchingDeliveriesRepo {
       return Right(availableDeliveries);
     } catch (e) {
       if (e is FirebaseException) {
+        debugPrint(" e internet");
+        debugPrint(e.message);
         return Left(FirebaseFailure.fromFirebaseException(e));
       }
+      debugPrint(" e internet");
+      debugPrint(e.toString());
       return Left(FirebaseFailure.fromException(e.toString()));
     }
   }

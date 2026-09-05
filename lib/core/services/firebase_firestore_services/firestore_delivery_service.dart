@@ -40,7 +40,8 @@ class FirestoreDeliveryServices {
       deliveryPhone: delivery.deliveryPhone,
       deliveryRate: delivery.deliveryRate,
       deliveryStatus: delivery.deliveryStatus,
-      completedOrdersNumber: delivery.completedOrdersNumber
+      completedOrdersNumber: delivery.completedOrdersNumber,
+      deliveryImage: delivery.deliveryImage
     );
 
     await docRef.set(model.toJson());

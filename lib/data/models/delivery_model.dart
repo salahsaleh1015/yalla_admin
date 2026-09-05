@@ -8,7 +8,8 @@ class DeliveryModel extends DeliveryEntity {
     required super.deliveryPhone,
     required super.deliveryRate,
     required super.deliveryStatus,
-    required super.completedOrdersNumber
+    required super.completedOrdersNumber,
+    required super.deliveryImage,
   });
 
   factory DeliveryModel.fromEntity(DeliveryEntity entity) {
@@ -20,18 +21,20 @@ class DeliveryModel extends DeliveryEntity {
       deliveryPhone: entity.deliveryPhone,
       deliveryRate: entity.deliveryRate,
       completedOrdersNumber: entity.completedOrdersNumber,
+      deliveryImage: entity.deliveryImage
     );
   }
 
   factory DeliveryModel.fromJson(Map<String, dynamic> json) {
     return DeliveryModel(
       deliveryId: json['deliveryId'] ?? '',
+      deliveryImage: json['deliveryImage']??'',
       deliveryName: json['deliveryName'],
       deliveryPhone: json['deliveryPhone'],
       deliveryLocation: json['deliveryLocation'],
       deliveryStatus: json['deliveryStatus'],
       deliveryRate: json['deliveryRate'],
-      completedOrdersNumber: json['completedOrdersNumber']
+      completedOrdersNumber: json['completedOrders']??0
     );
   }
 
@@ -43,7 +46,8 @@ class DeliveryModel extends DeliveryEntity {
       'deliveryLocation': deliveryLocation,
       'deliveryStatus': deliveryStatus,
       'deliveryRate': deliveryRate,
-      'completedOrdersNumber':completedOrdersNumber
+      'completedOrders':completedOrdersNumber,
+      'deliveryImage':deliveryImage
     };
   }
 }
